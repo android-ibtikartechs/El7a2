@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.ibtikartechs.apps.el7a2.R;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.main_toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
+        setupActionBar();
+        setupNavDrawer();
     }
 
     public void setupActionBar() {
@@ -30,5 +33,29 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    }
+
+    public void setupNavDrawer() {
+        if (drawerToggle == null) {
+            drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+                public void onDrawerClosed(View view) {
+                }
+
+                public void onDrawerOpened(View drawerView) {
+
+                }
+
+                public void onDrawerSlide(View drawerView, float slideOffset) {
+                }
+
+                public void onDrawerStateChanged(int newState) {
+
+                }
+
+            };
+            drawerLayout.setDrawerListener(drawerToggle);
+        }
+
+        drawerToggle.syncState();
     }
 }
