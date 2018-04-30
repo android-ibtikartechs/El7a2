@@ -1,7 +1,9 @@
-package com.ibtikartechs.apps.el7a2;
+package com.ibtikartechs.apps.el7a2.ui.activities.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ibtikartechs.apps.el7a2.R;
 
 public class MainActivity extends AppCompatActivity {
 
