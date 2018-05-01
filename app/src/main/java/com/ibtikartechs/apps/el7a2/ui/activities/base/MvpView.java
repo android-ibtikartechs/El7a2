@@ -5,4 +5,6 @@ package com.ibtikartechs.apps.el7a2.ui.activities.base;
  */
 
 public interface MvpView  {
+    void showLoadingDialog();
+    void hideLoadingDialog();
 }
