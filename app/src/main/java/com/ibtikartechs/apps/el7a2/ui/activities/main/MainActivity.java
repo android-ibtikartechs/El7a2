@@ -1,5 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.main;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -38,11 +40,13 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     MainPresenter presenter;
     private ViewPagerAdapter adapter;
     private ActionBarDrawerToggle drawerToggle;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
         setupActionBar();
         setupNavDrawer();
@@ -54,38 +58,21 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         presenter.onAttach(this);
 
 
-
         addMainDealFragment();
-        addCategoryFragment("1");
+        /*addCategoryFragment("1");
         addCategoryFragment("2");
         addCategoryFragment("3");
         addCategoryFragment("4");
-        addCategoryFragment("5");
+        addCategoryFragment("5"); */
 
-        addCategoryTab("الصفقة الرئيسية",0);
-        addCategoryTab("إجازات",1);
+        //addCategoryTab("الصفقة الرئيسية",0);
+        /*addCategoryTab("إجازات",1);
         addCategoryTab("أحدث المنتجات",2);
         addCategoryTab("منتجات أبل",3);
         addCategoryTab("منتجات أبل",4);
-        addCategoryTab("منتجات أبل",5);
+        addCategoryTab("منتجات أبل",5);*/
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                ((CustomFontTextView) tab.getCustomView()).setTextColor(getResources().getColor(R.color.white));
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                ((CustomFontTextView) tab.getCustomView()).setTextColor(getResources().getColor(R.color.off_white));
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
         presenter.getCategories();
     }
 
@@ -94,6 +81,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         adapter = new ViewPagerAdapter (getSupportFragmentManager());
         viewPager.setAdapter(adapter);
     }
+
+
 
 
     public void setupActionBar() {
@@ -153,23 +142,65 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
 
     @Override
-    public void addCategoryTab(String title, int tabIndex) {
-        CustomFontTextView tab;
-        tab = (CustomFontTextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tab.setText(title);
-        tabLayout.getTabAt(tabIndex).setCustomView(tab);
-        if(tabIndex == 0)
-            ((CustomFontTextView)tabLayout.getTabAt(0).getCustomView()).setTextColor(getResources().getColor(R.color.white));
+    public void addCategoryTab(final String title, final int tabIndex) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                CustomFontTextView tab;
+                tab = (CustomFontTextView) LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
+                tab.setText(title);
+                tabLayout.getTabAt(tabIndex).setCustomView(tab);
+                if(tabIndex == 0)
+                    ((CustomFontTextView)tabLayout.getTabAt(0).getCustomView()).setTextColor(getResources().getColor(R.color.white));
+
+            }
+        });
 
     }
 
     @Override
-    public void addCategoryFragment(String id) {
-        adapter.addFragment(CategoryFragment.newInstance(id,"any"), "category");
+    public void addCategoryFragment(final String id) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addFragment(CategoryFragment.newInstance(id,"any"), "category");
+            }
+        });
+
     }
 
     @Override
     public void addMainDealFragment() {
         adapter.addFragment(MainDealFragment.newInstance("any","any"),"main deal fragment");
+    }
+
+    @Override
+    public void setupCategoryTabs() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+
+
+                viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        ((CustomFontTextView) tab.getCustomView()).setTextColor(getResources().getColor(R.color.white));
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+                         ((CustomFontTextView) tab.getCustomView()).setTextColor(getResources().getColor(R.color.off_white));
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
+                });
+
+            }
+        });
+
     }
 }

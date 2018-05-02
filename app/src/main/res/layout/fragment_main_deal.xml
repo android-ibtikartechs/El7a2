@@ -1,13 +1,241 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.MainDealFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_test_main_deal"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="لاب توب Hp + شنطة هدية + ماوس هدية"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="1250$"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="الوقت المتبقي"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_main_deal_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="00"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView2"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView2"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView2" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:text="ي"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_days"
+            app:layout_constraintStart_toEndOf="@+id/tv_main_deal_days"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_days" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text=":"
+            app:custom_font="@string/font_name_helvatican"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView4"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView4"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView4" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_main_deal_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="00"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView5"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView5"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView5" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            app:custom_font="@string/font_name_helvatican"
+            android:text="س"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_hours"
+            app:layout_constraintStart_toEndOf="@+id/tv_main_deal_hours"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_hours" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text=":"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView7"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView7"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView7" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_main_deal_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="00"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView8"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView8"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView8" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:text="د"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_minutes"
+            app:layout_constraintStart_toEndOf="@+id/tv_main_deal_minutes"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_minutes" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text=":"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView10"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView10"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView10" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_main_deal_seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="00"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/customFontTextView11"
+            app:layout_constraintStart_toEndOf="@+id/customFontTextView11"
+            app:layout_constraintTop_toTopOf="@+id/customFontTextView11" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/customFontTextView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:text="ث"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_seconds"
+            app:layout_constraintStart_toEndOf="@+id/tv_main_deal_seconds"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_seconds" />
+
+        <TextView
+            android:id="@+id/tv_main_deal_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="1400$"
+            android:textColor="@color/gray"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/customFontTextView15"
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/customFontTextView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="( -50% )"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

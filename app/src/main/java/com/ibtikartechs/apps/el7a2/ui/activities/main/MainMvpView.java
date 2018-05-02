@@ -12,4 +12,5 @@ public interface MainMvpView extends MvpView {
     void addMainDealFragment();
     void showLoadingDialog();
     void hideLoadingDialog();
+    void setupCategoryTabs();
 }

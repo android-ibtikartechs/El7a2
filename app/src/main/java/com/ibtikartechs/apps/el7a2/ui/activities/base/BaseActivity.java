@@ -21,7 +21,6 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        mHandler = new Handler(Looper.getMainLooper());
         super.onCreate(savedInstanceState, persistentState);
     }
 
@@ -36,6 +35,7 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
 
     @Override
     public void hideLoadingDialog() {
+        mHandler = new Handler(Looper.getMainLooper());
         mHandler.post(new Runnable() {
             @Override
             public void run() {
