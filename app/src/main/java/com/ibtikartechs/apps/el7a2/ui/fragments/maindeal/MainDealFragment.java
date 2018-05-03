@@ -1,4 +1,4 @@
-package com.ibtikartechs.apps.el7a2.ui.fragments;
+package com.ibtikartechs.apps.el7a2.ui.fragments.maindeal;
 
 
 import android.graphics.Paint;
@@ -12,13 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
+import com.ibtikartechs.apps.el7a2.ui.activities.main.MainPresenter;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +30,7 @@ import butterknife.ButterKnife;
  * Use the {@link MainDealFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainDealFragment extends Fragment {
+public class MainDealFragment extends BaseFragment implements MainDealMvpView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,6 +41,7 @@ public class MainDealFragment extends Fragment {
     private String mParam2;
 
     private Handler handler;
+    MainDealPresenter presenter;
     private Runnable runnable;
     private int year;
     private int month;
@@ -49,6 +52,7 @@ public class MainDealFragment extends Fragment {
     @BindView(R.id.tv_main_deal_minutes) CustomFontTextView tvMinutes;
     @BindView(R.id.tv_main_deal_seconds) CustomFontTextView tvSeconds;
     @BindView(R.id.tv_main_deal_old_price) TextView tvOldPrice;
+
 
     public MainDealFragment() {
         // Required empty public constructor
@@ -76,6 +80,9 @@ public class MainDealFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handler = new Handler(Looper.getMainLooper());
+        DataManager dataManager = ((MvpApp) getActivity().getApplication()).getDataManager();
+        presenter = new MainDealPresenter(dataManager);
+        presenter.onAttach(this);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -95,7 +102,7 @@ public class MainDealFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        countDownStart("2018-05-03");
+        countDownStart("2018-05-10");
     }
 
     public void countDownStart(final String futureTime) {

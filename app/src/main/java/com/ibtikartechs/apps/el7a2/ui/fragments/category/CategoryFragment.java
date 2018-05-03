@@ -1,4 +1,4 @@
-package com.ibtikartechs.apps.el7a2.ui.fragments;
+package com.ibtikartechs.apps.el7a2.ui.fragments.category;
 
 
 import android.os.Bundle;

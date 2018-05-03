@@ -21,4 +21,9 @@ public class LoadingDialogFragment extends DialogFragment {
         return rootView;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+    }
+
+
 }

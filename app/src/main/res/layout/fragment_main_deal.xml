@@ -1,10 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.MainDealFragment">
+    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,11 +15,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/im_main_deal_main_sale"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_test_main_deal"
+            android:src="@drawable/im_test_2"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,54 +30,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.35" />
+            app:layout_constraintGuide_percent="0.30" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_main_deal_name_sale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="لاب توب Hp + شنطة هدية + ماوس هدية"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/im_main_deal_main_sale" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_main_deal_main_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:text="1250$"
-            android:textColor="@color/black"
+            android:textColor="@color/white_blue"
             app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_name_sale" />
 
         <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
             android:id="@+id/customFontTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="الوقت المتبقي"
             android:textColor="@color/black"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_main_price" />
 
         <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
             android:id="@+id/tv_main_deal_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="00"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView2"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView2"
@@ -86,10 +87,10 @@
             android:id="@+id/customFontTextView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:text="ي"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_days"
             app:layout_constraintStart_toEndOf="@+id/tv_main_deal_days"
@@ -99,11 +100,11 @@
             android:id="@+id/customFontTextView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text=":"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView4"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView4"
             app:layout_constraintTop_toTopOf="@+id/customFontTextView4" />
@@ -112,10 +113,10 @@
             android:id="@+id/tv_main_deal_hours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="00"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView5"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView5"
@@ -125,11 +126,11 @@
             android:id="@+id/customFontTextView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
-            app:custom_font="@string/font_name_helvatican"
+            android:layout_marginStart="2dp"
             android:text="س"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
+            app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_hours"
             app:layout_constraintStart_toEndOf="@+id/tv_main_deal_hours"
             app:layout_constraintTop_toTopOf="@+id/tv_main_deal_hours" />
@@ -138,10 +139,10 @@
             android:id="@+id/customFontTextView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text=":"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView7"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView7"
@@ -151,10 +152,10 @@
             android:id="@+id/tv_main_deal_minutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="00"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView8"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView8"
@@ -164,10 +165,10 @@
             android:id="@+id/customFontTextView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:text="د"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_minutes"
             app:layout_constraintStart_toEndOf="@+id/tv_main_deal_minutes"
@@ -177,10 +178,10 @@
             android:id="@+id/customFontTextView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text=":"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView10"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView10"
@@ -190,10 +191,10 @@
             android:id="@+id/tv_main_deal_seconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="00"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/customFontTextView11"
             app:layout_constraintStart_toEndOf="@+id/customFontTextView11"
@@ -203,10 +204,10 @@
             android:id="@+id/customFontTextView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:text="ث"
-            android:textColor="@color/black"
+            android:textColor="@color/off_gray"
             app:custom_font="@string/font_name_helvatican"
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_seconds"
             app:layout_constraintStart_toEndOf="@+id/tv_main_deal_seconds"
@@ -221,13 +222,13 @@
             android:text="1400$"
             android:textColor="@color/gray"
 
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/customFontTextView15"
-            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_main_price"
+            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_discount_parcent"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_main_price"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/customFontTextView15"
+            android:id="@+id/tv_main_deal_discount_parcent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -237,5 +238,235 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lout_main_deal_container_first_sale"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_days"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardUseCompatPadding="true">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/im_main_deal_first_sale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/tv_main_deal_first_sale_price"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/im_test_2" />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_main_deal_first_sale_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="1230$"
+                    android:textColor="@color/white_blue"
+                    app:custom_font="@string/font_name_helvatican" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="-5dp"
+                android:layout_marginRight="-5dp"
+                android:layout_marginTop="-5dp"
+                android:src="@drawable/ribbon_thumb" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lout_main_deal_container_second_sale"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/lout_main_deal_container_first_sale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lout_main_deal_container_first_sale"
+            app:layout_constraintTop_toTopOf="@+id/lout_main_deal_container_first_sale"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/im_main_deal_second_sale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/tv_main_deal_second_sale_price"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/im_test_2" />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_main_deal_second_sale_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="1250$"
+                    android:textColor="@color/white_blue"
+                    app:custom_font="@string/font_name_helvatican" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/ribon"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="-5dp"
+                android:layout_marginRight="-5dp"
+                android:layout_marginTop="-5dp"
+                android:src="@drawable/ribbon_thumb" />
+
+        </android.support.v7.widget.CardView>
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_container_first_sale" />
+
+        <Button
+            android:id="@+id/btn_main_deal_buy_now"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_button"
+            android:text="اشتر الآن"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/webView" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/white_blue"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_main_deal_buy_now"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="اشترك في نشرتنا البريدية الآن ليصلك كل جديد"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/et_main_deal_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="10dp"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/shape_edit_text"
+                    android:gravity="center"
+                    android:hint="أدخل البريد الإلكتروني هنا"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/boarder"
+                    android:textCursorDrawable="@null" />
+
+                <Button
+                    android:id="@+id/btn_main_deal_subscribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/shape_button"
+                    android:text="اشترك"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_main_deal_suggested_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="أجازات"
+            android:textColor="@color/black"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_btn_main_deal_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="شاهد المزيد"
+            android:textColor="@color/white_blue"
+            app:custom_font="@string/font_name_helvatican"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_main_deal_suggested_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more" />
+
     </android.support.constraint.ConstraintLayout>
+
 </ScrollView>
