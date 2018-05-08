@@ -14,4 +14,6 @@ public class DataManager {
         this.sharedPrefsHelper = sharedPrefsHelper;
         this.mSQLiteHandler = mSQLiteHandler;
     }
+
+
 }

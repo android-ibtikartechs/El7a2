@@ -3,7 +3,11 @@
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>
     <string name="font_name_helvatican">Helvatican</string>
-
+    <string name="error_msg">خطأ في الإتصال</string>
+    <string name="btn_retry">إعادة المحاولة</string>
+    <string name="error_msg_unknown">خطأ غير معروف</string>
+    <string name="error_msg_timeout">عفوا انتهى وقت الاتصال دون استجابة</string>
+    <string name="error_msg_no_internet">تحقق من اتصالك بالشبكة</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

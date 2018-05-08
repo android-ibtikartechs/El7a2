@@ -1,5 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.main;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.TabLayout;
@@ -7,10 +9,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
@@ -35,6 +41,16 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.main_view_pager) CustomeViewPager viewPager;
     @BindView(R.id.main_tabLayout) TabLayout tabLayout;
+    @BindView(R.id.lout_main_deal_error_layout)
+    LinearLayout loutError;
+    @BindView(R.id.error_layout)
+    CardView loutMainError;
+    @BindView(R.id.main_progress)
+    ProgressBar mainProgressBar;
+    @BindView(R.id.tv_main_deal_error_txt_cause)
+    CustomFontTextView teexErrorCause;
+    @BindView(R.id.error_btn_retry)
+    Button btnRetry;
     MainPresenter presenter;
     private ViewPagerAdapter adapter;
     private ActionBarDrawerToggle drawerToggle;
@@ -46,6 +62,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         setContentView(R.layout.activity_main);
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
+        if (mainProgressBar != null) {
+            mainProgressBar.setIndeterminate(true);
+            mainProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);
+            mainProgressBar.setVisibility(View.VISIBLE);
+        }
         setupActionBar();
         setupNavDrawer();
         setupViewPager();
@@ -56,21 +77,13 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         presenter.onAttach(this);
 
 
-        addMainDealFragment();
-        /*addCategoryFragment("1");
-        addCategoryFragment("2");
-        addCategoryFragment("3");
-        addCategoryFragment("4");
-        addCategoryFragment("5"); */
-
-        //addCategoryTab("الصفقة الرئيسية",0);
-        /*addCategoryTab("إجازات",1);
-        addCategoryTab("أحدث المنتجات",2);
-        addCategoryTab("منتجات أبل",3);
-        addCategoryTab("منتجات أبل",4);
-        addCategoryTab("منتجات أبل",5);*/
-
-
+        // addMainDealFragment();
+        btnRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.getCategories();
+            }
+        });
         presenter.getCategories();
     }
 
@@ -169,7 +182,12 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
     @Override
     public void addMainDealFragment() {
-        adapter.addFragment(MainDealFragment.newInstance("any","any"),"main deal fragment");
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addFragment(MainDealFragment.newInstance("any","any"),"main deal fragment");
+            }
+        });
     }
 
     @Override
@@ -200,5 +218,47 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
             }
         });
 
+    }
+
+    @Override
+    public void hideErrorView() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                loutMainError.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void showErrorView() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mainProgressBar.setVisibility(View.GONE);
+                loutError.setVisibility(View.VISIBLE);
+                teexErrorCause.setText(fetchErrorMessage());
+            }
+        });
+
+    }
+
+    @Override
+    public String fetchErrorMessage() {
+        String errorMsg = getResources().getString(R.string.error_msg_unknown);
+        if (!isNetworkConnected()) {
+            errorMsg = getResources().getString(R.string.error_msg_no_internet);
+        }
+        return errorMsg;
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+    @Override
+    public void showProgressBar() {
+        loutError.setVisibility(View.GONE);
+        mainProgressBar.setVisibility(View.VISIBLE);
     }
 }

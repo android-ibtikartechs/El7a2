@@ -33,7 +33,8 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
 
     @Override
     public void getCategories() {
-        getMvpView().showLoadingDialog();
+        //getMvpView().showLoadingDialog();
+        getMvpView().showProgressBar();
         OkHttpClient client = new OkHttpClient();
 
         okhttp3.Request request = new okhttp3.Request.Builder()
@@ -43,6 +44,7 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                getMvpView().showErrorView();
                 Log.d(TAG, "onFailure: ");
             }
 
@@ -55,6 +57,7 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
                     try {
                         JSONObject jsnmainObject = new JSONObject(stringResponse);
                         JSONArray jsnCategoryListArray = jsnmainObject.getJSONArray("List");
+                        getMvpView().addMainDealFragment();
                         for (int i = 0 ; i < jsnCategoryListArray.length(); i++)
                         {
                             JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);
@@ -76,11 +79,15 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
                         }
 
 
+
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        getMvpView().showErrorView();
                     }
                     getMvpView().setupCategoryTabs();
-                    getMvpView().hideLoadingDialog();
+                    getMvpView().hideErrorView();
+                    //getMvpView().hideLoadingDialog();
+
                 }
                 else
                 {
@@ -93,6 +100,8 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
         });
 
     }
+
+
 
     private String buildUrl() {
         Uri.Builder builder = new Uri.Builder();

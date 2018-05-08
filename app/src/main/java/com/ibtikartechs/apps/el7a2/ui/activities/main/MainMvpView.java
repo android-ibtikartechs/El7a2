@@ -13,4 +13,8 @@ public interface MainMvpView extends MvpView {
     void showLoadingDialog();
     void hideLoadingDialog();
     void setupCategoryTabs();
+    void hideErrorView();
+    void showErrorView();
+    String fetchErrorMessage();
+    void showProgressBar();
 }

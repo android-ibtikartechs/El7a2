@@ -7,4 +7,6 @@ import com.ibtikartechs.apps.el7a2.ui.activities.base.MvpPresenter;
  */
 
 public interface MainDealMvpPresenter <V extends MainDealMvpView> extends MvpPresenter<V> {
+    void getMainDealData();
+    void getFooterList();
 }

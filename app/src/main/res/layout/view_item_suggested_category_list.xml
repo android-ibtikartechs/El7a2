@@ -4,19 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
+    android:layout_margin="10dp"
+    android:id="@+id/btn_lout_container"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/im_footer_item"
         android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_test_main_deal" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_footer_item_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -25,10 +27,10 @@
         android:text="1250$"
         android:textColor="@color/white_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/im_footer_item" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_footer_item_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -38,7 +40,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_footer_item_price" />
 
 
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
@@ -52,7 +54,7 @@
         android:textSize="12sp"
         app:custom_font="@string/font_name_helvatican"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
+        app:layout_constraintTop_toBottomOf="@id/tv_footer_item_title" />
 
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView4"
