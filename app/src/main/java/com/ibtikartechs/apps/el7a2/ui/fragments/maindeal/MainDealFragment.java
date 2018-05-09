@@ -32,7 +32,6 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.FooterListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
-import com.ibtikartechs.apps.el7a2.ui.activities.main.MainPresenter;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import java.text.SimpleDateFormat;
@@ -74,7 +73,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     CustomFontTextView tvHours;
     @BindView(R.id.tv_main_deal_minutes)
     CustomFontTextView tvMinutes;
-    @BindView(R.id.progress_bar_first_footer)
+    @BindView(R.id.progress_bar_footer)
     ProgressBar progBarFirstFooter;
     @BindView(R.id.tv_main_deal_seconds)
     CustomFontTextView tvSeconds;

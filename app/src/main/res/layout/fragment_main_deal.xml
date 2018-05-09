@@ -486,7 +486,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more" />
 
                     <ProgressBar
-                        android:id="@+id/progress_bar_first_footer"
+                        android:id="@+id/progress_bar_footer"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -504,7 +504,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/lout_main_deal_first_banner"
+                android:id="@+id/lout_main_deal_banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/cardView4"
@@ -517,11 +517,10 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     >
 
                     <ImageView
-                        android:id="@+id/im_main_deal_first_banner"
+                        android:id="@+id/im_main_deal_banner"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
@@ -537,7 +536,7 @@
                 android:id="@+id/cardView20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_first_banner"
+                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner"
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="2dp"
                 app:cardBackgroundColor="@color/white"
@@ -583,7 +582,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_2" />
 
                     <ProgressBar
-                        android:id="@+id/progress_bar_first_footer_2"
+                        android:id="@+id/progress_bar_footer_2"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -601,7 +600,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/lout_main_deal_first_banner_2"
+                android:id="@+id/lout_main_deal_banner_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/cardView20"
@@ -618,7 +617,7 @@
                     >
 
                     <ImageView
-                        android:id="@+id/im_main_deal_first_banner_2"
+                        android:id="@+id/im_main_deal_banner_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
@@ -634,7 +633,7 @@
                 android:id="@+id/cardView30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_first_banner_2"
+                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner_2"
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="2dp"
                 app:cardBackgroundColor="@color/white"
@@ -680,7 +679,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_3" />
 
                     <ProgressBar
-                        android:id="@+id/progress_bar_first_footer_3"
+                        android:id="@+id/progress_bar_footer_3"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -692,8 +691,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/rv_main_deal_suggested_category_3" />
-
-
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
 
