@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab"
+    android:textSize="16sp"
+    tools:text="الشحن"
+    android:textColor="@color/gray_tab"
+    android:layout_gravity="center"
+    app:custom_font="@string/font_name_helvatican"
+    android:gravity="center">
+</com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView>

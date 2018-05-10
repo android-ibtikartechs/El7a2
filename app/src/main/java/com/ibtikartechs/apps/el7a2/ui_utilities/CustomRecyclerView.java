@@ -61,4 +61,6 @@ public class CustomRecyclerView extends RecyclerView {
         this.mEmptyView = view;
         initEmptyView();
     }
+
+    
 }

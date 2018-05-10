@@ -14,4 +14,7 @@
     <color name="gray_blue">#607D8B</color>
     <color name="colorSubCatTabLayout">#c2c2c4</color>
     <color name="colorUnSelectedTabSubCat">#eeecec</color>
+    <color name="placeholder_grey">#AAADC4</color>
+    <color name="placeholder_grey_20">#33AAADC4</color>
+    <color name="gray_tab">#adadad</color>
 </resources>

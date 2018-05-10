@@ -7,4 +7,6 @@ import com.ibtikartechs.apps.el7a2.ui.activities.base.MvpPresenter;
  */
 
 public interface SubCategoryMvpPresenter <V extends SubCategoryMvpView> extends MvpPresenter<V> {
+    void loadFirstPage(String subCategoryId);
+    void loadNextPage(String id, Integer page);
 }
