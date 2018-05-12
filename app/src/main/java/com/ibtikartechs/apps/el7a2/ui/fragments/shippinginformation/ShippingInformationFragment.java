@@ -1,13 +1,19 @@
 package com.ibtikartechs.apps.el7a2.ui.fragments.shippinginformation;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.ibtikartechs.apps.el7a2.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,10 +25,15 @@ public class ShippingInformationFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.et_test)
+    EditText etTest;
+    @BindView(R.id.btn_next_step)
+    Button btnNextStep;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    OnNextStepListener mCallBack;
 
 
     public ShippingInformationFragment() {
@@ -60,7 +71,38 @@ public class ShippingInformationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shipping_information, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_shipping_information, container, false);
+        ButterKnife.bind(this,rootView);
+        btnNextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallBack.onNextStepclicked(etTest.getText().toString());
+            }
+        });
+        return rootView;
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallBack = (OnNextStepListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
+    public interface OnNextStepListener {
+        public void onNextStepclicked(String text);
+    }
+
+
+
+
+
 
 }

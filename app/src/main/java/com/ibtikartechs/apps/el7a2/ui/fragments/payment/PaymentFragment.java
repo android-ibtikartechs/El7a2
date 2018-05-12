@@ -6,8 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ibtikartechs.apps.el7a2.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +24,13 @@ public class PaymentFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    @BindView(R.id.tv_test)
+    TextView tvTest;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
 
     public PaymentFragment() {
@@ -60,7 +68,14 @@ public class PaymentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_payment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_payment, container, false);
+        ButterKnife.bind(this,rootView);
+        return rootView;
+    }
+
+    public void pushData(String text)
+    {
+        tvTest.setText(text);
     }
 
 }
