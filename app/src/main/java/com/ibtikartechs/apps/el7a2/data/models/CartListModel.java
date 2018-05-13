@@ -11,6 +11,7 @@ public class CartListModel  {
     private String img_url;
     private String dpId;
     private String amount;
+    private int count;
 
     public CartListModel(String depId, String id, String title, String price, String img_url, String amount) {
         this.id = id;
@@ -23,6 +24,14 @@ public class CartListModel  {
 
     public CartListModel() {
 
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public String getDpId() {
@@ -47,5 +56,9 @@ public class CartListModel  {
 
     public String getAmount() {
         return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

@@ -26,9 +26,12 @@
             android:authorities="com.ibtikar.app.el7a2"
             android:exported="false" />
 
-        <activity android:name=".ui.activities.completeorder.CompleteOrderActivity"
+        <activity
+            android:name=".ui.activities.completeorder.CompleteOrderActivity"
+            android:exported="true" />
+        <activity android:name=".ui.activities.shopping_cart.ShoppingCartActivity"
             android:exported="true"
-            ></activity>
+            />
     </application>
 
 </manifest>

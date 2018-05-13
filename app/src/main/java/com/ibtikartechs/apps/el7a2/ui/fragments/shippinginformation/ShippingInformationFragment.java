@@ -3,14 +3,23 @@ package com.ibtikartechs.apps.el7a2.ui.fragments.shippinginformation;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
+import com.ibtikartechs.apps.el7a2.ui.fragments.add_address.AddAddressFragment;
+import com.ibtikartechs.apps.el7a2.ui.fragments.getAddress.GetAddressFragment;
+import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,10 +34,13 @@ public class ShippingInformationFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @BindView(R.id.et_test)
-    EditText etTest;
-    @BindView(R.id.btn_next_step)
-    Button btnNextStep;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    ViewPagerAdapter viewPagerAdapter;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,14 +85,53 @@ public class ShippingInformationFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_shipping_information, container, false);
         ButterKnife.bind(this,rootView);
-        btnNextStep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCallBack.onNextStepclicked(etTest.getText().toString());
-            }
-        });
         return rootView;
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0,0,0,0);
+
+        CustomFontTextView tabOne = (CustomFontTextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+
+        tabOne.setText("إضافة عنوان");
+        tabOne.setTextColor(getResources().getColor(R.color.white_blue));
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        CustomFontTextView tabTwo = (CustomFontTextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+        tabTwo.setText("سجل العناوين");
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) );
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(tab.getPosition());
+                ((CustomFontTextView) view.findViewById(R.id.tab)).setTextColor(getResources().getColor(R.color.white_blue));
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(tab.getPosition());
+                ((CustomFontTextView) view.findViewById(R.id.tab)).setTextColor(getResources().getColor(R.color.gray_tab));
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -98,6 +149,16 @@ public class ShippingInformationFragment extends Fragment {
 
     public interface OnNextStepListener {
         public void onNextStepclicked(String text);
+    }
+
+    public void setupViewPager(ViewPager viewPager){
+        viewPager.setOffscreenPageLimit(2);
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        Fragment addAddressFragment = AddAddressFragment.newInstance("any","any");
+        Fragment getAddressFragment = GetAddressFragment.newInstance("any","any");
+        viewPagerAdapter.addFragment(addAddressFragment,"AddAddress fragment");
+        viewPagerAdapter.addFragment(getAddressFragment,"GetAddress fragment");
     }
 
 
