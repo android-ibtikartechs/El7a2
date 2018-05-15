@@ -5,13 +5,16 @@ import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
@@ -20,6 +23,8 @@ import com.ibtikartechs.apps.el7a2.data.adapters.CartListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
+import com.ibtikartechs.apps.el7a2.ui_utilities.CustomeListView;
+import com.ibtikartechs.apps.el7a2.ui_utilities.OnDetectScrollListenerListView;
 
 import java.util.ArrayList;
 
@@ -35,33 +40,85 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
     Toolbar toolbar;
 
     @BindView(R.id.cart_listView)
-    ListView cartListView;
+    CustomeListView cartListView;
+
+    @BindView(R.id.lout_checkout_container)
+    CardView loutCheckout;
+
+    @BindView(R.id.tv_total_price)
+    CustomFontTextView tvTotalPrice;
+
+    @BindView(R.id.btn_lout_checkout)
+    LinearLayout btnCheckout;
+
+    String totalPrice;
 
     ArrayList<CartListModel> cartItemsArrayList;
     CartListAdapter cartListAdapter;
 
     ShoppingCartPresenter presenter;
 
+    private Animation bottomBarAnimShow, bottomBarAnimHide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
         ButterKnife.bind(this);
-
+        bottomBarAnimShow = AnimationUtils.loadAnimation( this, R.anim.bottom_bar_show);
+        bottomBarAnimHide = AnimationUtils.loadAnimation( this, R.anim.bottom_bar_hide);
         setupActionBar();
+
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
+        cartListView.setOnDetectScrollListener(new OnDetectScrollListenerListView() {
+            @Override
+            public void onUpScrolling() {
+                if (loutCheckout.getVisibility()!=View.VISIBLE) {
+                    loutCheckout.startAnimation(bottomBarAnimShow);
+                    loutCheckout.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onDownScrolling() {
+                if (loutCheckout.getVisibility()!=View.GONE) {
+                    loutCheckout.setVisibility(View.GONE);
+                    loutCheckout.startAnimation(bottomBarAnimHide);
+                }
+            }
+
+            @Override
+            public void onLastItem() {
+                if (loutCheckout.getVisibility()!=View.VISIBLE) {
+                    loutCheckout.startAnimation(bottomBarAnimShow);
+                    loutCheckout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
         presenter = new ShoppingCartPresenter(dataManager);
         presenter.onAttach(this);
 
-        presenter.addItemToCart("0", "سيارة كيا الجديدة كليا", "20000.00$", "http://www.sellanycar.com/cars-related/ar/wp-content/uploads/2014/11/2015-Kia-Sportage-new-design-620x340.jpg");
+        presenter.addItemToCart("0", "سيارة كيا الجديدة كليا", "200", "http://www.sellanycar.com/cars-related/ar/wp-content/uploads/2014/11/2015-Kia-Sportage-new-design-620x340.jpg");
+
+        if (presenter.getNumberOfItemsCartList() == 0)
+            btnCheckout.setEnabled(false);
 
         cartItemsArrayList = new ArrayList<>();
         cartItemsArrayList = presenter.getCartList();
         cartListAdapter = new CartListAdapter(this,cartItemsArrayList);
         cartListAdapter.setCustomButtonListner(this);
         cartListView.setAdapter(cartListAdapter);
-
+        updateTotalPrice();
     }
 
     public void setupActionBar() {
@@ -85,12 +142,15 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
     @Override
     public void onRemoveButtonClickListner(String dbId, View buttonView, int position) {
         removeListItem(getViewByPosition(position, cartListView), position);
-        presenter.deleteItemFromCartList(buildContentUri(dbId));
+        if ((presenter.deleteItemFromCartList(buildContentUri(dbId)) == 0))
+            btnCheckout.setEnabled(false);
     }
 
     @Override
-    public void onAmountEditListener(String dpId, String amount) {
+    public void onAmountEditListener(String dpId, String amount, int position) {
         presenter.updateAmountOfItem(buildContentUri(dpId),amount);
+        cartItemsArrayList.get(position).setAmount(amount);
+        updateTotalPrice();
     }
 
     public Uri buildContentUri (String dbId){
@@ -106,6 +166,7 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
             @Override
             public void run() {
                 cartItemsArrayList.remove(positon);
+                updateTotalPrice();
                 cartListAdapter.notifyDataSetChanged();
                 animation.cancel();
 
@@ -124,5 +185,20 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
             final int childIndex = pos - firstListItemPosition;
             return listView.getChildAt(childIndex);
         }
+    }
+
+    public void updateTotalPrice()
+    {
+        Integer totalPrice = 0;
+        int arrayLength = cartItemsArrayList.size();
+        for (int i = 0; i<arrayLength;i++)
+        {
+            final CartListModel item = cartItemsArrayList.get(i);
+            totalPrice+=Integer.parseInt(item.getPrice())*Integer.parseInt(item.getAmount());
+
+        }
+        this.totalPrice = String.valueOf(totalPrice);
+        String resultPrice = totalPrice.toString()+"$";
+        tvTotalPrice.setText(resultPrice);
     }
 }

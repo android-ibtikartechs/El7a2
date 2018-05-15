@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
@@ -30,13 +33,16 @@ public class CompleteOrderActivity extends AppCompatActivity implements Shipping
     NonSwipeableViewPager viewPager;
     @BindView(R.id.main_tabLayout)
     TabLayout tabLayout;
+
     ViewPagerAdapter viewPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_order);
         ButterKnife.bind(this);
+
         setupActionBar();
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);

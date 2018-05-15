@@ -29,7 +29,10 @@
         <activity
             android:name=".ui.activities.completeorder.CompleteOrderActivity"
             android:exported="true" />
-        <activity android:name=".ui.activities.shopping_cart.ShoppingCartActivity"
+        <activity
+            android:name=".ui.activities.shopping_cart.ShoppingCartActivity"
+            android:exported="true" />
+        <activity android:name=".ui.activities.main_deal_deatails.MainDealDetailsActivity"
             android:exported="true"
             />
     </application>

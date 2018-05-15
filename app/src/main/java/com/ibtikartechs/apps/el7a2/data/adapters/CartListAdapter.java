@@ -97,7 +97,7 @@ public class CartListAdapter extends ArrayAdapter<CartListModel> {
 
                     if (!TextUtils.isEmpty(selection)) {
                         cartListModel.setCount(i);
-                        customeListener.onAmountEditListener(cartListModel.getDpId(), selection);
+                        customeListener.onAmountEditListener(cartListModel.getDpId(), selection, position);
                         cartListModel.setAmount(selection);
                     }
                 }
@@ -133,7 +133,7 @@ public class CartListAdapter extends ArrayAdapter<CartListModel> {
 
     public interface CustomeListener {
         public void onRemoveButtonClickListner(String dbId, View buttonView, int position);
-        public void onAmountEditListener(String dpId, String amount);
+        public void onAmountEditListener(String dpId, String amount, int position);
     }
     public void setCustomButtonListner(CustomeListener listener) {
         this.customeListener = listener;

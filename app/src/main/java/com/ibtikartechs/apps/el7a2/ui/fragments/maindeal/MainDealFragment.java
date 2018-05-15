@@ -88,7 +88,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     @BindView(R.id.im_main_deal_main_sale)
     ImageView imMainSale;
     @BindView(R.id.tv_main_deal_name_sale)
-    TextView tvMainSaleName;
+    CustomFontTextView tvMainSaleName;
     @BindView(R.id.tv_main_deal_main_price)
     TextView tvMainSalePrice;
     @BindView(R.id.im_main_deal_first_sale)

@@ -18,4 +18,7 @@
     <color name="placeholder_grey_20">#33AAADC4</color>
     <color name="gray_tab">#adadad</color>
     <color name="blue_more_white">#58cdf6</color>
+    <color name="fb_bg">#4267b2</color>
+    <color name="start">#00ADEF</color>
+    <color name="ColorLine">#95989a</color>
 </resources>
