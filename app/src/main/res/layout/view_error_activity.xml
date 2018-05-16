@@ -21,6 +21,7 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="0dp"
         android:visibility="visible"
+        tools:visibility="gone"
         >
         <LinearLayout
             android:id="@+id/lout_main_deal_error_layout"
