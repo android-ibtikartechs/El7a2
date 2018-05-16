@@ -76,13 +76,14 @@
                             android:id="@+id/tv_main_deal_discount_parcent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
                             android:text="( -50% )"
                             android:textColor="@color/black"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
+                            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
+                            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price"
+                            app:layout_constraintVertical_bias="0.0" />
 
 
                         <TextView
@@ -92,10 +93,10 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:text="1400$"
-                            android:textColor="@color/gray"
 
+                            android:textColor="@color/gray"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_main_price"
-                            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_discount_parcent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_main_price"
                             app:layout_constraintTop_toTopOf="@+id/tv_main_deal_main_price"
                             app:layout_constraintVertical_bias="0.0" />
 
@@ -105,10 +106,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="1250$"
                             android:textColor="@color/white_blue"
-                            app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/im_main_deal_disc_image" />
 
                         <ImageView
@@ -701,7 +702,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_desc_suggested_category_more" />
 
                         <ProgressBar
-                            android:id="@+id/progress_bar_footer_3"
+                            android:id="@+id/progress_bar_main_deal_suggested_category"
                             style="?android:attr/progressBarStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
