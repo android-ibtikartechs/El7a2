@@ -1,9 +1,11 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -99,6 +101,7 @@ public class MainDealDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_deal_details);
         ButterKnife.bind(this);
+        setupActionBar();
         btnFeaturesDropDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,5 +121,23 @@ public class MainDealDetailsActivity extends AppCompatActivity {
                     tvContent.setVisibility(View.GONE);
             }
         });
+    }
+
+    public void setupActionBar() {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.custom_action_bar_title, null);
+
+        ((CustomFontTextView)v.findViewById(R.id.title)).setText("الصفقة الرئيسية");
+
+        actionBar.setCustomView(v);
+
     }
 }
