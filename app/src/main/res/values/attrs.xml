@@ -3,4 +3,10 @@
     <declare-styleable name="CustomFontTextView">
         <attr name="custom_font" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomFontEditText">
+        <attr name="custom_font_edi_text" format="string"/>
+    </declare-styleable>
+
+
 </resources>

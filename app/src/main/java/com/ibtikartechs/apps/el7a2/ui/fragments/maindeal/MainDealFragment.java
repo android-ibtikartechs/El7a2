@@ -32,6 +32,7 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.FooterListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
+import com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails.MainDealDetailsActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import java.text.SimpleDateFormat;
@@ -40,6 +41,9 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.square1.richtextlib.ui.RichContentView;
+import io.square1.richtextlib.v2.RichTextV2;
+import io.square1.richtextlib.v2.content.RichTextDocumentElement;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,12 +106,13 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     @BindView(R.id.main_progress)
     ProgressBar mainProgressBar;
     @BindView(R.id.webView)
-    WebView mWebView;
+    RichContentView mWebView;
     @BindView(R.id.tv_main_deal_error_txt_cause)
     CustomFontTextView teexErrorCause;
     @BindView(R.id.error_btn_retry)
     Button btnRetry;
-
+    @BindView(R.id.tv_main_deal_discount_parcent)
+    TextView tvDiscountPercent;
     public MainDealFragment() {
         // Required empty public constructor
     }
@@ -289,7 +294,10 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                         .placeholder(R.drawable.placeholder)
                         .into(imSecondSale);
 
-                mWebView.loadDataWithBaseURL("", details, "text/html", "utf-8", "");
+
+
+                RichTextDocumentElement contents = RichTextV2.textFromHtml(getActivity(), details);
+                mWebView.setText(contents);
 
             }
         });

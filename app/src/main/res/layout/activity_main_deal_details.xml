@@ -18,7 +18,8 @@
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/white"
+
             />
         <ScrollView
             android:layout_width="match_parent"
@@ -519,7 +520,7 @@
                         app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
                         app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_features_drop_down" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    <io.square1.richtextlib.ui.RichContentView
                         android:id="@+id/tv_main_deal_desc_features"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -530,7 +531,6 @@
                         android:layout_marginTop="8dp"
                         android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
                         android:textColor="@color/black"
-                        app:custom_font="@string/font_name_helvatican"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
                         app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_features_drop_down" />
@@ -575,7 +575,7 @@
                         app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
                         app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_content_drop_down" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    <io.square1.richtextlib.ui.RichContentView
                         android:id="@+id/tv_main_deal_desc_content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -585,8 +585,6 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
-                        android:textColor="@color/black"
-                        app:custom_font="@string/font_name_helvatican"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
                         app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_content_drop_down" />
@@ -756,5 +754,9 @@
 
 
     </LinearLayout>
+
+    <include
+        layout="@layout/view_error_activity"
+        />
 
 </RelativeLayout>

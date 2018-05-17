@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+
         >
 
         <android.support.constraint.ConstraintLayout
@@ -28,7 +29,9 @@
             android:background="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            >
 
 
             <RelativeLayout
@@ -50,7 +53,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@drawable/profile" />
 
                     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
                         android:id="@+id/tv_user_name"

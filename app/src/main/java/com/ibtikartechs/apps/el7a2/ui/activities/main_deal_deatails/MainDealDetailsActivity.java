@@ -104,12 +104,12 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.im_btn_main_deal_desc_features_drop_down)
     ImageView btnFeaturesDropDown;
     @BindView(R.id.tv_main_deal_desc_features)
-    CustomFontTextView tvFeatures;
+    RichContentView tvFeatures;
     @BindView(R.id.im_btn_main_deal_desc_content_drop_down)
     ImageView btnContentDropDown;
 
     @BindView(R.id.tv_main_deal_desc_content)
-    CustomFontTextView tvContent;
+    RichContentView tvContent;
 
     @BindView(R.id.tv_main_deal_days)
     CustomFontTextView tvDays;
@@ -402,7 +402,12 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @Override
     public void setFeaturesContent(String Features, String content) {
         loutFeaturesContent.setVisibility(View.VISIBLE);
-        
+        RichTextDocumentElement features = RichTextV2.textFromHtml(MainDealDetailsActivity.this, Features);
+        tvFeatures.setText(features);
+
+        RichTextDocumentElement contents = RichTextV2.textFromHtml(MainDealDetailsActivity.this, content);
+        tvContent.setText(contents);
+
     }
 
     @Override

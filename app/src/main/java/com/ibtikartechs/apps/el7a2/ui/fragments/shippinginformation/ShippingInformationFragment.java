@@ -99,12 +99,12 @@ public class ShippingInformationFragment extends Fragment {
 
         CustomFontTextView tabOne = (CustomFontTextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
 
-        tabOne.setText("إضافة عنوان");
+        tabOne.setText("سجل العناوين");
         tabOne.setTextColor(getResources().getColor(R.color.white_blue));
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         CustomFontTextView tabTwo = (CustomFontTextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("سجل العناوين");
+        tabTwo.setText("إضافة عنوان");
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
 
@@ -155,10 +155,11 @@ public class ShippingInformationFragment extends Fragment {
         viewPager.setOffscreenPageLimit(2);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
-        Fragment addAddressFragment = AddAddressFragment.newInstance("any","any");
         Fragment getAddressFragment = GetAddressFragment.newInstance("any","any");
-        viewPagerAdapter.addFragment(addAddressFragment,"AddAddress fragment");
+        Fragment addAddressFragment = AddAddressFragment.newInstance("any","any");
         viewPagerAdapter.addFragment(getAddressFragment,"GetAddress fragment");
+        viewPagerAdapter.addFragment(addAddressFragment,"AddAddress fragment");
+
     }
 
 
