@@ -2,19 +2,25 @@ package com.ibtikartechs.apps.el7a2.ui.fragments.add_address;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.adapters.PlaceAutoCompleteAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddAddressFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddAddressFragment extends Fragment {
+public class AddAddressFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, PlaceAutoCompleteAdapter.OnAutoLocationItemClickListner {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,4 +69,18 @@ public class AddAddressFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_address, container, false);
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+
+    @Override
+    public void onAutoLocationItemClicked(String placeId) {
+
+    }
 }

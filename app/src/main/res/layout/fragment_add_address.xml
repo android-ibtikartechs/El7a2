@@ -208,11 +208,67 @@
 
         </RelativeLayout>
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+        <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent" android:layout_height="300dp" />
+            android:layout_width="match_parent" android:layout_height="350dp" />
+
+            <ImageView
+                android:id="@+id/ic_gps"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_action_my_location"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_map_marker"
+                />
+
+        </RelativeLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_map_icon"
+                />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:custom_font="@string/font_name_helvatican"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/black"
+                android:text="ميدان التحرير، قصر الدوبارة، قصر النيل، محافظة القاهرة، مصر، ميدان التحرير، قصر الدوبارة، قصر النيل"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_blue_button"
+            android:layout_margin="16dp"
+            android:text="تأكيد البيانات والانتقال للخطوة التالية"
+            android:textColor="@color/white"
+            />
 
     </LinearLayout>
     <!-- TODO: Update blank fragment layout -->
