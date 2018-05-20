@@ -117,13 +117,13 @@ public class CompleteOrderActivity extends AppCompatActivity implements Shipping
     }
 
     @Override
-    public void onNextStepclicked(String text) {
+    public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong) {
         PaymentFragment paymentFragment = (PaymentFragment)
                 viewPagerAdapter.getItem(1);
 
         if(paymentFragment != null)
         {
-            paymentFragment.pushData(text);
+            paymentFragment.pushData(name,address,phoneNumber,postNumber,mapAddress,mapLat,mapLong);
             viewPager.setCurrentItem(1);
 
             View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);

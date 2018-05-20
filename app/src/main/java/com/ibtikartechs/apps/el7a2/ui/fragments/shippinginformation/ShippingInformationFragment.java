@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Use the {@link ShippingInformationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShippingInformationFragment extends Fragment {
+public class ShippingInformationFragment extends Fragment implements AddAddressFragment.OnNextStepListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -147,8 +147,13 @@ public class ShippingInformationFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong) {
+        mCallBack.onNextStepclicked(name,address,phoneNumber,postNumber,mapAddress,mapLat,mapLong);
+    }
+
     public interface OnNextStepListener {
-        public void onNextStepclicked(String text);
+        public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong);
     }
 
     public void setupViewPager(ViewPager viewPager){
@@ -156,7 +161,8 @@ public class ShippingInformationFragment extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         Fragment getAddressFragment = GetAddressFragment.newInstance("any","any");
-        Fragment addAddressFragment = AddAddressFragment.newInstance("any","any");
+        Fragment addAddressFragment = AddAddressFragment.newInstance("any","any", this);
+
         viewPagerAdapter.addFragment(getAddressFragment,"GetAddress fragment");
         viewPagerAdapter.addFragment(addAddressFragment,"AddAddress fragment");
 

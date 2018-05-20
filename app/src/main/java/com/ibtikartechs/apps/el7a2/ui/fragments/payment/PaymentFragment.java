@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,8 +25,13 @@ public class PaymentFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    @BindView(R.id.tv_test)
-    TextView tvTest;
+
+    @BindView(R.id.tv_name)
+    CustomFontTextView tvName;
+    @BindView(R.id.tv_address)
+    CustomFontTextView tvAddress;
+    @BindView(R.id.tv_map_address)
+    CustomFontTextView tvMapAddress;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,9 +79,11 @@ public class PaymentFragment extends Fragment {
         return rootView;
     }
 
-    public void pushData(String text)
+    public void pushData(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong)
     {
-        tvTest.setText(text);
+        tvName.setText(name);
+        tvAddress.setText(address);
+        tvMapAddress.setText(mapAddress);
     }
 
 }

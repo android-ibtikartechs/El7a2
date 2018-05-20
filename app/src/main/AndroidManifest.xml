@@ -43,10 +43,12 @@
         <activity
             android:name=".ui.activities.shopping_cart.ShoppingCartActivity"
             android:exported="true" />
-        <activity android:name=".ui.activities.main_deal_deatails.MainDealDetailsActivity"
+        <activity
+            android:name=".ui.activities.main_deal_deatails.MainDealDetailsActivity"
+            android:exported="true" />
+        <activity android:name=".ui.activities.order_details.OrderDetailsActivity"
             android:exported="true"
-            />
-
+            ></activity>
     </application>
 
 </manifest>

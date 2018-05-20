@@ -21,4 +21,10 @@
     <color name="fb_bg">#4267b2</color>
     <color name="start">#00ADEF</color>
     <color name="ColorLine">#95989a</color>
+    <color name="ColorRedHint">#f44b42</color>
+    <color name="ColorGrayBacgrounf">#E8E8EA</color>
+    <color name="ColorBackGray">#B4B4B4</color>
+    <color name="colorFrontGray">#F0F0F0</color>
+
+
 </resources>
