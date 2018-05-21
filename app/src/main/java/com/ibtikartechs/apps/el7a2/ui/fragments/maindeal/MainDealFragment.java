@@ -113,6 +113,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     TextView tvDiscountPercent;
     @BindView(R.id.btn_main_deal_buy_now)
     Button btnBuy;
+    @BindView(R.id.lout_some_header)
+    ConstraintLayout loutSomeHeader;
     String dealId;
 
     public MainDealFragment() {
@@ -194,9 +196,29 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainDealDetailsActivity.getStartIntent(getActivity(), dealId);
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
             }
         });
+        imMainSale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+            }
+        });
+        loutSupplementsContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+            }
+        });
+
+        loutSomeHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+            }
+        });
+
         //countDownStart("2018-05-10");
     }
 

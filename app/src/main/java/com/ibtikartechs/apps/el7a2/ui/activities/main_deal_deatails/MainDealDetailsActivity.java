@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -143,6 +144,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<FooterListItemModel> firstArrayList;
     private Runnable runnable;
+    private String dealOrProductId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,7 +152,9 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
         setupActionBar();
-
+        Intent intent = getIntent();
+        dealOrProductId = intent.getStringExtra(StaticValues.KEY_ID);
+        Log.d("intent", "onCreate: " + "deal or product id = " + dealOrProductId);
         if (mainProgressBar != null) {
             mainProgressBar.setIndeterminate(true);
             mainProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -464,7 +468,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
     }
     public static Intent getStartIntent(Context context, String dealId) {
-        Intent intent = new Intent(context, ShoppingCartActivity.class);
+        Intent intent = new Intent(context, MainDealDetailsActivity.class);
         intent.putExtra(StaticValues.KEY_ID, dealId);
         return intent;
     }
