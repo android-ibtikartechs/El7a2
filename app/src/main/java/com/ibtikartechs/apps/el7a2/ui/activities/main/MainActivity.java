@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,11 +13,14 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
@@ -25,6 +29,7 @@ import com.ibtikartechs.apps.el7a2.data.adapters.NavItemsAdapter;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.NavItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.category.CategoryFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealFragment;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
@@ -55,6 +60,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     private ViewPagerAdapter adapter;
     private ActionBarDrawerToggle drawerToggle;
     private Handler mHandler;
+    Menu menu;
+    TextView textCartItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +101,45 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        final MenuItem cartItem = menu.findItem(R.id.action_cart);
+        View actionView = MenuItemCompat.getActionView(cartItem);
+        textCartItemCount = actionView.findViewById(R.id.cart_badge);
+        setupBadge();
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(cartItem);
+            }
+        });
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_cart :
+                startActivity(ShoppingCartActivity.getStartIntent(this));
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void setupBadge() {
+
+        if (textCartItemCount != null) {
+            textCartItemCount.setText(String.valueOf(Math.min(presenter.getNumberOfItemsInCart(), 99)));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupBadge();
+    }
 
     public void setupActionBar() {
         setSupportActionBar(toolbar);

@@ -26,23 +26,31 @@
             <ImageView
                 android:id="@+id/im_main_deal_main_sale"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
 
-            <android.support.constraint.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.15" />
+                android:id="@+id/lout_some_header"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/im_main_deal_main_sale"
+                >
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/supplements_footer"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
             app:custom_font="@string/font_name_helvatican"
             android:id="@+id/tv_main_deal_name_sale"
             android:layout_width="wrap_content"
@@ -54,7 +62,7 @@
             android:text="لاب توب Hp + شنطة هدية + ماوس هدية"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_main_deal_main_sale" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_main_deal_main_price"
@@ -257,7 +265,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_days">
+                app:layout_constraintTop_toBottomOf="@+id/webView">
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/lout_main_deal_container_first_sale"
@@ -281,24 +289,9 @@
                         <ImageView
                             android:id="@+id/im_main_deal_first_sale"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@id/tv_main_deal_first_sale_price"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
                             android:scaleType="centerCrop" />
-
-                        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                            android:id="@+id/tv_main_deal_first_sale_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginBottom="2dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginRight="5dp"
-                            android:text="1230$"
-                            android:textColor="@color/white_blue"
-                            app:custom_font="@string/font_name_helvatican" />
-
 
                     </RelativeLayout>
 
@@ -306,11 +299,8 @@
                         android:id="@+id/imageView3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="-7dp"
-                        android:layout_marginRight="-7dp"
-                        android:layout_marginTop="-7dp"
-                        android:src="@drawable/ribbon_thumb" />
+                        android:layout_gravity="start|bottom"
+                        android:src="@drawable/ribbon_h" />
 
                 </android.support.v7.widget.CardView>
 
@@ -336,64 +326,51 @@
                         <ImageView
                             android:id="@+id/im_main_deal_second_sale"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@id/tv_main_deal_second_sale_price"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
                             android:scaleType="centerCrop" />
 
-                        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                            android:id="@+id/tv_main_deal_second_sale_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginBottom="2dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginRight="5dp"
-                            android:text="1250$"
-                            android:textColor="@color/white_blue"
-                            app:custom_font="@string/font_name_helvatican" />
+
 
 
                     </RelativeLayout>
 
                     <ImageView
-                        android:id="@+id/ribon"
+                        android:id="@+id/imageView100"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="-7dp"
-                        android:layout_marginRight="-7dp"
-                        android:layout_marginTop="-7dp"
-                        android:src="@drawable/ribbon_thumb" />
-
+                        android:layout_gravity="start|bottom"
+                        android:src="@drawable/ribbon_h" />
                 </android.support.v7.widget.CardView>
             </android.support.constraint.ConstraintLayout>
-        <io.square1.richtextlib.ui.RichContentView
-            android:id="@+id/webView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lout_supplements_container" />
 
-        <Button
-            android:id="@+id/btn_main_deal_buy_now"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/shape_button"
-            android:text="اشتر الآن"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/webView" />
+                <io.square1.richtextlib.ui.RichContentView
+                    android:id="@+id/webView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/customFontTextView2" />
 
+                <Button
+                    android:id="@+id/btn_main_deal_buy_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_button"
+                    android:text="اشتر الآن"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lout_supplements_container" />
+            </android.support.constraint.ConstraintLayout>
         <android.support.v7.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="0dp"
@@ -401,10 +378,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             app:cardBackgroundColor="@color/white_blue"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_main_deal_buy_now"
+            app:layout_constraintTop_toBottomOf="@+id/lout_some_header"
             card_view:cardCornerRadius="4dp"
             card_view:cardUseCompatPadding="true">
 

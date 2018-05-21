@@ -1,6 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,10 +25,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.FooterListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealPresenter;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
@@ -459,5 +462,10 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         handler.postDelayed(runnable, 1 * 1000);
 
 
+    }
+    public static Intent getStartIntent(Context context, String dealId) {
+        Intent intent = new Intent(context, ShoppingCartActivity.class);
+        intent.putExtra(StaticValues.KEY_ID, dealId);
+        return intent;
     }
 }

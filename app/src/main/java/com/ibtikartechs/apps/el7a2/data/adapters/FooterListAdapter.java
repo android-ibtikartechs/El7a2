@@ -132,7 +132,7 @@ public class FooterListAdapter extends CustomRecyclerView.Adapter<RecyclerView.V
             public void run() {
                 handler.postDelayed(this, 1000);
                 try {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 // Please here set your event date//YYYY-MM-DD
 
                     Date futureDate = dateFormat.parse(futureTime);

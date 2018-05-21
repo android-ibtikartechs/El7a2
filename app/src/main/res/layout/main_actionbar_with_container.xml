@@ -15,7 +15,15 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <ImageView
+            android:layout_width="60dp"
+            android:contentDescription="logo"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_icon"/>
+
+    </android.support.v7.widget.Toolbar>
 
 
 

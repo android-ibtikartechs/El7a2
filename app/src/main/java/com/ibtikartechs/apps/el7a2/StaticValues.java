@@ -6,4 +6,5 @@ package com.ibtikartechs.apps.el7a2;
 
 public class StaticValues {
     public static final String URL_AUOTHORITY = "el7a2.ibtikarprojects.com";
+    public static String KEY_ID = "keyId";
 }

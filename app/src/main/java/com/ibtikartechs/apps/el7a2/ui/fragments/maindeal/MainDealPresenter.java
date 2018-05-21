@@ -56,6 +56,7 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                     JSONObject jsnmainObject = new JSONObject(stringResponse);
                     JSONObject jsnDeatailsObject = jsnmainObject.getJSONObject("details");
                     String dealName = jsnDeatailsObject.getString("name");
+                    String id = jsnDeatailsObject.getString("id");
                     String mainProductImgUrl = jsnDeatailsObject.getJSONArray("Products").getJSONObject(0).getString("image");
                     String dealPrice = jsnDeatailsObject.getString("price");
                     String endDate = jsnDeatailsObject.getString("available_to");
@@ -67,6 +68,7 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                     dealDetails = new String(data, "UTF-8");
                     getMvpView().hideErrorView();
                     getMvpView().populateData(mainProductImgUrl,dealName,dealPrice,endDate,firstproductImgUrl,secondProductImgUrl,dealDetails);
+                    getMvpView().setDealId(id);
                     getFooterList();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -80,14 +82,13 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
     public void getFooterList() {
         getMvpView().hideFooterProgressBar();
         ArrayList<FooterListItemModel> firstFooterList = new ArrayList<>();
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-05-08"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-06-01"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-05-18"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-03"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-10-01"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-5-10"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-01"));
-        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-01"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-06-01 05:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-05-21 17:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-03 05:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-10-01 05:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-6-10 05:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-01 05:00:00"));
+        firstFooterList.add(new FooterListItemModel("0","2200$","https://i5.walmartimages.com/asr/f5608778-2a32-4b49-bbdc-10b7edb11e19_1.f583d9ee5b2fc78a0dd64a305adf3ef4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF","ايفون جميل جدا ايفون جميل جدا ايفون جميل جدا","2018-07-01 05:00:00"));
         getMvpView().addMoreToAdapter(firstFooterList);
     }
 

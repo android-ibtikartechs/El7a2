@@ -20,4 +20,5 @@ public interface MainDealMvpView extends MvpView {
     void hideFooterProgressBar();
     void addMoreToAdapter(ArrayList<FooterListItemModel> list);
 
+    void setDealId(String id);
 }

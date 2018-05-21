@@ -1,5 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -200,5 +202,9 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
         this.totalPrice = String.valueOf(totalPrice);
         String resultPrice = totalPrice.toString()+"$";
         tvTotalPrice.setText(resultPrice);
+    }
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, ShoppingCartActivity.class);
+        return intent;
     }
 }

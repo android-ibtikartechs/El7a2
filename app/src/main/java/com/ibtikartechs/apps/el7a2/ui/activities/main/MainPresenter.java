@@ -101,6 +101,10 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
 
     }
 
+    @Override
+    public Integer getNumberOfItemsInCart() {
+        return getDataManager().getNumberOfItemList();
+    }
 
 
     private String buildUrl() {

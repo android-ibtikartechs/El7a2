@@ -71,6 +71,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
     @BindView(R.id.tv_main_deal_days)
     CustomFontTextView tvDays;
+    @BindView(R.id.lout_supplements_container)
+    ConstraintLayout loutSupplementsContainer;
     @BindView(R.id.rv_main_deal_suggested_category)
     RecyclerView rvFirstSuggCategory;
     @BindView(R.id.tv_main_deal_hours)
@@ -99,10 +101,6 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     ImageView imFirstSale;
     @BindView(R.id.im_main_deal_second_sale)
     ImageView imSecondSale;
-    @BindView(R.id.tv_main_deal_first_sale_price)
-    CustomFontTextView tvFirstSalePrice;
-    @BindView(R.id.tv_main_deal_second_sale_price)
-    CustomFontTextView tvSecondSalePrice;
     @BindView(R.id.main_progress)
     ProgressBar mainProgressBar;
     @BindView(R.id.webView)
@@ -113,6 +111,10 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     Button btnRetry;
     @BindView(R.id.tv_main_deal_discount_parcent)
     TextView tvDiscountPercent;
+    @BindView(R.id.btn_main_deal_buy_now)
+    Button btnBuy;
+    String dealId;
+
     public MainDealFragment() {
         // Required empty public constructor
     }
@@ -189,6 +191,12 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 presenter.getMainDealData();
             }
         });
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainDealDetailsActivity.getStartIntent(getActivity(), dealId);
+            }
+        });
         //countDownStart("2018-05-10");
     }
 
@@ -254,6 +262,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             }
         });
     }
+
+
 
     @Override
     public void showErrorView() {
@@ -336,6 +346,17 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             @Override
             public void run() {
                 firstListAdapter.addAll(list);
+            }
+        });
+    }
+
+    @Override
+    public void setDealId(final String id) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                dealId = id;
             }
         });
     }
