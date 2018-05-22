@@ -8,8 +8,10 @@ import android.net.Uri;
 
 public class StaticValues {
     public static final String URL_AUOTHORITY = "el7a2.ibtikarprojects.com";
-    public static String KEY_ID = "keyId";
-
+    public static final String KEY_ID = "keyId";
+    public static final String KEY_FLAG_PRODUCT_OR_DEAL = "key_prod_or_deal";
+    public static final int DEAL_FLAG = 100;
+    public static final int PROD_FLAG = 101;
 
     public static String buoldUrl(String endpoint) {
         Uri.Builder builder = new Uri.Builder();

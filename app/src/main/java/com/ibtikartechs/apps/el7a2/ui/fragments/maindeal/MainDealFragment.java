@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.FooterListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
@@ -240,26 +241,26 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
             }
         });
         imMainSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
             }
         });
         loutSupplementsContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
             }
         });
 
         loutSomeHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
             }
         });
 

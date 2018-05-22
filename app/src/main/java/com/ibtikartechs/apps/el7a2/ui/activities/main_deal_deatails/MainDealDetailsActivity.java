@@ -68,20 +68,14 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     ConstraintLayout loutSupplements;
     @BindView(R.id.im_main_deal_first_sale)
     ImageView imFirstSupplement;
-    @BindView(R.id.tv_main_deal_first_sale_price)
-    CustomFontTextView tvPriceFirstSupplement;
     @BindView(R.id.im_main_deal_second_sale)
     ImageView imSecondSupplement;
-    @BindView(R.id.tv_main_deal_second_sale_price)
-    CustomFontTextView tvPriceSecondSupplement;
     @BindView(R.id.customFontTextView12)
     RichContentView tvMainDescription;
     @BindView(R.id.lout_main_deal_desc_timer)
     ConstraintLayout loutTimer;
     @BindView(R.id.button)
     Button btnBuy;
-    @BindView(R.id.tv_main_deal_desc_timer_alternative_text)
-    CustomFontTextView tvTimerAlternativeText;
     @BindView(R.id.imageView6)
     ImageView imBanner;
     @BindView(R.id.lout_main_deal_desc_suggested_category_error)
@@ -145,6 +139,8 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     private ArrayList<FooterListItemModel> firstArrayList;
     private Runnable runnable;
     private String dealOrProductId;
+    private int dealOrProduct;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +150,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         setupActionBar();
         Intent intent = getIntent();
         dealOrProductId = intent.getStringExtra(StaticValues.KEY_ID);
+        dealOrProduct = intent.getIntExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, 101);
         Log.d("intent", "onCreate: " + "deal or product id = " + dealOrProductId);
         if (mainProgressBar != null) {
             mainProgressBar.setIndeterminate(true);
@@ -383,8 +380,6 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @Override
     public void setSupplement(String price1, String price2, String imgUrl1, String imgUrl2) {
         loutSupplements.setVisibility(View.VISIBLE);
-        tvPriceFirstSupplement.setText(price1);
-        tvPriceSecondSupplement.setText(price2);
 
         if (imgUrl1.equals("")|| imgUrl1 == null)
             Glide.with(MainDealDetailsActivity.this)
@@ -468,9 +463,10 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
 
     }
-    public static Intent getStartIntent(Context context, String dealId) {
+    public static Intent getStartIntent(Context context, String dealId, int dealOrProduct) {
         Intent intent = new Intent(context, MainDealDetailsActivity.class);
         intent.putExtra(StaticValues.KEY_ID, dealId);
+        intent.putExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, dealOrProduct);
         return intent;
     }
 }
