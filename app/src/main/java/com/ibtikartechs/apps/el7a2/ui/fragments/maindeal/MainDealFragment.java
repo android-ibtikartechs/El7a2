@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -63,8 +64,12 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     private Handler handler;
     MainDealPresenter presenter;
     private FooterListAdapter firstListAdapter;
+    private FooterListAdapter secondListAdapter;
+    private FooterListAdapter thirdListAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<FooterListItemModel> firstArrayList;
+    private ArrayList<FooterListItemModel> secondArrayList;
+    private ArrayList<FooterListItemModel> thirdArrayList;
     private Runnable runnable;
 
 
@@ -79,8 +84,6 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     CustomFontTextView tvHours;
     @BindView(R.id.tv_main_deal_minutes)
     CustomFontTextView tvMinutes;
-    @BindView(R.id.progress_bar_footer)
-    ProgressBar progBarFirstFooter;
     @BindView(R.id.tv_main_deal_seconds)
     CustomFontTextView tvSeconds;
     @BindView(R.id.tv_main_deal_old_price)
@@ -115,7 +118,32 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     Button btnBuy;
     @BindView(R.id.lout_some_header)
     ConstraintLayout loutSomeHeader;
+    @BindView(R.id.et_main_deal_email)
+    EditText etEmailNewsLater;
+    @BindView(R.id.btn_main_deal_subscribe)
+    Button btnSupscribe;
+    @BindView(R.id.cardView4)
+    CardView loutFooterCat1;
+    @BindView(R.id.cardView20)
+    CardView loutFooterCat2;
+    @BindView(R.id.cardView30)
+    CardView loutFooterCat3;
+    @BindView(R.id.im_main_deal_banner)
+    ImageView imBanner1;
+    @BindView(R.id.im_main_deal_banner_2)
+    ImageView imBanner2;
+    @BindView(R.id.tv_main_deal_suggested_category)CustomFontTextView tvNameFooterCat1;
+    @BindView(R.id.tv_btn_main_deal_more) CustomFontTextView btnMoreFooterCat1;
+    @BindView(R.id.tv_main_deal_suggested_category_2)CustomFontTextView tvNameFooterCat2;
+    @BindView(R.id.tv_btn_main_deal_more_2) CustomFontTextView btnMoreFooterCat2;
+    @BindView(R.id.tv_main_deal_suggested_category_3)CustomFontTextView tvNameFooterCat3;
+    @BindView(R.id.tv_btn_main_deal_more_3) CustomFontTextView btnMoreFooterCat3;
+    @BindView(R.id.rv_main_deal_suggested_category_3) RecyclerView rvFooter3;
+    @BindView(R.id.rv_main_deal_suggested_category_2) RecyclerView rvFooter2;
+    String idFooter1,idFooter2,idFooter3;
+    ArrayList<Integer> footerIdsList;
     String dealId;
+    int numOfFooters;
 
     public MainDealFragment() {
         // Required empty public constructor
@@ -150,6 +178,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        footerIdsList = new ArrayList<>();
     }
 
     @Override
@@ -159,6 +188,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         View rootView = inflater.inflate(R.layout.fragment_main_deal, container, false);
         ButterKnife.bind(this, rootView);
         firstArrayList = new ArrayList<>();
+        secondArrayList = new ArrayList<>();
+        thirdArrayList = new ArrayList<>();
         return rootView;
     }
 
@@ -172,19 +203,32 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             mainProgressBar.setVisibility(View.VISIBLE);
         }
 
-        if (progBarFirstFooter != null) {
-            progBarFirstFooter.setIndeterminate(true);
-            progBarFirstFooter.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);
-            progBarFirstFooter.setVisibility(View.VISIBLE);
-        }
+
 
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         rvFirstSuggCategory.setLayoutManager(linearLayoutManager);
+        rvFooter2.setLayoutManager(linearLayoutManager2);
+        rvFooter3.setLayoutManager(linearLayoutManager3);
+
         rvFirstSuggCategory.setHasFixedSize(true);
+        rvFooter2.setHasFixedSize(true);
+
 
         rvFirstSuggCategory.setItemViewCacheSize(20);
         rvFirstSuggCategory.setDrawingCacheEnabled(true);
         rvFirstSuggCategory.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        rvFooter2.setItemViewCacheSize(20);
+        rvFooter2.setDrawingCacheEnabled(true);
+        rvFooter2.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        rvFooter3.setItemViewCacheSize(20);
+        rvFooter3.setDrawingCacheEnabled(true);
+        rvFooter3.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
         populatRecyclerView();
         tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         btnRetry.setOnClickListener(new View.OnClickListener() {
@@ -219,14 +263,40 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             }
         });
 
+        btnSupscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String emailToCheck = etEmailNewsLater.getText().toString();
+                if (!emailToCheck.isEmpty())
+                {
+                    if (android.util.Patterns.EMAIL_ADDRESS.matcher(emailToCheck).matches())
+                    {
+                        presenter.supscribe(emailToCheck);
+                    }
+                }
+                else
+                    showToast("قم بإدخال البريد الإكتروني أولا");
+            }
+        });
         //countDownStart("2018-05-10");
     }
 
     private void populatRecyclerView() {
         firstListAdapter = new FooterListAdapter(getActivity(), firstArrayList);
+        secondListAdapter = new FooterListAdapter(getActivity(), secondArrayList);
+        thirdListAdapter = new FooterListAdapter(getActivity(), thirdArrayList);
         firstListAdapter.setCustomButtonListner(this);
+        secondListAdapter.setCustomButtonListner(this);
+        thirdListAdapter.setCustomButtonListner(this);
         rvFirstSuggCategory.setAdapter(firstListAdapter);
+        rvFooter2.setAdapter(secondListAdapter);
+        rvFooter3.setAdapter(thirdListAdapter);
         firstListAdapter.notifyDataSetChanged();
+        secondListAdapter.notifyDataSetChanged();
+        thirdListAdapter.notifyDataSetChanged();
+
+
+
     }
 
     public void countDownStart(final String futureTime) {
@@ -237,7 +307,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             public void run() {
                 handler.postDelayed(this, 1000);
                 try {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 // Please here set your event date//YYYY-MM-DD
 
                     Date futureDate = dateFormat.parse(futureTime);
@@ -300,7 +370,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     }
 
     @Override
-    public void populateData(final String productImgUrl, final String productName, final String productPrice, final String endDate, final String firstSaleImgUrl,final String secondSaleImgUrl, final String details) {
+    public void populateData(final String productImgUrl, final String productName, final String productPrice, final String endDate, final String firstSaleImgUrl,final String secondSaleImgUrl, final String details,final String oldPrice, final String discountPercent, final int numOfFooters) {
+        presenter.getFooter(numOfFooters, footerIdsList);
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -331,6 +402,11 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 RichTextDocumentElement contents = RichTextV2.textFromHtml(getActivity(), details);
                 mWebView.setText(contents);
 
+                tvDiscountPercent.setText(discountPercent);
+                tvOldPrice.setText(oldPrice);
+
+
+
             }
         });
 
@@ -354,12 +430,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
     @Override
     public void hideFooterProgressBar() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                progBarFirstFooter.setVisibility(View.GONE);
-            }
-        });
+
     }
 
     @Override
@@ -373,12 +444,84 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     }
 
     @Override
-    public void setDealId(final String id) {
-
+    public void addMoreToAdapter2Footer(final ArrayList<FooterListItemModel> list) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                dealId = id;
+                secondListAdapter.addAll(list);
+            }
+        });
+    }
+
+    @Override
+    public void addMoreToAdapter3Footer(final ArrayList<FooterListItemModel> list) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                thirdListAdapter.addAll(list);
+            }
+        });
+    }
+
+
+    @Override
+    public void setDealId(final String id) {
+        dealId = id;
+    }
+
+    @Override
+    public void setNumofFooters(int num) {
+        this.numOfFooters = num;
+    }
+
+    @Override
+    public void showToast(final String msg) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @Override
+    public void showFooter1(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                loutFooterCat1.setVisibility(View.VISIBLE);
+                tvNameFooterCat1.setText(catName);
+                idFooter1 = catId;
+                footerIdsList.add(Integer.valueOf(catId));
+                presenter.getFooter(numOfFooters, footerIdsList);
+            }
+        });
+    }
+
+    @Override
+    public void showFooter2(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                loutFooterCat2.setVisibility(View.VISIBLE);
+                tvNameFooterCat2.setText(catName);
+                idFooter2 = catId;
+                footerIdsList.add(Integer.valueOf(catId));
+                presenter.getFooter(numOfFooters, footerIdsList);
+            }
+        });
+    }
+
+    @Override
+    public void showFooter3(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                loutFooterCat3.setVisibility(View.VISIBLE);
+                tvNameFooterCat3.setText(catName);
+                idFooter3 = catId;
+                footerIdsList.add(Integer.valueOf(catId));
             }
         });
     }

@@ -8,6 +8,7 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BasePresenter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,8 +17,12 @@ import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static okhttp3.MultipartBody.FORM;
 
 /**
  * Created by ahmedyehya on 5/3/18.
@@ -59,7 +64,11 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                     String id = jsnDeatailsObject.getString("id");
                     String mainProductImgUrl = jsnDeatailsObject.getJSONArray("Products").getJSONObject(0).getString("image");
                     String dealPrice = jsnDeatailsObject.getString("price");
+                    String oldPrice = jsnDeatailsObject.getString("mainproductstotal");
+                    String discountPercent = jsnDeatailsObject.getString("discount_percentage");
+                    int numOfFooters = jsnDeatailsObject.getInt("no_frontcats");
                     String endDate = jsnDeatailsObject.getString("available_to");
+                    String endTime = jsnDeatailsObject.getString("available_to_time");
                     String firstproductImgUrl = jsnDeatailsObject.getJSONArray("Products").getJSONObject(1).getString("image");
                     String secondProductImgUrl = jsnDeatailsObject.getJSONArray("Products").getJSONObject(2).getString("image");
 
@@ -67,9 +76,11 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                     byte[] data = Base64.decode(dealDetails, Base64.DEFAULT);
                     dealDetails = new String(data, "UTF-8");
                     getMvpView().hideErrorView();
-                    getMvpView().populateData(mainProductImgUrl,dealName,dealPrice,endDate,firstproductImgUrl,secondProductImgUrl,dealDetails);
+                    getMvpView().setNumofFooters(numOfFooters);
+                    getMvpView().populateData(mainProductImgUrl,dealName,dealPrice,endDate +" "+endTime,firstproductImgUrl,secondProductImgUrl,dealDetails,oldPrice,discountPercent, numOfFooters);
                     getMvpView().setDealId(id);
-                    getFooterList();
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     getMvpView().showErrorView();
@@ -92,12 +103,107 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
         getMvpView().addMoreToAdapter(firstFooterList);
     }
 
+    @Override
+    public void supscribe(String email) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body;
+        body = new MultipartBody.Builder()
+                .setType(FORM)
+                .addFormDataPart("email", email).build();
+
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(StaticValues.buoldUrl("savenewsletter"))
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getMvpView().showToast("خطأ في الاتصال حاول مرة أخرى");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONObject jsnMainObject = new JSONObject(response.body().string());
+                    if (jsnMainObject.getString("status").equals("OK"))
+                    {
+                        getMvpView().showToast("أنت الآن تتابع النشرة البريدية لإلحق");
+                    }
+                    else if (jsnMainObject.getString("status").equals("false"))
+                    {
+                        if (jsnMainObject.getString("msg").equals("already exists"))
+                            getMvpView().showToast("أنت بالفعل تتابع نشرتنا البريدية");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getFooter(int numOfFooter, ArrayList<Integer> currentFootersId) {
+        if (numOfFooter == 1 && currentFootersId.size()<numOfFooter)
+        {
+            OkHttpClient client = new OkHttpClient();
+
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(footerBuildUrl())
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        JSONObject jsnMainObject = new JSONObject(response.body().string());
+                        if (jsnMainObject.getJSONObject("Details").getString("status").equals("OK")) {
+                            JSONObject jsnDetailsObject = jsnMainObject.getJSONObject("Details");
+                            String catName = jsnDetailsObject.getString("name");
+                            String catId = jsnDetailsObject.getString("id");
+                            JSONArray jsnProductList = jsnDetailsObject.getJSONArray("Products");
+                            ArrayList<FooterListItemModel> firstFooterList = new ArrayList<>();
+                            for (int o = 0; o<jsnProductList.length(); o++)
+                            {
+                                JSONObject jsnItemObject = jsnProductList.getJSONObject(o);
+                                boolean isDisplayTimer = jsnItemObject.getString("display_timer").equals("yes");
+                                firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("id"),jsnItemObject.getString("price"),jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),isDisplayTimer));
+                            }
+                            getMvpView().addMoreToAdapter2Footer(firstFooterList);
+                            getMvpView().showFooter2(catName,firstFooterList, catId);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+
+
+    }
+
     private String buildUrl() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
                 .authority(StaticValues.URL_AUOTHORITY)
-                .appendPath("mobile")
+                .appendPath("mob")
                 .appendPath("maindeal");
+        String url = builder.build().toString();
+        return url;
+    }
+
+    private String footerBuildUrl ()
+    {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority(StaticValues.URL_AUOTHORITY)
+                .appendPath("mob")
+                .appendPath("frontpage_categories");
         String url = builder.build().toString();
         return url;
     }

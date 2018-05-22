@@ -10,6 +10,7 @@ public class FooterListItemModel {
     private String description;
     private String endDate;
     private String id;
+    private boolean isDisplayTimer;
 
     public FooterListItemModel(String id, String price, String imgUrl, String description, String endDate) {
         this.price = price;
@@ -17,6 +18,19 @@ public class FooterListItemModel {
         this.description = description;
         this.endDate = endDate;
         this.id = id;
+    }
+
+    public FooterListItemModel(String price, String imgUrl, String description, String endDate, String id, boolean isDisplayTimer) {
+        this.price = price;
+        this.imgUrl = imgUrl;
+        this.description = description;
+        this.endDate = endDate;
+        this.id = id;
+        this.isDisplayTimer = isDisplayTimer;
+    }
+
+    public boolean isDisplayTimer() {
+        return isDisplayTimer;
     }
 
     public String getPrice() {

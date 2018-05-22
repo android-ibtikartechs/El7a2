@@ -382,6 +382,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
     @Override
     public void setSupplement(String price1, String price2, String imgUrl1, String imgUrl2) {
+        loutSupplements.setVisibility(View.VISIBLE);
         tvPriceFirstSupplement.setText(price1);
         tvPriceSecondSupplement.setText(price2);
 
