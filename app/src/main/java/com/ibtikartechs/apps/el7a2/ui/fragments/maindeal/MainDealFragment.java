@@ -144,6 +144,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     String idFooter1,idFooter2,idFooter3;
     ArrayList<Integer> footerIdsList;
     String dealId;
+    String firstBannerId, secondBannerId;
     int numOfFooters;
 
     public MainDealFragment() {
@@ -371,8 +372,10 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     }
 
     @Override
-    public void populateData(final String productImgUrl, final String productName, final String productPrice, final String endDate, final String firstSaleImgUrl,final String secondSaleImgUrl, final String details,final String oldPrice, final String discountPercent, final int numOfFooters) {
+    public void populateData(final String productImgUrl, final String productName, final String productPrice, final String endDate, final String firstSaleImgUrl, final String secondSaleImgUrl, final String details, final String oldPrice, final String discountPercent, final int numOfFooters, final String firstBannerImgUrl, final String secondBannerImgUrl, final String firstBannerId, final String secondBannerId) {
         presenter.getFooter(numOfFooters, footerIdsList);
+        this.firstBannerId = firstBannerId;
+        this.secondBannerId = secondBannerId;
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -399,12 +402,36 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                         .into(imSecondSale);
 
 
+                Glide.with(getActivity())
+                        .load(firstBannerImgUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.placeholder)
+                        .into(imBanner1);
+
+                imBanner1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),firstBannerId,StaticValues.PROD_FLAG));
+                    }
+                });
+
+                Glide.with(getActivity())
+                        .load(secondBannerImgUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.placeholder)
+                        .into(imBanner2);
+
+                imBanner2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),secondBannerId,StaticValues.PROD_FLAG));
+                    }
+                });
 
                 RichTextDocumentElement contents = RichTextV2.textFromHtml(getActivity(), details);
                 mWebView.setText(contents);
 
                 tvDiscountPercent.setText(discountPercent);
                 tvOldPrice.setText(oldPrice);
+
 
 
 
@@ -488,49 +515,62 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
     @Override
     public void showFooter1(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
-        addMoreToAdapter(productsList);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                loutFooterCat1.setVisibility(View.VISIBLE);
-                tvNameFooterCat1.setText(catName);
-                idFooter1 = catId;
-                footerIdsList.add(Integer.valueOf(catId));
-                presenter.getFooter(numOfFooters, footerIdsList);
+        if (!(footerIdsList.contains(Integer.valueOf(catId)))) {
+            addMoreToAdapter(productsList);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    loutFooterCat1.setVisibility(View.VISIBLE);
+                    tvNameFooterCat1.setText(catName);
+                    idFooter1 = catId;
+                    footerIdsList.add(Integer.valueOf(catId));
+                    presenter.getFooter(numOfFooters, footerIdsList);
 
-            }
-        });
+                }
+            });
+        }
+        else if (footerIdsList.size()<numOfFooters)
+            presenter.getFooter(numOfFooters,footerIdsList);
     }
 
     @Override
     public void showFooter2(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
-        addMoreToAdapter2Footer(productsList);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                loutFooterCat2.setVisibility(View.VISIBLE);
-                tvNameFooterCat2.setText(catName);
-                idFooter2 = catId;
-                footerIdsList.add(Integer.valueOf(catId));
+        if (!(footerIdsList.contains(Integer.valueOf(catId)))) {
+            addMoreToAdapter2Footer(productsList);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    loutFooterCat2.setVisibility(View.VISIBLE);
+                    tvNameFooterCat2.setText(catName);
+                    idFooter2 = catId;
+                    footerIdsList.add(Integer.valueOf(catId));
 
-                presenter.getFooter(numOfFooters, footerIdsList);
-            }
-        });
+                    if (numOfFooters == 3)
+                        presenter.getFooter(numOfFooters, footerIdsList);
+                }
+            });
+        }
+        else if (footerIdsList.size()<numOfFooters)
+        presenter.getFooter(numOfFooters,footerIdsList);
     }
 
     @Override
     public void showFooter3(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
-        addMoreToAdapter3Footer(productsList);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                loutFooterCat3.setVisibility(View.VISIBLE);
-                tvNameFooterCat3.setText(catName);
-                idFooter3 = catId;
-                footerIdsList.add(Integer.valueOf(catId));
+        if (!(footerIdsList.contains(Integer.valueOf(catId)))) {
+            addMoreToAdapter3Footer(productsList);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    loutFooterCat3.setVisibility(View.VISIBLE);
+                    tvNameFooterCat3.setText(catName);
+                    idFooter3 = catId;
+                    footerIdsList.add(Integer.valueOf(catId));
 
-            }
-        });
+                }
+            });
+        }
+        else if (footerIdsList.size()<numOfFooters)
+            presenter.getFooter(numOfFooters,footerIdsList);
     }
 
     private boolean isNetworkConnected() {
@@ -540,6 +580,6 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
     @Override
     public void onItemClickListener(String id) {
-        Toast.makeText(getActivity(), id, Toast.LENGTH_SHORT).show();
+        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id,StaticValues.PROD_FLAG));
     }
 }

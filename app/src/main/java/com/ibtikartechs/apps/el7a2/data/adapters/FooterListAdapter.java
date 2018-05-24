@@ -70,7 +70,11 @@ public class FooterListAdapter extends CustomRecyclerView.Adapter<RecyclerView.V
 
         footerViewHolder.tvPrice.setText(footerListItemModel.getPrice());
         footerViewHolder.tvTitle.setText(footerListItemModel.getDescription());
-        countDownStart(footerListItemModel.getEndDate(),footerViewHolder);
+
+        if (footerListItemModel.isDisplayTimer())
+            countDownStart(footerListItemModel.getEndDate(),footerViewHolder);
+        else
+            footerViewHolder.loutTime.setVisibility(View.GONE);
         footerViewHolder.btnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +120,8 @@ public class FooterListAdapter extends CustomRecyclerView.Adapter<RecyclerView.V
         CustomFontTextView tvMinutes;
         @BindView(R.id.tv_main_deal_seconds)
         CustomFontTextView tvSeconds;
+        @BindView(R.id.timer_container)
+        ConstraintLayout loutTime;
 
 
         public FooterViewHolder(View itemView) {

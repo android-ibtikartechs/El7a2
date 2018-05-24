@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
+            android:paddingBottom="8dp"
             tools:visibility="visible">
 
             <ImageView
@@ -425,7 +426,7 @@
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
-
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="2dp"
                 app:cardUseCompatPadding="true"
@@ -496,7 +497,7 @@
                         android:id="@+id/im_main_deal_banner"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@drawable/img_test_main_deal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -509,6 +510,7 @@
                 android:id="@+id/cardView20"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="2dp"
                 app:cardUseCompatPadding="true"
@@ -579,7 +581,7 @@
                         android:id="@+id/im_main_deal_banner_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@drawable/img_test_main_deal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -597,6 +599,7 @@
                 app:cardCornerRadius="2dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner_2">
 

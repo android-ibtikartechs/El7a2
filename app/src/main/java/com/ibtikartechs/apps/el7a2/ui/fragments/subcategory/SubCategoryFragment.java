@@ -21,10 +21,12 @@ import android.widget.ProgressBar;
 
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.ProductListSubCatAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
+import com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails.MainDealDetailsActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomRecyclerView;
 import com.ibtikartechs.apps.el7a2.utilities.PaginationAdapterCallback;
@@ -272,7 +274,7 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
 
     @Override
     public void onItemClickListner(String id) {
-
+        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id, StaticValues.PROD_FLAG));
     }
 
     private void implementScrolListener()

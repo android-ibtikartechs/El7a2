@@ -42,7 +42,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_footer_item_price" />
 
-
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/timer_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_footer_item_title">
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
         android:id="@+id/tv_main_deal_days"
         android:layout_width="wrap_content"
@@ -54,7 +58,7 @@
         android:textSize="12sp"
         app:custom_font="@string/font_name_helvatican"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_footer_item_title" />
+         />
 
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView4"
@@ -198,5 +202,5 @@
         app:layout_constraintStart_toEndOf="@+id/tv_main_deal_seconds"
         app:layout_constraintTop_toTopOf="@+id/tv_main_deal_seconds" />
 
-
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

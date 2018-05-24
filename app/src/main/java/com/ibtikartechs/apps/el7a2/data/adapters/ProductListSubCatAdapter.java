@@ -144,7 +144,13 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
 
                 footerViewHolder.tvPrice.setText(model.getPrice());
                 footerViewHolder.tvTitle.setText(model.getDescription());
-                countDownStart(model.getEndDate(),footerViewHolder);
+                if (model.isDisplayTimer()) {
+                    countDownStart(model.getEndDate(), footerViewHolder);
+                    footerViewHolder.tvOldPrice.setText(model.getOldPrice());
+                    footerViewHolder.tvDiscountPercent.setText(model.getDiscountPercent());
+                }
+                else
+                    footerViewHolder.loutTime.setVisibility(View.GONE);
                 footerViewHolder.btnContainer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -258,6 +264,12 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
         CustomFontTextView tvMinutes;
         @BindView(R.id.tv_main_deal_seconds)
         CustomFontTextView tvSeconds;
+        @BindView(R.id.loutTime)
+        ConstraintLayout loutTime;
+        @BindView(R.id.tv_main_deal_discount_parcent)
+        TextView tvDiscountPercent;
+        @BindView(R.id.tv_main_deal_old_price)
+        TextView tvOldPrice;
 
 
         public FooterViewHolder(View itemView) {

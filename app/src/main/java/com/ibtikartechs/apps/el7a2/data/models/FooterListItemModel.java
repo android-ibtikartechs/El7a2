@@ -11,6 +11,8 @@ public class FooterListItemModel {
     private String endDate;
     private String id;
     private boolean isDisplayTimer;
+    String oldPrice;
+    String discountPercent;
 
     public FooterListItemModel(String id, String price, String imgUrl, String description, String endDate) {
         this.price = price;
@@ -20,13 +22,15 @@ public class FooterListItemModel {
         this.id = id;
     }
 
-    public FooterListItemModel(String price, String imgUrl, String description, String endDate, String id, boolean isDisplayTimer) {
+    public FooterListItemModel(String price, String imgUrl, String description, String endDate, String id, boolean isDisplayTimer, String oldPrice, String discountPercent) {
         this.price = price;
         this.imgUrl = imgUrl;
         this.description = description;
         this.endDate = endDate;
         this.id = id;
         this.isDisplayTimer = isDisplayTimer;
+        this.oldPrice = oldPrice;
+        this.discountPercent = discountPercent;
     }
 
     public boolean isDisplayTimer() {
@@ -51,5 +55,13 @@ public class FooterListItemModel {
 
     public String getId() {
         return id;
+    }
+
+    public String getOldPrice() {
+        return oldPrice;
+    }
+
+    public String getDiscountPercent() {
+        return discountPercent;
     }
 }

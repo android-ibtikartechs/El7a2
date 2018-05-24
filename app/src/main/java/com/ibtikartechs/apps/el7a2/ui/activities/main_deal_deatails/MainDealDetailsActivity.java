@@ -165,6 +165,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     String titleOfProduct;
     String priceOfProduct;
     String imgUrlOfProduct;
+    private String footerCatId;
 
 
     @Override
@@ -521,6 +522,11 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         });
 
 
+    }
+
+    @Override
+    public void setFooterId(String footerCatId) {
+        this.footerCatId = footerCatId;
     }
 
     @Override

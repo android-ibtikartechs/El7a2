@@ -14,7 +14,7 @@ public interface MainDealMvpView extends MvpView {
     void showErrorView();
     void populateData(String productImgUrl, String productName, String productPrice,
                       String endDate, String firstSaleImgUrl,
-                      String secondSaleImgUrl, String details, String oldPrice, String discountPercent, int numOfFooters);
+                      String secondSaleImgUrl, String details, String oldPrice, String discountPercent, int numOfFooters, String firstBannerImgUrl, String secondBannerImgUrl, String firstBannerId, String secondBannerId);
     String fetchErrorMessage();
     void showProgressBar();
     void hideFooterProgressBar();

@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BasePresenter;
 
 import org.json.JSONArray;
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -100,6 +102,7 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
 
                         getMvpView().setFeaturesContent(features, content);
                         getMvpView().hideErrorView();
+                        getFooter("0", StaticValues.DEAL_SUGG_CAT_PATH);
                     }
                     else
                         getMvpView().showErrorView();
@@ -157,13 +160,14 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
 
                             getMvpView().setFeaturesContent(features, content);
 
-                            String endDate = jsnDetailsObject.getString("offer_end_date");
-                            if (!endDate.equals(""))
-                            {
-                                String endTime = jsnDetailsObject.getString("offer_end_time");
-                                getMvpView().setTimer(endDate+" "+endTime);
-                            }
 
+
+                        }
+                        String endDate = jsnDetailsObject.getString("offer_end_date");
+                        if (jsnDetailsObject.getString("display_timer").equals("yes"))
+                        {
+                            String endTime = jsnDetailsObject.getString("offer_end_time");
+                            getMvpView().setTimer(endDate+" "+endTime);
                         }
 
                         getMvpView().hideErrorView();
@@ -182,6 +186,50 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
         getDataManager().addItemToCart(id, title, price, imgUrl, quantity);
     }
 
+    @Override
+    public void getFooter(String Id, String path) {
+        getMvpView().hideFooterErrorView();
+        OkHttpClient client = new OkHttpClient();
+
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(buildUrl(Id, path))
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getMvpView().showFooterErrorView();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONObject jsnMainObject = new JSONObject(response.body().string());
+                    if (jsnMainObject.getString("status").equals("OK")) {
+                        JSONArray dummiesArray = jsnMainObject.getJSONArray("Details");
+                        JSONObject jsnDetailsObject = dummiesArray.getJSONObject(0);
+                        String catName = jsnDetailsObject.getString("name");
+                        String catId = jsnDetailsObject.getString("id");
+                        JSONArray jsnProductList = jsnDetailsObject.getJSONArray("Products");
+                        ArrayList<FooterListItemModel> firstFooterList = new ArrayList<>();
+                        for (int o = 0; o<jsnProductList.length(); o++)
+                        {
+                            JSONObject jsnItemObject = jsnProductList.getJSONObject(o);
+                            boolean isDisplayTimer = jsnItemObject.getBoolean("display_timer");
+                            firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("price"), jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),  jsnItemObject.getString("id"),isDisplayTimer, jsnItemObject.getString("oprice"), jsnItemObject.getString("discount_percentage")));
+                        }
+                        getMvpView().setFooterId(catId);
+                        getMvpView().addMoreToAdapter(firstFooterList);
+                        getMvpView().hideFooterErrorView();
+                        getMvpView().hideFooterProgressBar();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     private String buildUrl(String id, String path) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
@@ -192,4 +240,6 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
         String url = builder.build().toString();
         return url;
     }
+
+
 }
