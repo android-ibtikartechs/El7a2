@@ -50,13 +50,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addItemsToCart (String itemId, String title, String price, String imgUrl){
+    public void addItemsToCart (String itemId, String title, String price, String imgUrl, String quantity){
         ContentValues values = new ContentValues();
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_ID,itemId);
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_TITLE,title);
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_PRICE,price);
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_IMG_URL,imgUrl);
-
+        values.put(El7a2Contract.CartEntry.COLUMN_ITEM_AMOUNT, quantity);
 
         Uri newUri;
         newUri = context.getContentResolver().insert(El7a2Contract.CartEntry.CONTENT_URI,values);

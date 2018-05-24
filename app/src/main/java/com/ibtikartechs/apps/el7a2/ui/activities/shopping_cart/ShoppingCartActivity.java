@@ -110,7 +110,7 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
         presenter = new ShoppingCartPresenter(dataManager);
         presenter.onAttach(this);
 
-        presenter.addItemToCart("0", "سيارة كيا الجديدة كليا", "200", "http://www.sellanycar.com/cars-related/ar/wp-content/uploads/2014/11/2015-Kia-Sportage-new-design-620x340.jpg");
+
 
         if (presenter.getNumberOfItemsCartList() == 0)
             btnCheckout.setEnabled(false);

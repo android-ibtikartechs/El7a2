@@ -173,8 +173,35 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                                 boolean isDisplayTimer = jsnItemObject.getString("display_timer").equals("yes");
                                 firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("id"),jsnItemObject.getString("price"),jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),isDisplayTimer));
                             }
-                            getMvpView().addMoreToAdapter2Footer(firstFooterList);
                             getMvpView().showFooter2(catName,firstFooterList, catId);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        else if (numOfFooter != 1 && currentFootersId.size()<numOfFooter)
+        {
+
+            OkHttpClient client = new OkHttpClient();
+
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(footerBuildUrl())
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        JSONObject jsnMainObject = new JSONObject(response.body().string());
+                        if (jsnMainObject.getJSONObject("Details").getString("status").equals("OK")) {
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -207,4 +234,6 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
         String url = builder.build().toString();
         return url;
     }
+
+
 }

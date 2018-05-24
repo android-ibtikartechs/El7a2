@@ -487,7 +487,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     }
 
     @Override
-    public void showFooter1(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+    public void showFooter1(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
+        addMoreToAdapter(productsList);
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -496,12 +497,14 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 idFooter1 = catId;
                 footerIdsList.add(Integer.valueOf(catId));
                 presenter.getFooter(numOfFooters, footerIdsList);
+
             }
         });
     }
 
     @Override
-    public void showFooter2(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+    public void showFooter2(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
+        addMoreToAdapter2Footer(productsList);
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -509,13 +512,15 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 tvNameFooterCat2.setText(catName);
                 idFooter2 = catId;
                 footerIdsList.add(Integer.valueOf(catId));
+
                 presenter.getFooter(numOfFooters, footerIdsList);
             }
         });
     }
 
     @Override
-    public void showFooter3(final String catName, ArrayList<FooterListItemModel> productsList, final String catId) {
+    public void showFooter3(final String catName, final ArrayList<FooterListItemModel> productsList, final String catId) {
+        addMoreToAdapter3Footer(productsList);
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -523,6 +528,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 tvNameFooterCat3.setText(catName);
                 idFooter3 = catId;
                 footerIdsList.add(Integer.valueOf(catId));
+
             }
         });
     }

@@ -2,7 +2,9 @@ package com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
@@ -12,18 +14,26 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.StaticValues;
@@ -34,6 +44,7 @@ import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealPresenter;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
+import com.ibtikartechs.apps.el7a2.ui_utilities.GlideTarget;
 
 import org.jsoup.Jsoup;
 
@@ -43,6 +54,8 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.square1.richtextlib.spans.RemoteBitmapSpan;
+import io.square1.richtextlib.spans.UrlBitmapDownloader;
 import io.square1.richtextlib.ui.RichContentView;
 import io.square1.richtextlib.v2.RichTextV2;
 import io.square1.richtextlib.v2.content.RichTextDocumentElement;
@@ -74,8 +87,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     RichContentView tvMainDescription;
     @BindView(R.id.lout_main_deal_desc_timer)
     ConstraintLayout loutTimer;
-    @BindView(R.id.button)
-    Button btnBuy;
+
     @BindView(R.id.imageView6)
     ImageView imBanner;
     @BindView(R.id.lout_main_deal_desc_suggested_category_error)
@@ -83,6 +95,9 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
     @BindView(R.id.tv_main_deal_desc_suggested_category_error_cause)
     CustomFontTextView tvErrorCauseSuggCategory;
+
+    @BindView(R.id.imageView4)
+    ImageView imSomeFooter;
 
     @BindView(R.id.btn_main_deal_desc_suggested_category_retry)
     Button btnRetrySuggCategory;
@@ -131,6 +146,12 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.lout_features_content)
     CardView loutFeaturesContent;
 
+    @BindView(R.id.tv_btn_add_to_cart)
+    CustomFontTextView btnBuy;
+
+    @BindView(R.id.spin_add_to_cart)
+    Spinner spinQuantity;
+
     private Handler mHandler;
     private Handler handler;
     MainDealDetailsPresenter presenter;
@@ -140,6 +161,11 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     private Runnable runnable;
     private String dealOrProductId;
     private int dealOrProduct;
+    String selectedQuantity;
+    String titleOfProduct;
+    String priceOfProduct;
+    String imgUrlOfProduct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +194,42 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
         presenter = new MainDealDetailsPresenter(dataManager);
         presenter.onAttach(this);
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.addItemToCart(dealOrProductId, titleOfProduct,priceOfProduct,imgUrlOfProduct,selectedQuantity);
+            }
+        });
+
+        ArrayAdapter<String> amountSpinnerAdapter;
+        String[] amountsArray = {"1","2","3","4","5","6","7","8","9","10"};
+
+        amountSpinnerAdapter = new ArrayAdapter<String>(this, R.layout.view_spinner_row_footer_buy, R.id.language, amountsArray);
+        amountSpinnerAdapter.setDropDownViewResource(R.layout.view_spinner_amount_dropdown_row);
+
+        spinQuantity.setAdapter(amountSpinnerAdapter);
+
+        spinQuantity.setSelection(0);
+
+        spinQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selection = (String) adapterView.getItemAtPosition(i);
+
+                if (!TextUtils.isEmpty(selection)) {
+                    selectedQuantity = selection;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
 
         firstArrayList = new ArrayList<>();
 
@@ -201,7 +263,24 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
             }
         });
 
-        hideErrorView();
+        if (dealOrProduct == StaticValues.DEAL_FLAG)
+        {
+            presenter.getDeal(dealOrProductId);
+        }
+        else
+            presenter.getProduct(dealOrProductId);
+
+        btnRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dealOrProduct == StaticValues.DEAL_FLAG)
+                {
+                    presenter.getDeal(dealOrProductId);
+                }
+                else
+                    presenter.getProduct(dealOrProductId);
+            }
+        });
     }
 
     private void populatRecyclerView() {
@@ -274,7 +353,13 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @Override
     public void populateData(final String dealName, final String mainImageUrl,
                              final String price, final String oldPrice,
-                             final String discountPercent, final String mainDescription, final String imgUrlBanner) {
+                             final String discountPercent, final String mainDescription, final String imgUrlBanner, boolean likeStatus) {
+
+        titleOfProduct = dealName;
+        priceOfProduct = price;
+        imgUrlOfProduct = mainImageUrl;
+
+
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -378,38 +463,63 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     }
 
     @Override
-    public void setSupplement(String price1, String price2, String imgUrl1, String imgUrl2) {
-        loutSupplements.setVisibility(View.VISIBLE);
+    public void setSupplement(final String imgUrl1, final String imgUrl2) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                imSomeFooter.setVisibility(View.VISIBLE);
+                loutSupplements.setVisibility(View.VISIBLE);
 
-        if (imgUrl1.equals("")|| imgUrl1 == null)
-            Glide.with(MainDealDetailsActivity.this)
-                    .load(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imFirstSupplement);
-        else
-            Glide.with(MainDealDetailsActivity.this)
-                    .load(imgUrl1).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.placeholder)
-                    .into(imFirstSupplement);
+                if (imgUrl1.equals("")|| imgUrl1 == null)
+                    Glide.with(MainDealDetailsActivity.this)
+                            .load(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(imFirstSupplement);
+                else
+                    Glide.with(MainDealDetailsActivity.this)
+                            .load(imgUrl1).diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.placeholder)
+                            .into(imFirstSupplement);
 
-        if (imgUrl2.equals("")|| imgUrl2 == null)
-            Glide.with(MainDealDetailsActivity.this)
-                    .load(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imSecondSupplement);
-        else
-            Glide.with(MainDealDetailsActivity.this)
-                    .load(imgUrl2).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.placeholder)
-                    .into(imSecondSupplement);
+                if (imgUrl2.equals("")|| imgUrl2 == null)
+                    Glide.with(MainDealDetailsActivity.this)
+                            .load(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(imSecondSupplement);
+                else
+                    Glide.with(MainDealDetailsActivity.this)
+                            .load(imgUrl2).diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.placeholder)
+                            .into(imSecondSupplement);
+            }
+        });
+
     }
 
     @Override
-    public void setFeaturesContent(String Features, String content) {
-        loutFeaturesContent.setVisibility(View.VISIBLE);
-        RichTextDocumentElement features = RichTextV2.textFromHtml(MainDealDetailsActivity.this, Features);
-        tvFeatures.setText(features);
+    public void setFeaturesContent(final String Features, final String content) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                tvFeatures.setUrlBitmapDownloader(new UrlBitmapDownloader() {
 
-        RichTextDocumentElement contents = RichTextV2.textFromHtml(MainDealDetailsActivity.this, content);
-        tvContent.setText(contents);
+                    @Override
+                    public void downloadImage(RemoteBitmapSpan urlBitmapSpan, Uri image) {
+                        Glide.with(MainDealDetailsActivity.this)
+                                .load(image)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(new GlideTarget(MainDealDetailsActivity.this,urlBitmapSpan));
+                    }
+
+                });
+                loutFeaturesContent.setVisibility(View.VISIBLE);
+                RichTextDocumentElement features = RichTextV2.textFromHtml(MainDealDetailsActivity.this, Features);
+                tvFeatures.setText(features);
+
+                RichTextDocumentElement contents = RichTextV2.textFromHtml(MainDealDetailsActivity.this, content);
+                tvContent.setText(contents);
+            }
+        });
+
 
     }
 
@@ -427,7 +537,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
             public void run() {
                 handler.postDelayed(this, 1000);
                 try {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 // Please here set your event date//YYYY-MM-DD
 
                     Date futureDate = dateFormat.parse(futureTime);

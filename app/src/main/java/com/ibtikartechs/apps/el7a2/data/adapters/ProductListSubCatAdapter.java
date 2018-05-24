@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -242,7 +243,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
 
     protected class FooterViewHolder extends CustomRecyclerView.ViewHolder {
         @BindView(R.id.btn_lout_container)
-        ConstraintLayout btnContainer;
+        CardView btnContainer;
         @BindView(R.id.im_footer_item)
         ImageView imItem;
         @BindView(R.id.tv_footer_item_price)

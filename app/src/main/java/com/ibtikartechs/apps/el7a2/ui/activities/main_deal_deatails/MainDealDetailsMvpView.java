@@ -14,13 +14,13 @@ public interface MainDealDetailsMvpView extends MvpView {
     void showErrorView();
     String fetchErrorMessage();
     void showProgressBar();
-    void populateData(String dealName, String mainImageUrl, String price, String oldPrice, String discountPercent, String mainDescription, String imgUrlBanner);
+    void populateData(String dealName, String mainImageUrl, String price, String oldPrice, String discountPercent, String mainDescription, String imgUrlBanner, boolean likeStatus);
     void addMoreToAdapter(ArrayList<FooterListItemModel> list);
     void hideFooterProgressBar();
     void showFooterProgressBar();
     void showFooterErrorView();
     void hideFooterErrorView();
     void setTimer(String time);
-    void setSupplement(String price1, String price2, String imgUrl1, String imgUrl2);
+    void setSupplement(String imgUrl1, String imgUrl2);
     void setFeaturesContent(String Features, String content);
 }

@@ -143,7 +143,6 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
         rvListProducts.setLayoutManager(staggeredGridLayoutManager);

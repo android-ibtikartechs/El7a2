@@ -20,9 +20,9 @@ public class DataManager {
         this.mSQLiteHandler = mSQLiteHandler;
     }
 
-    public void addItemToCart(String id, String title, String price, String imgUrl)
+    public void addItemToCart(String id, String title, String price, String imgUrl, String quantity)
     {
-        mSQLiteHandler.addItemsToCart(id,title,price,imgUrl);
+        mSQLiteHandler.addItemsToCart(id,title,price,imgUrl, quantity);
     }
 
     public ArrayList<CartListModel> getCartItemsList()

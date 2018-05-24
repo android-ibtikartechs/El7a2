@@ -17,5 +17,5 @@ public interface ShoppingCartMvpPresenter <V extends ShoppingCartMvpView> extend
     int getNumberOfItemsCartList();
     void updateAmountOfItem(Uri uri, String amount);
 
-    void addItemToCart(String id, String title, String price, String imgUrl);
+
 }

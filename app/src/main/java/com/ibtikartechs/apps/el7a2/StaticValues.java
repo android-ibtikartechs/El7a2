@@ -12,6 +12,8 @@ public class StaticValues {
     public static final String KEY_FLAG_PRODUCT_OR_DEAL = "key_prod_or_deal";
     public static final int DEAL_FLAG = 100;
     public static final int PROD_FLAG = 101;
+    public static final String DEAL_PATH = "deal_details";
+    public static  final String PRODUCT_PATH = "product_details";
 
     public static String buoldUrl(String endpoint) {
         Uri.Builder builder = new Uri.Builder();

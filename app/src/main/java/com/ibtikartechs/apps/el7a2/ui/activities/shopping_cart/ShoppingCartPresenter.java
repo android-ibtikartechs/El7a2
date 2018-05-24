@@ -40,9 +40,5 @@ public class ShoppingCartPresenter <V extends ShoppingCartMvpView> extends BaseP
     }
 
 
-    //TODO it is not here but for test
-    @Override
-    public void addItemToCart(String id, String title, String price, String imgUrl) {
-        getDataManager().addItemToCart(id, title, price, imgUrl);
-    }
+
 }
