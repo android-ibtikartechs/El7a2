@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.registeration.RegisterationActivity"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/bg"
+        android:scaleType="centerCrop"
+        android:alpha="0.5"
+        />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_icon" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7">
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                android:id="@+id/login_txt"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="دخول"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:custom_font="@string/font_name_helvatican" />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                android:id="@+id/register_txt"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="عضو جديد"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:custom_font="@string/font_name_helvatican" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/email_edtx"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="البريد الألكترونى"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="كلمة المرور"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="دخول"
+                    android:textColor="@color/white_blue"
+                    app:custom_font="@string/font_name_helvatican"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_btn_forget_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="نسيت كلمة المرور"
+                    android:textColor="@color/black"
+                    app:custom_font="@string/font_name_helvatican"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="end|center_vertical"
+                android:layout_marginTop="16dp"
+
+                android:background="@drawable/facebook_bg_right"
+
+                >
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    style="@style/FacebookLoginButton"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

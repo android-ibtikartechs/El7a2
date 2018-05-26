@@ -13,4 +13,6 @@
     <string name="what_rong">حصل خطأ ما</string>
     <string name="conn_error_recyview">خطأ في الإتصال بالشبكة</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">131002647770788</string>
+    <string name="fb_login_protocol_scheme">fb131002647770788</string>
 </resources>

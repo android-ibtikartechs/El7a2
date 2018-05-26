@@ -395,7 +395,7 @@
                                         android:id="@+id/im_main_deal_second_sale"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        app:srcCompat = "@drawable/im_test_2"
+                                        app:srcCompat = "@drawable/im_testt"
                                         android:layout_margin="10dp"
                                         android:scaleType="fitXY" />
 

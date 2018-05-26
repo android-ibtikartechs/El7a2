@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/fb_bg" />
     <corners
-        android:bottomLeftRadius="25dp"
-        android:topLeftRadius="25dp" />
+        android:bottomLeftRadius="100dp"
+        android:topLeftRadius="100dp" />
 </shape>

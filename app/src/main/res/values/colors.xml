@@ -25,6 +25,7 @@
     <color name="ColorGrayBacgrounf">#E8E8EA</color>
     <color name="ColorBackGray">#B4B4B4</color>
     <color name="colorFrontGray">#F0F0F0</color>
-
+    <color name="edxt_bg">#8b4bcbee</color>
+    <color name="whiteLite">#85ffffff</color>
 
 </resources>
