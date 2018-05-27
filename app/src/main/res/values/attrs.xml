@@ -8,5 +8,8 @@
         <attr name="custom_font_edi_text" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="CustomAutoCompleteTextView">
+        <attr name="custom_font_auto_compl_tex_view" format="string"/>
+    </declare-styleable>
 
 </resources>

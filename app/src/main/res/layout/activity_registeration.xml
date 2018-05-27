@@ -16,7 +16,9 @@
         android:scaleType="centerCrop"
         android:alpha="0.5"
         />
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -76,7 +78,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/lout_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
@@ -86,6 +88,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -167,7 +170,6 @@
                 android:layout_height="60dp"
                 android:gravity="end|center_vertical"
                 android:layout_marginTop="16dp"
-
                 android:background="@drawable/facebook_bg_right"
 
                 >
@@ -184,6 +186,200 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lout_sign_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/email_edtx_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="البريد الألكترونى"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/phone_edtx_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="رقم الهاتف"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                android:id="@+id/governrote_auto_tex_view_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="اسم المحافظة"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:imeOptions="flagNoExtractUi|actionSearch"
+                android:textCursorDrawable="@null"
+                app:custom_font_auto_compl_tex_view="@string/font_name_helvatican" />
+
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                android:id="@+id/city_auto_tex_view_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="المدينة/الحي"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:enabled="false"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_auto_compl_tex_view="@string/font_name_helvatican" />
+
+
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/address_edtx_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="العنوان"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/et_password_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="كلمة المرور"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/et_password_sign_up_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="تأكيد كلمة المرور"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_btn_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="تسجيل الدخول"
+                    android:textColor="@color/white_blue"
+                    app:custom_font="@string/font_name_helvatican"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/facebook_bg_right"
+
+                android:gravity="end|center_vertical"
+
+                >
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/fb_sign_up_button"
+                    style="@style/FacebookLoginButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -195,5 +391,5 @@
 
 
     </android.support.constraint.ConstraintLayout>
-
+</ScrollView>
 </RelativeLayout>
