@@ -2,8 +2,10 @@ package com.ibtikartechs.apps.el7a2.data;
 
 import android.net.Uri;
 
+import com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract;
 import com.ibtikartechs.apps.el7a2.data.db_helper.SQLiteHandler;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
+import com.ibtikartechs.apps.el7a2.data.models.UserModel;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,17 @@ public class DataManager {
     {
         mSQLiteHandler.addItemsToCart(id,title,price,imgUrl, quantity);
     }
+
+    public void addUser(String id, String name, String email, String mobNum, String address, String gov, String city)
+    {
+        deleteItemFromDataBase(El7a2Contract.CartEntry.CONTENT_URI_USER_PATH);
+        mSQLiteHandler.addUser(id,name,email,mobNum,address,gov,city);
+    }
+
+    public UserModel getUser(){
+        return mSQLiteHandler.gryUser();
+    }
+
 
     public ArrayList<CartListModel> getCartItemsList()
     {
@@ -50,14 +63,20 @@ public class DataManager {
         return mSQLiteHandler.getCartList().size();
     }
 
-    public void deleteItemFromOrderList(Uri uri)
+    public void deleteItemFromDataBase(Uri uri)
     {
-        mSQLiteHandler.deleteItemsfromCart(uri);
+        mSQLiteHandler.deleteFromDataBase(uri);
     }
+
 
     public void updateAmountOfItem (Uri uri, String amount)
     {
         mSQLiteHandler.editAmountofItem(uri,amount);
+    }
+
+    public void ubdateUserData (Uri uri, String id, String name, String email, String mobNum, String address, String gov, String city)
+    {
+        mSQLiteHandler.editUserData(uri, id, name, email, mobNum, address, gov, city);
     }
 
 }

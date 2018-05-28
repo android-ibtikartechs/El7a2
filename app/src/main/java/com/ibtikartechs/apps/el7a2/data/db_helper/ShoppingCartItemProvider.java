@@ -19,6 +19,9 @@ public class ShoppingCartItemProvider extends ContentProvider {
     private static final int ITEMS = 100;
     private static final int ITEM_ID = 101;
 
+    private static final int USERS = 102;
+    private static final int USER_ID = 103;
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     SQLiteHandler mDbHandler;
     public static final String LOG_TAG = ShoppingCartItemProvider.class.getSimpleName();
@@ -40,6 +43,9 @@ public class ShoppingCartItemProvider extends ContentProvider {
             case ITEMS :
                 cursor = db.query(El7a2Contract.CartEntry.TABLE_CART_ITEMS,projection,selection,selectionArgs,null,null,null);
                 break;
+            case USERS:
+                cursor = db.query(El7a2Contract.CartEntry.TABLE_USER,projection,selection,selectionArgs,null,null,null);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -60,7 +66,9 @@ public class ShoppingCartItemProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case ITEMS :
-                return  insertUser(uri,contentValues);
+                return  insertCartItem(uri,contentValues);
+            case USERS :
+                return insertUser(uri,contentValues);
             default:
                 throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
 
@@ -76,6 +84,10 @@ public class ShoppingCartItemProvider extends ContentProvider {
             case ITEMS:
                 // Delete all rows that match the selection and selection args
                 return db.delete(El7a2Contract.CartEntry.TABLE_CART_ITEMS, selection, selectionArgs);
+
+            case USERS :
+                return db.delete(El7a2Contract.CartEntry.TABLE_USER, selection, selectionArgs);
+
             case ITEM_ID:
                 // Delete a single row given by the ID in the URI
                 selection = El7a2Contract.CartEntry._ID + "=?";
@@ -97,6 +109,11 @@ public class ShoppingCartItemProvider extends ContentProvider {
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 rows = db.update(El7a2Contract.CartEntry.TABLE_CART_ITEMS, contentValues, selection, selectionArgs);
                 break;
+            case USER_ID :
+                selection =  El7a2Contract.CartEntry.COLUMN_USER_ID+"=?";
+                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                rows = db.update(El7a2Contract.CartEntry.TABLE_USER, contentValues, selection, selectionArgs);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -109,7 +126,21 @@ public class ShoppingCartItemProvider extends ContentProvider {
 
     }
 
-    private Uri insertUser(Uri uri, ContentValues values) {
+
+    private Uri insertUser(Uri uri, ContentValues values)
+    {
+        SQLiteDatabase database = mDbHandler.getWritableDatabase();
+        long id = database.insert(El7a2Contract.CartEntry.TABLE_USER, null, values);
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+        getContext().getContentResolver().notifyChange(uri,null);
+        return ContentUris.withAppendedId(uri, id);
+    }
+
+
+    private Uri insertCartItem(Uri uri, ContentValues values) {
 
         // TODO: Insert a new pet into the pets database table with the given ContentValues
         // Get writeable database
@@ -132,8 +163,13 @@ public class ShoppingCartItemProvider extends ContentProvider {
     public static UriMatcher buildUriMatcher() {
         String contentAuthority = El7a2Contract.CONTENT_AUTHORITY;
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
         uriMatcher.addURI(contentAuthority, El7a2Contract.PATH_CART_ITEMS,ITEMS);
         uriMatcher.addURI(contentAuthority,El7a2Contract.PATH_CART_ITEMS+"/#",ITEM_ID);
+
+        uriMatcher.addURI(contentAuthority, El7a2Contract.PATH_USER,USERS);
+        uriMatcher.addURI(contentAuthority, El7a2Contract.PATH_USER+"/#",USER_ID);
+
         return uriMatcher;
     }
 }

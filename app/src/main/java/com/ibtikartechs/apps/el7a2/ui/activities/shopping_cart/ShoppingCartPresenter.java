@@ -25,7 +25,7 @@ public class ShoppingCartPresenter <V extends ShoppingCartMvpView> extends BaseP
 
     @Override
     public int deleteItemFromCartList(Uri uri) {
-        getDataManager().deleteItemFromOrderList(uri);
+        getDataManager().deleteItemFromDataBase(uri);
         return getNumberOfItemsCartList();
     }
 

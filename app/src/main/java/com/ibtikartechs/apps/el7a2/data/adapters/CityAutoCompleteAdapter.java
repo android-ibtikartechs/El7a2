@@ -39,21 +39,18 @@ import okhttp3.Response;
 public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
     private static final int MAX_RESULTS = 10;
     private Context mContext;
+    private boolean isGov;
+    private String govId;
     private List<GovernroteModel> resultList = new ArrayList<>();
     ViewHolder viewHolder;
     private List<GovernroteModel> governrotes = new ArrayList<>();
     OnAutoGovernItemClickListner onAutoLocationItemClickListner;
 
-    public void setGovernrotes(GovernroteModel governroteModel) {
-        this.governrotes.add(governroteModel);
-    }
 
-    public List<GovernroteModel> getGovernrotes() {
-        return governrotes;
-    }
 
-    public CityAutoCompleteAdapter(Context mContext) {
+    public CityAutoCompleteAdapter(Context mContext, boolean isGov) {
         this.mContext = mContext;
+        this.isGov = isGov;
     }
 
     @Override
@@ -87,7 +84,9 @@ public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
         viewHolder.loutContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onAutoLocationItemClickListner.onAutoLocationItemClicked(item.getId(), item.getCityName());
+                if (isGov)
+                    setGovId(item.getId());
+                onAutoLocationItemClickListner.onAutoLocationItemClicked(item.getId(), item.getCityName(), isGov);
             }
         });
 
@@ -106,30 +105,34 @@ public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
 
                     HttpURLConnection conn = null;
                     InputStream input = null;
-                    try
-                    {
-                        URL url = new URL (buildUrl(charSequence.toString()));
+                    try {
+                        URL url = null;
+                        if (isGov)
+                            url = new URL(buildUrl(charSequence.toString()));
+                        else
+                            url = new URL(buildCityUrl(getGovId(),charSequence.toString()));
                         conn = (HttpURLConnection) url.openConnection();
                         input = conn.getInputStream();
-                        InputStreamReader reader = new InputStreamReader (input, "UTF-8");
-                        BufferedReader buffer = new BufferedReader (reader, 8192);
+                        InputStreamReader reader = new InputStreamReader(input, "UTF-8");
+                        BufferedReader buffer = new BufferedReader(reader, 8192);
                         StringBuilder builder = new StringBuilder();
                         String line;
-                        while ((line = buffer.readLine()) != null)
-                        {
-                            builder.append (line);
+                        while ((line = buffer.readLine()) != null) {
+                            builder.append(line);
                         }
 
                         ArrayList<GovernroteModel> suggestions = new ArrayList<>();
                         JSONObject jsnMainObject = new JSONObject(builder.toString());
-                        if (jsnMainObject.getString("status").equals("OK"))
-                        {
+                        if (jsnMainObject.getString("status").equals("OK")) {
                             JSONArray jsnGovArray = jsnMainObject.getJSONArray("List");
                             if (jsnGovArray != null) {
 
                                 for (int i = 0; i < jsnGovArray.length(); i++) {
                                     JSONObject jsnItemObject = jsnGovArray.getJSONObject(i);
-                                    suggestions.add(new GovernroteModel(jsnItemObject.getString("name2"),jsnItemObject.getString("id")));
+                                    if (isGov)
+                                        suggestions.add(new GovernroteModel(jsnItemObject.getString("name2"), jsnItemObject.getString("id")));
+                                    else
+                                        suggestions.add(new GovernroteModel(jsnItemObject.getString("name"), jsnItemObject.getString("id")));
                                 }
 
 
@@ -139,71 +142,18 @@ public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
                         filterResults.values = suggestions;
                         filterResults.count = suggestions.size();
                         resultList = suggestions;
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
-                    }
-                    finally
-                    {
-                        if (input != null)
-                        {
-                            try
-                            {
+                    } finally {
+                        if (input != null) {
+                            try {
                                 input.close();
-                            }
-                            catch (Exception ex)
-                            {
+                            } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
                         }
                         if (conn != null) conn.disconnect();
                     }
-
-
-/*
-
-                    OkHttpClient client = new OkHttpClient();
-
-                    okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(buildUrl(charSequence.toString()))
-                            .build();
-
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-
-                        }
-
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-
-
-                            try {
-                                JSONObject jsnMainObject = new JSONObject(response.body().string());
-                                if (jsnMainObject.getString("status").equals("OK"))
-                                {
-                                    JSONArray jsnGovArray = jsnMainObject.getJSONArray("List");
-                                    if (jsnGovArray != null) {
-
-                                        for (int i = 0; i < jsnGovArray.length(); i++) {
-                                            JSONObject jsnItemObject = jsnGovArray.getJSONObject(i);
-                                            setGovernrotes(new GovernroteModel(jsnItemObject.getString("name2"),jsnItemObject.getString("id")));
-                                        }
-
-
-                                    }
-
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-*/
-
-                    // Assign the data to the FilterResults
 
 
                 }
@@ -237,6 +187,26 @@ public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
         return url;
     }
 
+    private String buildCityUrl(String govId, String searchQuery) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority(StaticValues.URL_AUOTHORITY)
+                .appendPath("mob")
+                .appendPath("districtsofcitylike")
+                .appendPath(govId)
+                .appendPath(searchQuery);
+        String url = builder.build().toString();
+        return url;
+    }
+
+    public void setGovId(String govId) {
+        this.govId = govId;
+    }
+
+    public String getGovId() {
+        return govId;
+    }
+
     public class ViewHolder{
         @BindView(R.id.lout_container)
         ConstraintLayout loutContainer;
@@ -250,8 +220,7 @@ public class CityAutoCompleteAdapter extends BaseAdapter implements Filterable {
 
 
     public interface OnAutoGovernItemClickListner {
-
-        public void onAutoLocationItemClicked(String placeId, String name);
+        public void onAutoLocationItemClicked(String placeId, String name, boolean isGov);
     }
 
     public void setOnAutoLocationItemClickListner(OnAutoGovernItemClickListner onAutoGovernItemClickListner)

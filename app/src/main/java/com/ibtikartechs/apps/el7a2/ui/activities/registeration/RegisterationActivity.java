@@ -1,6 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.registeration;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.CityAutoCompleteAdapter;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.main.MainPresenter;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
@@ -19,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RegisterationActivity extends AppCompatActivity implements CityAutoCompleteAdapter.OnAutoGovernItemClickListner {
+public class RegisterationActivity extends BaseActivity implements RegisterationMvpView, CityAutoCompleteAdapter.OnAutoGovernItemClickListner {
 @BindView(R.id.lout_login)
 LinearLayout loutLogin;
 
@@ -32,8 +37,12 @@ CustomFontTextView btnLoginScreen;
 @BindView(R.id.register_txt)
 CustomFontTextView btnSignUpScreen;
 
+
+
 @BindView(R.id.email_edtx)
 CustomFontEditText etEmailLogin;
+
+
 
 @BindView(R.id.et_password)
 CustomFontEditText etPasswordLogin;
@@ -43,6 +52,9 @@ CustomFontTextView btnLogin;
 
 @BindView(R.id.tv_btn_forget_password)
 CustomFontTextView btnForgetPassword;
+
+@BindView(R.id.name_edtx_sign_up)
+CustomFontEditText etNameSognUp;
 
 @BindView(R.id.email_edtx_sign_up)
 CustomFontEditText etEmailSignUp;
@@ -64,27 +76,92 @@ CustomFontEditText etPasswordSignUp;
 
 @BindView(R.id.et_password_sign_up_confirm)
 CustomFontEditText etPasswordConfirmSignUp;
-String governId;
+@BindView(R.id.tv_btn_sign_up)
+        CustomFontTextView btnSignUp;
+String governId = "";
+String cityId = "";
+    private ProgressDialog pDialog;
+    private RegisterationPresenter presenter;
+    CityAutoCompleteAdapter cityAutoCompleteAdapterForAreas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
         ButterKnife.bind(this);
-        CityAutoCompleteAdapter cityAutoCompleteAdapter = new CityAutoCompleteAdapter(this);
+        DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
+        presenter = new RegisterationPresenter(dataManager);
+        presenter.onAttach(this);
+
+        pDialog = new ProgressDialog(this,ProgressDialog.THEME_HOLO_DARK);
+        pDialog.setCancelable(false);
+        CityAutoCompleteAdapter cityAutoCompleteAdapter = new CityAutoCompleteAdapter(this, true);
         cityAutoCompleteAdapter.setOnAutoLocationItemClickListner(this);
         autoTexGovernrote.setAdapter(cityAutoCompleteAdapter);
 
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = etNameSognUp.getText().toString();
+                String email = etEmailSignUp.getText().toString();
+                String mobNum = etPhoneSignup.getText().toString();
+                String address = etAddress.getText().toString();
+                String cityId = RegisterationActivity.this.cityId;
+                String password = etPasswordSignUp.getText().toString();
+                String confPassword = etPasswordConfirmSignUp.getText().toString();
+                presenter.signupRequest(name, email, mobNum, address, cityId, password, confPassword);
+            }
+        });
+
+        btnLoginScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(loutLogin.getVisibility()!= View.VISIBLE)
+                {
+                    loutSignUp.setVisibility(View.GONE);
+                    loutLogin.setVisibility(View.VISIBLE);
+                    btnLoginScreen.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    btnSignUpScreen.setTextColor(getResources().getColor(R.color.gray));
+                }
+
+            }
+        });
+
+        btnSignUpScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(loutSignUp.getVisibility()!= View.VISIBLE)
+                {
+                    loutLogin.setVisibility(View.GONE);
+                    loutSignUp.setVisibility(View.VISIBLE);
+                    btnSignUpScreen.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    btnLoginScreen.setTextColor(getResources().getColor(R.color.gray));
+                }
+
+            }
+        });
+
     }
 
     @Override
-    public void onAutoLocationItemClicked(String placeId, String name) {
-        autoTexGovernrote.setText(name);
-        governId = placeId;
-        autoTexGovernrote.dismissDropDown();
+    public void onAutoLocationItemClicked(String placeId, String name, boolean isGov) {
+        if (isGov) {
+            autoTexGovernrote.setText(name);
+            governId = placeId;
+            autoTexGovernrote.dismissDropDown();
+            autoTexCity.setEnabled(true);
+            cityAutoCompleteAdapterForAreas = new CityAutoCompleteAdapter(this, false);
+            cityAutoCompleteAdapterForAreas.setGovId(placeId);
+            cityAutoCompleteAdapterForAreas.setOnAutoLocationItemClickListner(this);
+            autoTexCity.setAdapter( cityAutoCompleteAdapterForAreas);
+        }
+        else {
+            autoTexCity.setText(name);
+            cityId = placeId;
+            autoTexCity.dismissDropDown();
+        }
         hideKeyboard();
-        autoTexCity.setEnabled(true);
     }
 
     public void hideKeyboard() {
@@ -94,4 +171,29 @@ String governId;
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+    @Override
+    public void showToast(String mesg) {
+        Toast.makeText(this, mesg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoadingDialog(String msg) {
+
+    }
+
+    @Override
+    public void showProgressDialog(String msg) {
+        if (!pDialog.isShowing()) {
+            pDialog.setMessage(msg);
+            pDialog.show();
+        }
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
 }

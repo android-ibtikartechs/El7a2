@@ -84,11 +84,11 @@
             android:layout_marginBottom="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="32dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            android:visibility="gone"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -168,19 +168,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:gravity="end|center_vertical"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/facebook_bg_right"
+                android:gravity="end|center_vertical"
 
                 >
+
                 <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_button"
+                    style="@style/FacebookLoginButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    style="@style/FacebookLoginButton"
-                    />
+                    android:layout_marginRight="16dp" />
             </LinearLayout>
 
 
@@ -195,10 +195,30 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="32dp"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/name_edtx_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:background="@color/white_blue"
+                android:gravity="end"
+                android:hint="الإسم بالكامل"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteLite"
+                android:textCursorDrawable="@null"
+                app:custom_font_edi_text="@string/font_name_helvatican" />
+
 
             <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
                 android:id="@+id/email_edtx_sign_up"

@@ -21,7 +21,7 @@ public class StaticValues {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
                 .authority(StaticValues.URL_AUOTHORITY)
-                .appendPath("mobile")
+                .appendPath("mob")
                 .appendPath(endpoint);
         String url = builder.build().toString();
         return url;
