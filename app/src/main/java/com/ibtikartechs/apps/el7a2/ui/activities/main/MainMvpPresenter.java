@@ -9,4 +9,5 @@ import com.ibtikartechs.apps.el7a2.ui.activities.base.MvpPresenter;
 public interface MainMvpPresenter <V extends MainMvpView> extends MvpPresenter<V> {
     void getCategories();
     Integer getNumberOfItemsInCart();
+    String getUserEmail();
 }

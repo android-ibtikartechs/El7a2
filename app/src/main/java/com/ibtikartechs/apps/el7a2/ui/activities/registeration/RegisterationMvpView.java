@@ -7,4 +7,6 @@ public interface RegisterationMvpView extends MvpView {
     void showLoadingDialog(String msg);
     void showProgressDialog(String msg);
     void hideProgressDialog();
+    void showActivationLinkDialog(String msg, String buttonTitle, String email, int buttonActionFlag);
+    void completeAfterLogin();
 }

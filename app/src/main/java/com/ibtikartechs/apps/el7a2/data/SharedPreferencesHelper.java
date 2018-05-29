@@ -16,4 +16,5 @@ public class SharedPreferencesHelper {
     public SharedPreferencesHelper(Context context) {
         mSharedPreferences = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
     }
+
 }

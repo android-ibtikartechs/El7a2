@@ -29,6 +29,7 @@ import com.ibtikartechs.apps.el7a2.data.adapters.NavItemsAdapter;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.NavItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.registeration.RegisterationActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.category.CategoryFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealFragment;
@@ -56,6 +57,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     CustomFontTextView teexErrorCause;
     @BindView(R.id.error_btn_retry)
     Button btnRetry;
+    @BindView(R.id.lout_login)
+    LinearLayout loutLogin;
+    @BindView(R.id.tv_user_name)
+    CustomFontTextView tvEmailDisplay;
     MainPresenter presenter;
     private ViewPagerAdapter adapter;
     private ActionBarDrawerToggle drawerToggle;
@@ -84,6 +89,9 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         presenter.onAttach(this);
 
 
+        if (presenter.getUserEmail() != null)
+            tvEmailDisplay.setText(presenter.getUserEmail());
+
         // addMainDealFragment();
         btnRetry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +100,15 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
             }
         });
         presenter.getCategories();
+
+
+
+        loutLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(RegisterationActivity.getStartIntent(MainActivity.this));
+            }
+        });
     }
 
     private void setupViewPager() {

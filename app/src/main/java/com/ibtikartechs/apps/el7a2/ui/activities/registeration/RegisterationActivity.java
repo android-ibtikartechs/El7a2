@@ -3,6 +3,10 @@ package com.ibtikartechs.apps.el7a2.ui.activities.registeration;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,15 +20,17 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.CityAutoCompleteAdapter;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.main.MainPresenter;
+import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
+import com.ibtikartechs.apps.el7a2.ui_utilities.DialogFragmentActivationLink;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RegisterationActivity extends BaseActivity implements RegisterationMvpView, CityAutoCompleteAdapter.OnAutoGovernItemClickListner {
+public class RegisterationActivity extends BaseActivity implements RegisterationMvpView, CityAutoCompleteAdapter.OnAutoGovernItemClickListner , DialogFragmentActivationLink.FragmentButtonsListener {
 @BindView(R.id.lout_login)
 LinearLayout loutLogin;
 
@@ -83,6 +89,7 @@ String cityId = "";
     private ProgressDialog pDialog;
     private RegisterationPresenter presenter;
     CityAutoCompleteAdapter cityAutoCompleteAdapterForAreas;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +99,7 @@ String cityId = "";
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
         presenter = new RegisterationPresenter(dataManager);
         presenter.onAttach(this);
+        handler = new Handler(Looper.getMainLooper());
 
         pDialog = new ProgressDialog(this,ProgressDialog.THEME_HOLO_DARK);
         pDialog.setCancelable(false);
@@ -111,6 +119,15 @@ String cityId = "";
                 String password = etPasswordSignUp.getText().toString();
                 String confPassword = etPasswordConfirmSignUp.getText().toString();
                 presenter.signupRequest(name, email, mobNum, address, cityId, password, confPassword);
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = etEmailLogin.getText().toString();
+                String password = etPasswordLogin.getText().toString();
+                presenter.loginRequest(email, password);
             }
         });
 
@@ -173,8 +190,14 @@ String cityId = "";
     }
 
     @Override
-    public void showToast(String mesg) {
-        Toast.makeText(this, mesg, Toast.LENGTH_SHORT).show();
+    public void showToast(final String mesg) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(RegisterationActivity.this, mesg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -183,17 +206,68 @@ String cityId = "";
     }
 
     @Override
-    public void showProgressDialog(String msg) {
-        if (!pDialog.isShowing()) {
-            pDialog.setMessage(msg);
-            pDialog.show();
-        }
+    public void showProgressDialog(final String msg) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!pDialog.isShowing()) {
+                    pDialog.setMessage(msg);
+                    pDialog.show();
+                }
+            }
+        });
+
     }
 
     @Override
     public void hideProgressDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (pDialog.isShowing())
+                    pDialog.dismiss();
+            }
+        });
+
     }
 
+
+    @Override
+    public void showActivationLinkDialog(String msg, String buttonTitle, String email, int buttonActionFlag) {
+        FragmentManager fm = getSupportFragmentManager();
+        DialogFragmentActivationLink dialogFragmentActivationLink = DialogFragmentActivationLink.newInstance(msg, buttonTitle,email,buttonActionFlag);
+        dialogFragmentActivationLink.setButtonListener(this);
+        dialogFragmentActivationLink.show(fm, "alert");
+    }
+
+    @Override
+    public void completeAfterLogin() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                onBackPressed();
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
+
+    @Override
+    public void onAlertButtonClickLisener(int buttonFlag) {
+
+    }
+
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, RegisterationActivity.class);
+        return intent;
+    }
 }

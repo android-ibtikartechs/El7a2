@@ -71,6 +71,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(El7a2Contract.CartEntry.COLUMN_USER_ADDRESS, address);
         values.put(El7a2Contract.CartEntry.COLUMN_USER_GOV, gov);
         values.put(El7a2Contract.CartEntry.COLUMN_USER_CITY, city);
+
+        Uri newUri;
+        newUri = context.getContentResolver().insert(El7a2Contract.CartEntry.CONTENT_URI_USER_PATH,values);
+
+        if (newUri == null) {
+            // If the new content URI is null, then there was an error with insertion.
+            Log.d("SqliteHandler", "addUser: insert is failed");
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast.
+            Log.d("SqliteHandler", "addUser: insert is done");
+        }
+
     }
 
 

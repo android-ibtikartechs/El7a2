@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.models.UserModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BasePresenter;
 
 import org.json.JSONArray;
@@ -104,6 +105,15 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
     @Override
     public Integer getNumberOfItemsInCart() {
         return getDataManager().getNumberOfItemList();
+    }
+
+    @Override
+    public String getUserEmail() {
+        UserModel userModel = getDataManager().getUser();
+        if ( userModel != null)
+            return userModel.getEmail();
+        else
+            return null;
     }
 
 
