@@ -55,7 +55,7 @@
                 />
 
             <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                android:id="@+id/tv_map_address"
+                android:id="@+id/tv_govern_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:custom_font="@string/font_name_helvatican"
@@ -65,16 +65,35 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="-8dp"
                 />
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:custom_font="@string/font_name_helvatican"
-                android:textColor="@color/black"
-                tools:text="الشخن: مجاني"
+                android:orientation="horizontal"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="-8dp"
-                />
+                android:layout_marginStart="16dp">
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:custom_font="@string/font_name_helvatican"
+                    android:textColor="@color/black"
+                    android:text="الشحن : "
+                    android:layout_marginTop="-8dp"
+                    />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:id="@+id/tv_availability"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:custom_font="@string/font_name_helvatican"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+
+                    />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -17,6 +17,7 @@ import android.widget.TableLayout;
 
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
+import com.ibtikartechs.apps.el7a2.data.models.AddressModel;
 import com.ibtikartechs.apps.el7a2.ui.fragments.add_address.AddAddressFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.getAddress.GetAddressFragment;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
@@ -148,12 +149,12 @@ public class ShippingInformationFragment extends Fragment implements AddAddressF
     }
 
     @Override
-    public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong) {
-        mCallBack.onNextStepclicked(name,address,phoneNumber,postNumber,mapAddress,mapLat,mapLong);
+    public void onNextStepclicked(AddressModel addressModel) {
+        mCallBack.onNextStepclicked(addressModel);
     }
 
     public interface OnNextStepListener {
-        public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong);
+        public void onNextStepclicked(AddressModel addressModel);
     }
 
     public void setupViewPager(ViewPager viewPager){

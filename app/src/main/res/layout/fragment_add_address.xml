@@ -44,30 +44,6 @@
             >
         </RelativeLayout>
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
-            android:id="@+id/etAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:custom_font_edi_text="@string/font_name_helvatican"
-            android:background="@null"
-            android:hint="العنوان"
-            android:textCursorDrawable="@null"
-            android:singleLine="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/line_white_grey"
-            android:layout_margin="16dp"
-            >
-        </RelativeLayout>
 
         <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
             android:id="@+id/etPhone"
@@ -97,7 +73,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"
@@ -112,11 +89,23 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 >
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                    android:id="@+id/governrote_auto_tex_view_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="اسم المحافظة"
+                    android:textColor="@color/black"
+                    android:background="@null"
+                    android:textColorHint="@color/gray"
+                    android:imeOptions="flagNoExtractUi|actionSearch"
+                    android:textCursorDrawable="@null"
+                    app:custom_font_auto_compl_tex_view="@string/font_name_helvatican" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@drawable/line_white_grey"
-                    />
+                    android:background="@drawable/line_white_grey"/>
 
             </LinearLayout>
 
@@ -125,11 +114,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:orientation="vertical"
                 android:layout_weight="1">
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                    android:id="@+id/city_auto_tex_view_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@null"
+                    android:hint="المدينة / الحي"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:imeOptions="flagNoExtractUi|actionSearch"
+                    android:textCursorDrawable="@null"
+                    app:custom_font_auto_compl_tex_view="@string/font_name_helvatican" />
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:background="@drawable/line_white_grey"
                     />
             </LinearLayout>
@@ -261,17 +266,36 @@
                 android:src="@drawable/ic_map_icon"
                 />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                android:id="@+id/tv_address"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:custom_font="@string/font_name_helvatican"
-                android:textSize="14sp"
+                android:orientation="vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                >
+
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:background="@null"
+                android:textCursorDrawable="@null"
+                android:layout_height="wrap_content"
+                app:custom_font_edi_text="@string/font_name_helvatican"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:text="ميدان التحرير، قصر الدوبارة، قصر النيل، محافظة القاهرة، مصر، ميدان التحرير، قصر الدوبارة، قصر النيل"
+                android:hint="العنوان"
                 />
+
+                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:custom_font="@string/font_name_helvatican"
+                    android:textSize="9sp"
+                    android:textColor="@color/gray"
+                    android:text="* يمكنك التعديل يدويا على العنوان بعد اختياره من الخريطة"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 

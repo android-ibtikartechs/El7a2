@@ -3,6 +3,7 @@ package com.ibtikartechs.apps.el7a2.ui.fragments.add_address;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -50,8 +51,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.adapters.CityAutoCompleteAdapter;
 import com.ibtikartechs.apps.el7a2.data.adapters.PlaceAutoCompleteAdapter;
+import com.ibtikartechs.apps.el7a2.data.models.AddressModel;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
+import com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.WorkaroundMapFragment;
@@ -68,7 +75,7 @@ import butterknife.ButterKnife;
  * Use the {@link AddAddressFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddAddressFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, PlaceAutoCompleteAdapter.OnAutoLocationItemClickListner {
+public class AddAddressFragment extends BaseFragment implements AddAddressMvpView, OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, PlaceAutoCompleteAdapter.OnAutoLocationItemClickListner, CityAutoCompleteAdapter.OnAutoGovernItemClickListner {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -93,23 +100,35 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
     ScrollView mScrollView;
     OnNextStepListener onNextStepListener;
     @BindView(R.id.tv_address)
-    CustomFontTextView tvMapAddress;
+    CustomFontEditText etMapAddress;
+
     @BindView(R.id.et_search)
     AutoCompleteTextView etSearch;
     @BindView(R.id.ic_gps)
     ImageView icGps;
     @BindView(R.id.etName)
     CustomFontEditText etName;
-    @BindView(R.id.etAddress)
-    CustomFontEditText etAddress;
     @BindView(R.id.etPhone)
     CustomFontEditText etPhone;
     @BindView(R.id.etPostNumber)
     CustomFontEditText etPostNumber;
     @BindView(R.id.btnNextStep)
     Button btnNextStep;
+    @BindView(R.id.governrote_auto_tex_view_sign_up)
+    CustomAutoCompleteTextView autoTexGovernrote;
+
+    @BindView(R.id.city_auto_tex_view_sign_up)
+    CustomAutoCompleteTextView autoTexCity;
+
+    private ProgressDialog pDialog;
+
+    CityAutoCompleteAdapter cityAutoCompleteAdapterForAreas;
 
 
+    String governId = "";
+    String cityId = "";
+
+    AddAddressPresenter presenter;
 
 
     public AddAddressFragment() {
@@ -143,6 +162,9 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        DataManager dataManager = ((MvpApp) getActivity().getApplication()).getDataManager();
+        presenter = new AddAddressPresenter(dataManager);
+        presenter.onAttach(this);
 
     }
 
@@ -158,13 +180,25 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pDialog = new ProgressDialog(getActivity(),ProgressDialog.THEME_HOLO_DARK);
+        pDialog.setCancelable(false);
+
+
+        etName.setText(presenter.getUserData().getName());
+        etPhone.setText(presenter.getUserData().getMobNum());
+
+        CityAutoCompleteAdapter cityAutoCompleteAdapter = new CityAutoCompleteAdapter(getActivity(), true);
+        cityAutoCompleteAdapter.setOnAutoLocationItemClickListner(this);
+        autoTexGovernrote.setAdapter(cityAutoCompleteAdapter);
+
         btnNextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etName.getText().toString().isEmpty()|| etAddress.getText().toString().isEmpty() || etPhone.getText().toString().isEmpty())
-                    Toast.makeText(getActivity(), "برجاء ادخال الحقول الفارغة", Toast.LENGTH_SHORT).show();
-                else
-                onNextStepListener.onNextStepclicked(etName.getText().toString(),etAddress.getText().toString(),etPhone.getText().toString(), etPostNumber.getText().toString(),tvMapAddress.getText().toString(),lastLatitude,lastLongitude);
+                String name = etName.getText().toString();
+                String address = etMapAddress.getText().toString();
+                String mobNum = etPhone.getText().toString();
+                String postNumber = etPostNumber.getText().toString();
+                presenter.addAddress(name,cityId, postNumber, lastLatitude, lastLongitude, mobNum, address);
             }
         });
         getLocationPermisions();
@@ -232,7 +266,7 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
                             if (addresses.size()!=0) {
                                 String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 
-                                tvMapAddress.setText(address);
+                                etMapAddress.setText(address);
                                 Double latt = addresses.get(0).getLatitude();
                                 lastLatitude = latt.toString();
                                 Log.d(TAG, "run: "+"latt = "+ lastLatitude);
@@ -240,7 +274,7 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
                                 lastLongitude = longitude.toString();
                             }
                             else
-                                tvMapAddress.setText("عفوا لا يتوفر عنوان لهذه المنطقة");
+                                etMapAddress.setText("عفوا لا يتوفر عنوان لهذه المنطقة");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -432,9 +466,80 @@ public class AddAddressFragment extends Fragment implements OnMapReadyCallback, 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onAutoLocationItemClicked(String placeId, String name, boolean isGov) {
+        if (isGov) {
+            autoTexGovernrote.setText(name);
+            governId = placeId;
+            autoTexGovernrote.dismissDropDown();
+            autoTexCity.setEnabled(true);
+            cityAutoCompleteAdapterForAreas = new CityAutoCompleteAdapter(getActivity(), false);
+            cityAutoCompleteAdapterForAreas.setGovId(placeId);
+            cityAutoCompleteAdapterForAreas.setOnAutoLocationItemClickListner(this);
+            autoTexCity.setAdapter( cityAutoCompleteAdapterForAreas);
+        }
+        else {
+            autoTexCity.setText(name);
+            cityId = placeId;
+            autoTexCity.dismissDropDown();
+        }
+        hideKeyboard();
+    }
+
+    @Override
+    public void showToast(final String msg) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void refreshLocationPermision() {
+        getLocationPermisions();
+    }
+
+    @Override
+    public void showProgressDialog(final String msg) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!pDialog.isShowing()) {
+                    pDialog.setMessage(msg);
+                    pDialog.show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (pDialog.isShowing())
+                    pDialog.dismiss();
+            }
+        });
+
+    }
+
+    @Override
+    public void passAddress(final AddressModel addressModel) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                onNextStepListener.onNextStepclicked(addressModel);
+            }
+        });
+
+    }
+
 
     public interface OnNextStepListener {
-        public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong);
+        public void onNextStepclicked(AddressModel addressModel);
     }
 
     public void setOnNextStepListener(OnNextStepListener onNextStepListener)

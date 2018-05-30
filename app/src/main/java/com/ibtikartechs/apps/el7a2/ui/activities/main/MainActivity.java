@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -33,8 +34,10 @@ import com.ibtikartechs.apps.el7a2.ui.activities.registeration.RegisterationActi
 import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.category.CategoryFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealFragment;
+import com.ibtikartechs.apps.el7a2.ui.fragments.searchdialogfragment.SearchDialogFragment;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomeViewPager;
+import com.ibtikartechs.apps.el7a2.ui_utilities.DialogFragmentActivationLink;
 
 import java.util.ArrayList;
 
@@ -138,7 +141,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_cart :
-                startActivity(ShoppingCartActivity.getStartIntent(this));
+                //startActivity(ShoppingCartActivity.getStartIntent(this));
+                FragmentManager fm = getSupportFragmentManager();
+                SearchDialogFragment searchDialogFragment = new SearchDialogFragment();
+                searchDialogFragment.show(fm, "alert");
             default:
                 return super.onOptionsItemSelected(item);
         }

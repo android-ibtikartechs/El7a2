@@ -1,5 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.completeorder;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -17,6 +19,7 @@ import android.widget.RelativeLayout;
 
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
+import com.ibtikartechs.apps.el7a2.data.models.AddressModel;
 import com.ibtikartechs.apps.el7a2.ui.fragments.confirmorder.ConfirmOrderFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.payment.PaymentFragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.shippinginformation.ShippingInformationFragment;
@@ -117,13 +120,13 @@ public class CompleteOrderActivity extends AppCompatActivity implements Shipping
     }
 
     @Override
-    public void onNextStepclicked(String name, String address, String phoneNumber, String postNumber, String mapAddress, String mapLat, String mapLong) {
+    public void onNextStepclicked(AddressModel addressModel) {
         PaymentFragment paymentFragment = (PaymentFragment)
                 viewPagerAdapter.getItem(1);
 
         if(paymentFragment != null)
         {
-            paymentFragment.pushData(name,address,phoneNumber,postNumber,mapAddress,mapLat,mapLong);
+            paymentFragment.pushData(addressModel);
             viewPager.setCurrentItem(1);
 
             View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);
@@ -131,5 +134,11 @@ public class CompleteOrderActivity extends AppCompatActivity implements Shipping
         }
 
 
+    }
+
+    public  static Intent getStartIntent(Context context)
+    {
+        Intent intent = new Intent(context,CompleteOrderActivity.class);
+        return intent;
     }
 }

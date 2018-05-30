@@ -27,5 +27,6 @@
     <color name="colorFrontGray">#F0F0F0</color>
     <color name="edxt_bg">#8b4bcbee</color>
     <color name="whiteLite">#85ffffff</color>
+    <color name="green">#43A047</color>
 
 </resources>

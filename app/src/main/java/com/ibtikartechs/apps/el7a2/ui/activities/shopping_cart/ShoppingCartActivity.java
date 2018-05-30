@@ -24,6 +24,7 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.CartListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.completeorder.CompleteOrderActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomeListView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.OnDetectScrollListenerListView;
@@ -74,7 +75,7 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+               startActivity(CompleteOrderActivity.getStartIntent(ShoppingCartActivity.this));
             }
         });
 
