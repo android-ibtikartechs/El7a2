@@ -2,12 +2,16 @@ package com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +21,8 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +49,7 @@ import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
 import com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealPresenter;
+import com.ibtikartechs.apps.el7a2.ui.fragments.searchdialogfragment.SearchDialogFragment;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.GlideTarget;
 
@@ -166,6 +173,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     String priceOfProduct;
     String imgUrlOfProduct;
     private String footerCatId;
+    TextView textCartItemCount;
 
 
     @Override
@@ -174,10 +182,15 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         setContentView(R.layout.activity_main_deal_details);
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
-        setupActionBar();
+
         Intent intent = getIntent();
         dealOrProductId = intent.getStringExtra(StaticValues.KEY_ID);
         dealOrProduct = intent.getIntExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, 101);
+        if(dealOrProduct == StaticValues.DEAL_FLAG)
+            setupActionBar("الصفقة الرئيسية");
+        else
+            setupActionBar(titleOfProduct);
+
         Log.d("intent", "onCreate: " + "deal or product id = " + dealOrProductId);
         if (mainProgressBar != null) {
             mainProgressBar.setIndeterminate(true);
@@ -200,6 +213,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
             @Override
             public void onClick(View view) {
                 presenter.addItemToCart(dealOrProductId, titleOfProduct,priceOfProduct,imgUrlOfProduct,selectedQuantity);
+            setupBadge();
             }
         });
 
@@ -284,6 +298,52 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.others_menu,menu);
+        final MenuItem cartItem = menu.findItem(R.id.action_cart);
+
+        View actionView = MenuItemCompat.getActionView(cartItem);
+        textCartItemCount = actionView.findViewById(R.id.cart_badge);
+        setupBadge();
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(cartItem);
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            case R.id.action_search:
+                FragmentManager fm = getSupportFragmentManager();
+                SearchDialogFragment searchDialogFragment = new SearchDialogFragment();
+                searchDialogFragment.show(fm, "alert");
+                return true;
+
+            case R.id.action_cart:
+                startActivity(ShoppingCartActivity.getStartIntent(this));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupBadge() {
+
+        if (textCartItemCount != null) {
+            textCartItemCount.setText(String.valueOf(Math.min(presenter.getNumberOfItemsInCart(), 99)));
+        }
+    }
+
     private void populatRecyclerView() {
         firstListAdapter = new FooterListAdapter(this, firstArrayList);
         firstListAdapter.setCustomButtonListner(this);
@@ -291,23 +351,26 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         firstListAdapter.notifyDataSetChanged();
     }
 
-    public void setupActionBar() {
+    public void setupActionBar(String title) {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back_act);
 
         LayoutInflater inflator = LayoutInflater.from(this);
         View v = inflator.inflate(R.layout.custom_action_bar_title, null);
 
-        ((CustomFontTextView)v.findViewById(R.id.title)).setText("الصفقة الرئيسية");
+        ((CustomFontTextView)v.findViewById(R.id.title)).setTextColor(getResources().getColor(R.color.black));
+        ((CustomFontTextView)v.findViewById(R.id.title)).setText(title);
 
         actionBar.setCustomView(v);
-
     }
+
+
 
     @Override
     public void hideErrorView() {
@@ -530,7 +593,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     }
 
     @Override
-    public void onItemClickListener(String id) {
+    public void onItemClickListener(String id, String title) {
 
     }
 
@@ -579,10 +642,11 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
 
     }
-    public static Intent getStartIntent(Context context, String dealId, int dealOrProduct) {
+    public static Intent getStartIntent(Context context, String dealId, int dealOrProduct, String productName) {
         Intent intent = new Intent(context, MainDealDetailsActivity.class);
         intent.putExtra(StaticValues.KEY_ID, dealId);
         intent.putExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, dealOrProduct);
+        intent.putExtra(StaticValues.KEY_PRODUCT_NAME, productName);
         return intent;
     }
 }

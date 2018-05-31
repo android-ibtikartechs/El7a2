@@ -141,10 +141,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_cart :
-                //startActivity(ShoppingCartActivity.getStartIntent(this));
-                FragmentManager fm = getSupportFragmentManager();
+                startActivity(ShoppingCartActivity.getStartIntent(this));
+               /* FragmentManager fm = getSupportFragmentManager();
                 SearchDialogFragment searchDialogFragment = new SearchDialogFragment();
-                searchDialogFragment.show(fm, "alert");
+                searchDialogFragment.show(fm, "alert"); */
             default:
                 return super.onOptionsItemSelected(item);
         }

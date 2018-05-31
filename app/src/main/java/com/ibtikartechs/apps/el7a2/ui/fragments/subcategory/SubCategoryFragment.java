@@ -273,8 +273,8 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
     }
 
     @Override
-    public void onItemClickListner(String id) {
-        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id, StaticValues.PROD_FLAG));
+    public void onItemClickListner(String id, String title) {
+        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id, StaticValues.PROD_FLAG, title));
     }
 
     private void implementScrolListener()

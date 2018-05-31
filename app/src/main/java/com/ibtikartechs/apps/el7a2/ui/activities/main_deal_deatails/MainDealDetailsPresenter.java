@@ -230,6 +230,11 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
         });
     }
 
+    @Override
+    public Integer getNumberOfItemsInCart() {
+        return getDataManager().getNumberOfItemList();
+    }
+
     private String buildUrl(String id, String path) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")

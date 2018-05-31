@@ -154,7 +154,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
                 footerViewHolder.btnContainer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        customListener.onItemClickListner(model.getId());
+                        customListener.onItemClickListner(model.getId(), model.getDescription());
                     }
                 });
                 break;
@@ -325,7 +325,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
     }
 
     public interface customButtonListener {
-        public void onItemClickListner(String id);
+        public void onItemClickListner(String id, String title);
     }
     public void setCustomButtonListner(customButtonListener listener) {
         this.customListener = listener;

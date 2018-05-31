@@ -78,7 +78,7 @@ public class FooterListAdapter extends CustomRecyclerView.Adapter<RecyclerView.V
         footerViewHolder.btnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customListener.onItemClickListener(footerListItemModel.getId());
+                customListener.onItemClickListener(footerListItemModel.getId(), footerListItemModel.getDescription());
             }
         });
 
@@ -176,7 +176,7 @@ public class FooterListAdapter extends CustomRecyclerView.Adapter<RecyclerView.V
     }
 
     public interface ContainerClickListener {
-        public void onItemClickListener(String id);
+        public void onItemClickListener(String id, String title);
     }
     public void setCustomButtonListner(ContainerClickListener listener) {
         this.customListener = listener;

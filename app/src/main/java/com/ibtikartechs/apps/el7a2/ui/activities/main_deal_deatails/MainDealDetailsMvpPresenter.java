@@ -12,4 +12,5 @@ public interface MainDealDetailsMvpPresenter<V extends MainDealDetailsMvpView> e
     void getProduct(String id);
     void addItemToCart(String id, String title, String price, String imgUrl, String quantity);
     void getFooter(String Id, String path);
+    Integer getNumberOfItemsInCart();
 }

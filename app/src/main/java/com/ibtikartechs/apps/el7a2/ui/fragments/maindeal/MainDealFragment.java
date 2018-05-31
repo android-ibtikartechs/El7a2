@@ -76,17 +76,17 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
 
     @BindView(R.id.tv_main_deal_days)
-    CustomFontTextView tvDays;
+    CustomFontTextView tvSeconds;
     @BindView(R.id.lout_supplements_container)
     ConstraintLayout loutSupplementsContainer;
     @BindView(R.id.rv_main_deal_suggested_category)
     RecyclerView rvFirstSuggCategory;
     @BindView(R.id.tv_main_deal_hours)
-    CustomFontTextView tvHours;
-    @BindView(R.id.tv_main_deal_minutes)
     CustomFontTextView tvMinutes;
+    @BindView(R.id.tv_main_deal_minutes)
+    CustomFontTextView tvHours;
     @BindView(R.id.tv_main_deal_seconds)
-    CustomFontTextView tvSeconds;
+    CustomFontTextView tvDays;
     @BindView(R.id.tv_main_deal_old_price)
     TextView tvOldPrice;
     @BindView(R.id.lout_main_deal_error_layout)
@@ -146,6 +146,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     String dealId;
     String firstBannerId, secondBannerId;
     int numOfFooters;
+    String product_Name;
 
     public MainDealFragment() {
         // Required empty public constructor
@@ -242,26 +243,26 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG, product_Name));
             }
         });
         imMainSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG, product_Name));
             }
         });
         loutSupplementsContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG, product_Name));
             }
         });
 
         loutSomeHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG));
+                startActivity(MainDealDetailsActivity.getStartIntent(getActivity(), dealId, StaticValues.DEAL_FLAG, product_Name));
             }
         });
 
@@ -373,6 +374,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
     @Override
     public void populateData(final String productImgUrl, final String productName, final String productPrice, final String endDate, final String firstSaleImgUrl, final String secondSaleImgUrl, final String details, final String oldPrice, final String discountPercent, final int numOfFooters, final String firstBannerImgUrl, final String secondBannerImgUrl, final String firstBannerId, final String secondBannerId) {
+        product_Name = productName;
         presenter.getFooter(numOfFooters, footerIdsList);
         this.firstBannerId = firstBannerId;
         this.secondBannerId = secondBannerId;
@@ -410,7 +412,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 imBanner1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),firstBannerId,StaticValues.PROD_FLAG));
+                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),firstBannerId,StaticValues.PROD_FLAG,"منتجات"));
                     }
                 });
 
@@ -422,7 +424,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 imBanner2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),secondBannerId,StaticValues.PROD_FLAG));
+                        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),secondBannerId,StaticValues.PROD_FLAG,"منتجات"));
                     }
                 });
 
@@ -579,7 +581,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     }
 
     @Override
-    public void onItemClickListener(String id) {
-        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id,StaticValues.PROD_FLAG));
+    public void onItemClickListener(String id, String title) {
+        startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id,StaticValues.PROD_FLAG, title));
     }
 }
