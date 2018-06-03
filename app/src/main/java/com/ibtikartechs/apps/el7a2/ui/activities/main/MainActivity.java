@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
@@ -77,6 +79,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         setContentView(R.layout.activity_main);
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
+        Log.e("Token is ", FirebaseInstanceId.getInstance().getToken());
         if (mainProgressBar != null) {
             mainProgressBar.setIndeterminate(true);
             mainProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);

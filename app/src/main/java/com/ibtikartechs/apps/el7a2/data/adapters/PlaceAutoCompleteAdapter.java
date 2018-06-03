@@ -229,8 +229,7 @@ public class PlaceAutoCompleteAdapter extends ArrayAdapter<AutocompletePredictio
         try {
             AutocompletePredictionBufferResponse autocompletePredictions = results.getResult();
 
-            Log.i(TAG, "Query completed. Received " + autocompletePredictions.getCount()
-                    + " predictions.");
+
 
             // Freeze the results immutable representation that can be stored safely.
             return DataBufferUtils.freezeAndClose(autocompletePredictions);

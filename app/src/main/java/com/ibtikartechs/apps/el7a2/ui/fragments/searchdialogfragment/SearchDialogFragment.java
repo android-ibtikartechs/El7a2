@@ -80,7 +80,6 @@ public class SearchDialogFragment extends DialogFragment implements SearchAutoCo
         atSearch.dismissDropDown();
         hideKeyboard();
         startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),productId, StaticValues.PROD_FLAG, productName));
-
     }
 
     public void hideKeyboard() {

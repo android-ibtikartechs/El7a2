@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'org.jsoup:jsoup:1.10.2'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -40,3 +41,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'io.square1:richtext:6.0.25'
 }
+
+apply plugin: 'com.google.gms.google-services'

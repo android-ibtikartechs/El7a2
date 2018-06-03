@@ -56,15 +56,29 @@ public class CustomeListView extends ListView {
                 }
 
                 if (onDetectScrollListener != null) {
+                    int l = visibleItemCount + firstVisibleItem;
+                    if (l >= totalItemCount ) {
+                        // It is time to add new data. We call the listener
+                        onDetectScrollListener.onLastItem();
+
+                    }
                     onDetectedListScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
                 }
+
+
             }
 
             private void onDetectedListScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 View view = absListView.getChildAt(0);
                 int top = (view == null) ? 0 : view.getTop();
+                int last = (view == null) ? 0 : view.getBottom();
+
+
 
               /*   */
+
+
+
                 if (firstVisibleItem == oldFirstVisibleItem) {
                     if (top > oldTop ) {
                         onDetectScrollListener.onUpScrolling();
@@ -72,15 +86,26 @@ public class CustomeListView extends ListView {
                         onDetectScrollListener.onDownScrolling();
                     }
 
+
                 }
-                else {
+
+                 if (totalItemCount - visibleItemCount == firstVisibleItem) {
+                    View v = absListView.getChildAt(totalItemCount - 1);
+                    int offset = (v == null) ? 0 : v.getTop();
+                    if (offset == 0) {
+                        // reached the bottom: visible header and footer
+                        onDetectScrollListener.onLastItem();
+                    }
+                }
+
+              /*  else {
                     if (firstVisibleItem < oldFirstVisibleItem ) {
                         onDetectScrollListener.onUpScrolling();
                     }
                     else {
                         onDetectScrollListener.onDownScrolling();
                     }
-                }
+                }*/
 
 
                 oldTop = top;
