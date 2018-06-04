@@ -11,6 +11,7 @@ public class AddressModel {
     private  String mobNum;
     private  String address;
     private boolean delivaryAvailability;
+    private boolean isSelected;
     private String fees;
 
     public AddressModel(String addressId, String countryName, String governmentName, String cityName, String latitude, String longtude, String name, String mobNum, String address, boolean delivaryAvailability, String fees) {
@@ -25,6 +26,25 @@ public class AddressModel {
         this.address = address;
         this.delivaryAvailability = delivaryAvailability;
         this.fees = fees;
+    }
+
+    public AddressModel(String addressId, String name, String governmentName, String cityName, String latitude, String longtude, String address, boolean delivaryAvailability) {
+        this.addressId = addressId;
+        this.name = name;
+        this.governmentName = governmentName;
+        this.cityName = cityName;
+        this.latitude = latitude;
+        this.longtude = longtude;
+        this.address = address;
+        this.delivaryAvailability = delivaryAvailability;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
     public String getAddressId() {

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    android:layout_margin="20dp"
+
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lout_frame_select"
+        android:orientation="vertical"
+        >
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:custom_font="@string/font_name_helvatican"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="معلومات المستلم"
+            android:textColor="@color/white_blue"
+            android:textSize="16sp"
+            />
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:custom_font="@string/font_name_helvatican"
+            android:textColor="@color/black"
+            tools:text="أحمد يحيى عامر"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-8dp"
+            />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:custom_font="@string/font_name_helvatican"
+            android:textColor="@color/black"
+            tools:text="15 عبدالرازق السنهوري متفرع من عباس العقاد"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-8dp"
+            />
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:id="@+id/tv_govern_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:custom_font="@string/font_name_helvatican"
+            android:textColor="@color/black"
+            tools:text="عنوان الخريطة"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-8dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp">
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:custom_font="@string/font_name_helvatican"
+                android:textColor="@color/black"
+                android:text="الشحن : "
+                android:layout_marginTop="-8dp"
+                />
+
+            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                android:id="@+id/tv_availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:custom_font="@string/font_name_helvatican"
+                android:layout_marginTop="-8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/map_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/staticmap"
+            />
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

@@ -1,15 +1,62 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.getAddress.GetAddressFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello getAddress fragment"
-        android:textColor="@color/black"
-        />
 
-</FrameLayout>
+
+    <ListView
+        android:id="@+id/lv_addresses"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customFontTextView16" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/shape_rounded_blue_button"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:text="الاستكمال بعنوان الشحن الذي تم اختياره"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:custom_font="@string/font_name_helvatican" />
+
+    </LinearLayout>
+
+    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+        android:id="@+id/customFontTextView16"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:background="@color/placeholder_grey_20"
+        android:paddingBottom="2dp"
+        android:text="قم باختيار عنوان الشحن لهذ الطلب"
+        app:custom_font="@string/font_name_helvatican"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

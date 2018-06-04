@@ -82,7 +82,7 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
 
 
 
-        cartListView.setOnDetectScrollListener(new OnDetectScrollListenerListView() {
+       /* cartListView.setOnDetectScrollListener(new OnDetectScrollListenerListView() {
             @Override
             public void onUpScrolling() {
                 if (loutCheckout.getVisibility()!=View.VISIBLE) {
@@ -106,7 +106,7 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
                     loutCheckout.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        }); */
 
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
         presenter = new ShoppingCartPresenter(dataManager);
@@ -122,8 +122,12 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
         cartListAdapter = new CartListAdapter(this,cartItemsArrayList);
         cartListAdapter.setCustomButtonListner(this);
         cartListView.setAdapter(cartListAdapter);
+
         updateTotalPrice();
     }
+
+
+
 
 
     @Override
