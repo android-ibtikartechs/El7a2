@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_shipping"
-    android:background="@color/white"
+
     tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.shippinginformation.ShippingInformationFragment">
 
     <!-- TODO: Update blank fragment layout -->

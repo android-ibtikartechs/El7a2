@@ -95,7 +95,7 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
 
     @Override
     public void onSelectedItem(AddressModel addressModel, int position) {
-        Toast.makeText(getActivity(), addressModel.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), addressModel.getAddress(), Toast.LENGTH_SHORT).show();
         ((View)getViewByPosition(oldPosition, lvAddresses).findViewById(R.id.lout_frame_select)).setBackgroundColor(getActivity().getResources().getColor(R.color.white));
         ((View)getViewByPosition(position, lvAddresses).findViewById(R.id.lout_frame_select)).setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.shape_blue_frame));
         oldPosition = position;

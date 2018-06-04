@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         setContentView(R.layout.activity_main);
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
-        Log.e("Token is ", FirebaseInstanceId.getInstance().getToken());
+
         if (mainProgressBar != null) {
             mainProgressBar.setIndeterminate(true);
             mainProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -115,6 +115,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
                 startActivity(RegisterationActivity.getStartIntent(MainActivity.this));
             }
         });
+
+        // Log.e("Token is ", FirebaseInstanceId.getInstance().getToken());
     }
 
     private void setupViewPager() {

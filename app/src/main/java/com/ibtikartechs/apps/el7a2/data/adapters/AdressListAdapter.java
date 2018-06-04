@@ -68,7 +68,7 @@ public class AdressListAdapter  extends ArrayAdapter<AddressModel> {
         viewHolder.lout_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectedPosition != position)
+                if (selectedPosition != position || position ==0)
                 {
                     getItem(selectedPosition).setSelected(false);
                     selectedPosition = position;
