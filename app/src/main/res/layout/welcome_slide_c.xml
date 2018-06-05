@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/intro_c" />
+        app:srcCompat="@drawable/intro_three" />
 
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView17"

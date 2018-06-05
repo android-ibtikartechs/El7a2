@@ -125,7 +125,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
     }
 
     @Override
-    public void onBindViewHolder(CustomRecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(CustomRecyclerView.ViewHolder holder, final int position) {
         final FooterListItemModel model = arrayList.get(position);
         switch (getItemViewType(position)) {
             case ITEM:
@@ -144,6 +144,22 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
                             .into(footerViewHolder.imItem);
                 }
 
+                if (model.isLiked())
+                    footerViewHolder.btnImLikeAction.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_liked));
+
+                else
+                    footerViewHolder.btnImLikeAction.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_unliked));
+
+                footerViewHolder.btnImLikeAction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (model.isLiked())
+                            model.setLiked(false);
+                        else
+                            model.setLiked(true);
+                        customListener.onLikeClickListener(position, model.isLiked());
+                    }
+                });
                 footerViewHolder.tvPrice.setText(model.getPrice());
                 footerViewHolder.tvTitle.setText(model.getDescription());
                 if (model.isDisplayTimer()) {
@@ -250,7 +266,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
 
     }
 
-    protected class FooterViewHolder extends CustomRecyclerView.ViewHolder {
+    public class FooterViewHolder extends CustomRecyclerView.ViewHolder {
         @BindView(R.id.btn_lout_container)
         CardView btnContainer;
         @BindView(R.id.im_footer_item)
@@ -275,6 +291,8 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
         TextView tvDiscountPercent;
         @BindView(R.id.tv_main_deal_old_price)
         TextView tvOldPrice;
+        @BindView(R.id.imageView11)
+        ImageView btnImLikeAction;
 
 
         public FooterViewHolder(View itemView) {
@@ -331,6 +349,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
 
     public interface customButtonListener {
         public void onItemClickListner(String id, String title);
+        public void onLikeClickListener(int position, boolean isLiked);
     }
     public void setCustomButtonListner(customButtonListener listener) {
         this.customListener = listener;

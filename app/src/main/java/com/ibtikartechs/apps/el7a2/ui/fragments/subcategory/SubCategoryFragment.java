@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -23,7 +24,9 @@ import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.adapters.AdressListAdapter;
 import com.ibtikartechs.apps.el7a2.data.adapters.ProductListSubCatAdapter;
+import com.ibtikartechs.apps.el7a2.data.adapters.ProductListSubCatAdapter$FooterViewHolder_ViewBinding;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
 import com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails.MainDealDetailsActivity;
@@ -140,6 +143,7 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
                 presenter.loadFirstPage(subcategoryId);
             }
         });
+
         return rootView;
     }
 
@@ -275,6 +279,15 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
     @Override
     public void onItemClickListner(String id, String title) {
         startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id, StaticValues.PROD_FLAG, title));
+    }
+
+    @Override
+    public void onLikeClickListener(int position, boolean isLiked) {
+        if (isLiked)
+            ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView11)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_liked));
+
+        else
+            ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView11)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_unliked));
     }
 
     private void implementScrolListener()

@@ -13,6 +13,7 @@ public class FooterListItemModel {
     private boolean isDisplayTimer;
     String oldPrice;
     String discountPercent;
+    private boolean liked;
 
     public FooterListItemModel(String id, String price, String imgUrl, String description, String endDate) {
         this.price = price;
@@ -31,6 +32,14 @@ public class FooterListItemModel {
         this.isDisplayTimer = isDisplayTimer;
         this.oldPrice = oldPrice;
         this.discountPercent = discountPercent;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public boolean isLiked() {
+        return liked;
     }
 
     public boolean isDisplayTimer() {

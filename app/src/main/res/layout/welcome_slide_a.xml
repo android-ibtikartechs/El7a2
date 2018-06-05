@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/intro_a" />
+        app:srcCompat="@drawable/intro_one" />
 
     <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView17"
