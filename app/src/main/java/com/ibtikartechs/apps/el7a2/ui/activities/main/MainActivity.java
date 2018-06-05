@@ -1,6 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
@@ -203,10 +204,6 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         drawerToggle.syncState();
 
         ArrayList<NavItemModel> arrayList = new ArrayList<>();
-        arrayList.add(new NavItemModel("الصفقة الرئيسية",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("أجازات",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("المنتجات الأخيرة",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("منتجات أبل",R.mipmap.ic_launcher));
         arrayList.add(new NavItemModel("طلباتي",R.mipmap.ic_launcher));
         arrayList.add(new NavItemModel("الإشعارات",R.mipmap.ic_launcher));
         arrayList.add(new NavItemModel("الإعدادات",R.mipmap.ic_launcher));
@@ -333,5 +330,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     public void showProgressBar() {
         loutError.setVisibility(View.GONE);
         mainProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 }

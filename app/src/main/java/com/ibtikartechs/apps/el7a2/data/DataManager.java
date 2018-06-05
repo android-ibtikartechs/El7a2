@@ -79,4 +79,14 @@ public class DataManager {
         mSQLiteHandler.editUserData(uri, id, name, email, mobNum, address, gov, city);
     }
 
+    public boolean isFirstTimeLaunch()
+    {
+        return sharedPrefsHelper.isFirstTimeLaunch();
+    }
+
+    public void setFirstTimeLaunch(boolean isFirstTime)
+    {
+        sharedPrefsHelper.setFirstTimeLaunch(isFirstTime);
+    }
+
 }

@@ -59,10 +59,10 @@ public class AdressListAdapter  extends ArrayAdapter<AddressModel> {
 
 
         if (addressModel.isSelected())
-            viewHolder.lout_container.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.shape_blue_frame));
+            viewHolder.imCheckIndicator.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_tick_selected));
 
         else
-            viewHolder.lout_container.setBackgroundColor(context.getResources().getColor(R.color.white));
+            viewHolder.imCheckIndicator.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_tick_unselected));
 
 
         viewHolder.lout_container.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +120,8 @@ public class AdressListAdapter  extends ArrayAdapter<AddressModel> {
         CustomFontTextView tvAvailability;
         @BindView(R.id.map_image)
         ImageView mapImageView;
+        @BindView(R.id.ic_check_indicator)
+        ImageView imCheckIndicator;
 
         public ViewHolder(View itemView) {
             ButterKnife.bind(this, itemView);

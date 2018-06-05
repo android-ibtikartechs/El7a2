@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +39,10 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
 
     @BindView(R.id.lv_addresses)
     ListView lvAddresses;
+
+    @BindView(R.id.linearLayout5)
+    LinearLayout btnNextStep;
+
     private Handler mHandler;
     GetAddressPresenter presenter;
     AdressListAdapter adressListAdapter;
@@ -44,6 +50,8 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
     private String mParam1;
     private String mParam2;
     private int oldPosition;
+    OnNextStepListener onNextStepListener;
+    private AddressModel selectedAddress;
 
 
     public GetAddressFragment() {
@@ -59,12 +67,13 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
      * @return A new instance of fragment GetAddressFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GetAddressFragment newInstance(String param1, String param2) {
+    public static GetAddressFragment newInstance(String param1, String param2, OnNextStepListener onNextStepListener) {
         GetAddressFragment fragment = new GetAddressFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        fragment.onNextStepListener = onNextStepListener;
         return fragment;
     }
 
@@ -90,14 +99,24 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
         ButterKnife.bind(this, rootView);
 
         presenter.getListAddresses();
+        btnNextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedAddress == null)
+                    Toast.makeText(getActivity(), "برجاء اختيار عنوان الشحن للانتقال للخطوة التالية", Toast.LENGTH_SHORT).show();
+                else
+                    onNextStepListener.onNextStepclickedAfterGetAddress(selectedAddress);
+            }
+        });
         return rootView;
     }
 
     @Override
     public void onSelectedItem(AddressModel addressModel, int position) {
         Toast.makeText(getActivity(), addressModel.getAddress(), Toast.LENGTH_SHORT).show();
-        ((View)getViewByPosition(oldPosition, lvAddresses).findViewById(R.id.lout_frame_select)).setBackgroundColor(getActivity().getResources().getColor(R.color.white));
-        ((View)getViewByPosition(position, lvAddresses).findViewById(R.id.lout_frame_select)).setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.shape_blue_frame));
+        ((ImageView)getViewByPosition(oldPosition, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_unselected));
+        ((ImageView)getViewByPosition(position, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_selected));
+        selectedAddress = addressModel;
         oldPosition = position;
     }
 
@@ -117,6 +136,8 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
     }
 
 
+
+
     public View getViewByPosition(int pos, ListView listView) {
         final int firstListItemPosition = listView.getFirstVisiblePosition();
         final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
@@ -127,6 +148,15 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
             final int childIndex = pos - firstListItemPosition;
             return listView.getChildAt(childIndex);
         }
+    }
+
+    public interface OnNextStepListener {
+        public void onNextStepclickedAfterGetAddress(AddressModel addressModel);
+    }
+
+    public void setOnNextStepListener(OnNextStepListener onNextStepListener)
+    {
+        this.onNextStepListener = onNextStepListener;
     }
 
 }

@@ -188,7 +188,6 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
 
     @Override
     public void getFooter(String Id, String path) {
-        getMvpView().hideFooterErrorView();
         OkHttpClient client = new OkHttpClient();
 
         okhttp3.Request request = new okhttp3.Request.Builder()
@@ -218,10 +217,9 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
                             boolean isDisplayTimer = jsnItemObject.getBoolean("display_timer");
                             firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("price"), jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),  jsnItemObject.getString("id"),isDisplayTimer, jsnItemObject.getString("oprice"), jsnItemObject.getString("discount_percentage")));
                         }
-                        getMvpView().setFooterId(catId);
+                        getMvpView().setFooterId(catId, catName);
                         getMvpView().addMoreToAdapter(firstFooterList);
-                        getMvpView().hideFooterErrorView();
-                        getMvpView().hideFooterProgressBar();
+                        getMvpView().showFooter();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.ibtikartechs.apps.el7a2.data.adapters;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -146,11 +148,12 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
                 footerViewHolder.tvTitle.setText(model.getDescription());
                 if (model.isDisplayTimer()) {
                     countDownStart(model.getEndDate(), footerViewHolder);
+                    footerViewHolder.tvOldPrice.setPaintFlags(footerViewHolder.tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     footerViewHolder.tvOldPrice.setText(model.getOldPrice());
                     footerViewHolder.tvDiscountPercent.setText(model.getDiscountPercent());
                 }
                 else
-                    footerViewHolder.loutTime.setVisibility(View.GONE);
+                    footerViewHolder.loutTimer.setVisibility(View.GONE);
                 footerViewHolder.btnContainer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -266,6 +269,8 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
         CustomFontTextView tvSeconds;
         @BindView(R.id.loutTime)
         ConstraintLayout loutTime;
+        @BindView(R.id.lout_timer_container)
+        RelativeLayout loutTimer;
         @BindView(R.id.tv_main_deal_discount_parcent)
         TextView tvDiscountPercent;
         @BindView(R.id.tv_main_deal_old_price)

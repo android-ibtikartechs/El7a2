@@ -23,5 +23,6 @@ public interface MainDealDetailsMvpView extends MvpView {
     void setTimer(String time);
     void setSupplement(String imgUrl1, String imgUrl2);
     void setFeaturesContent(String Features, String content);
-    void setFooterId(String footerCatId);
+    void setFooterId(String footerCatId , String footerCatName);
+    void showFooter();
 }

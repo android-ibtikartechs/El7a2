@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -94,20 +95,17 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     RichContentView tvMainDescription;
     @BindView(R.id.lout_main_deal_desc_timer)
     ConstraintLayout loutTimer;
-
+    @BindView(R.id.card_footer)
+    CardView footerCard;
     @BindView(R.id.imageView6)
     ImageView imBanner;
-    @BindView(R.id.lout_main_deal_desc_suggested_category_error)
-    LinearLayout loutErrorSuggCategory;
 
-    @BindView(R.id.tv_main_deal_desc_suggested_category_error_cause)
-    CustomFontTextView tvErrorCauseSuggCategory;
+
+
 
     @BindView(R.id.imageView4)
     ImageView imSomeFooter;
 
-    @BindView(R.id.btn_main_deal_desc_suggested_category_retry)
-    Button btnRetrySuggCategory;
 
     @BindView(R.id.tv_main_deal_desc_suggested_category_name)
     CustomFontTextView btntvSuggCategoryName;
@@ -118,8 +116,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.rv_main_deal_suggested_category_products)
     RecyclerView rvSuggCategoryProducts;
 
-    @BindView(R.id.progress_bar_main_deal_suggested_category)
-    ProgressBar progressBarSugCategory;
+
 
     @BindView(R.id.im_btn_main_deal_desc_features_drop_down)
     ImageView btnFeaturesDropDown;
@@ -182,7 +179,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         setContentView(R.layout.activity_main_deal_details);
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
-
+        tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         Intent intent = getIntent();
         dealOrProductId = intent.getStringExtra(StaticValues.KEY_ID);
         dealOrProduct = intent.getIntExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, 101);
@@ -198,11 +195,6 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
             mainProgressBar.setVisibility(View.VISIBLE);
         }
 
-        if (progressBarSugCategory != null){
-            progressBarSugCategory.setIndeterminate(true);
-            progressBarSugCategory.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.white_blue), android.graphics.PorterDuff.Mode.MULTIPLY);
-            progressBarSugCategory.setVisibility(View.VISIBLE);
-        }
 
 
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
@@ -471,46 +463,21 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
     @Override
     public void hideFooterProgressBar() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressBarSugCategory.setVisibility(View.GONE);
-            }
-        });
     }
 
     @Override
     public void showFooterProgressBar() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                loutErrorSuggCategory.setVisibility(View.GONE);
-                progressBarSugCategory.setVisibility(View.VISIBLE);
-            }
-        });
 
     }
 
     @Override
     public void showFooterErrorView() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressBarSugCategory.setVisibility(View.GONE);
-                loutErrorSuggCategory.setVisibility(View.VISIBLE);
-            }
-        });
 
     }
 
     @Override
     public void hideFooterErrorView() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                loutErrorSuggCategory.setVisibility(View.GONE);
-            }
-        });
+
 
     }
 
@@ -588,8 +555,28 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     }
 
     @Override
-    public void setFooterId(String footerCatId) {
+    public void setFooterId(String footerCatId , final String footerCatName) {
         this.footerCatId = footerCatId;
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                btntvSuggCategoryName.setText(footerCatName);
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public void showFooter() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                footerCard.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     @Override
