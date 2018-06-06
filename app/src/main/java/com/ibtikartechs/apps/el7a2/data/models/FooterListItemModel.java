@@ -14,6 +14,7 @@ public class FooterListItemModel {
     String oldPrice;
     String discountPercent;
     private boolean liked;
+    private String  dbId;
 
     public FooterListItemModel(String id, String price, String imgUrl, String description, String endDate) {
         this.price = price;
@@ -21,6 +22,14 @@ public class FooterListItemModel {
         this.description = description;
         this.endDate = endDate;
         this.id = id;
+    }
+
+    public void setDbId(String dbId) {
+        this.dbId = dbId;
+    }
+
+    public String getDbId() {
+        return dbId;
     }
 
     public FooterListItemModel(String price, String imgUrl, String description, String endDate, String id, boolean isDisplayTimer, String oldPrice, String discountPercent) {

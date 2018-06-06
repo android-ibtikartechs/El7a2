@@ -87,7 +87,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
 
-    public void addItemsToCart (String itemId, String title, String price, String imgUrl, String quantity){
+    public Uri addItemsToCart (String itemId, String title, String price, String imgUrl, String quantity){
         ContentValues values = new ContentValues();
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_ID,itemId);
         values.put(El7a2Contract.CartEntry.COLUMN_ITEM_TITLE,title);
@@ -103,8 +103,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             Log.d("SqliteHandler", "addItemsToCart: insert is failed");
         } else {
             // Otherwise, the insertion was successful and we can display a toast.
-            Log.d("SqliteHandler", "addItemsToCart: insert is done");
+            Log.d("SqliteHandler", newUri.toString());
         }
+        return newUri;
     }
 
     public UserModel gryUser()
@@ -167,6 +168,22 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return cartList;
     }
 
+    public boolean isItemExistInCart (Uri uri)
+    {
+        String[] projection = {
+                El7a2Contract.CartEntry._ID,
+        };
+        Cursor cursor = context.getContentResolver().query(uri, projection,null,null,null);
+        if (cursor.getCount()<=0){
+            cursor.close();
+            return false;
+        }
+        else {
+            cursor.close();
+            return true;
+        }
+    }
+
     public void deleteFromDataBase(Uri uri)
     {
         int checkEffect = context.getContentResolver().delete(uri,null,null);
@@ -181,6 +198,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                     Toast.LENGTH_SHORT).show(); */
         }
     }
+
     public void editAmountofItem(Uri uri , String value)
     {
         ContentValues values = new ContentValues();

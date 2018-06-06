@@ -290,6 +290,15 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
             ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView11)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_unliked));
     }
 
+    @Override
+    public void onCartClickListener(int position, boolean isAdded) {
+        if (isAdded)
+            ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView10)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_cart_added));
+
+        else
+            ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView10)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_cart_plus));
+    }
+
     private void implementScrolListener()
     {
         rvListProducts.addOnScrollListener(new paginationStaggardScrollListener(staggeredGridLayoutManager) {

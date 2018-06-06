@@ -22,9 +22,9 @@ public class DataManager {
         this.mSQLiteHandler = mSQLiteHandler;
     }
 
-    public void addItemToCart(String id, String title, String price, String imgUrl, String quantity)
+    public Uri addItemToCart(String id, String title, String price, String imgUrl, String quantity)
     {
-        mSQLiteHandler.addItemsToCart(id,title,price,imgUrl, quantity);
+        return mSQLiteHandler.addItemsToCart(id,title,price,imgUrl, quantity);
     }
 
     public void addUser(String id, String name, String email, String mobNum, String address, String gov, String city)
@@ -43,19 +43,21 @@ public class DataManager {
         return mSQLiteHandler.getCartList();
     }
 
-    public boolean isItemExistinInCart (String itemId)
+    public String isItemExistinInCart (String itemId)
     {
+        String dbId = null;
         ArrayList<CartListModel> cartItemsList = getCartItemsList();
-        boolean isExist = false;
+        //boolean isExist = false;
         for (int i = 0 ; i<cartItemsList.size() ; i++)
         {
             if ((itemId).equals(cartItemsList.get(i).getId())) {
-                isExist = true;
+                //isExist = true;
+                dbId = cartItemsList.get(i).getDpId();
                 break;
             }
 
         }
-        return isExist;
+        return dbId;
     }
 
     public Integer getNumberOfItemList ()
@@ -77,6 +79,11 @@ public class DataManager {
     public void ubdateUserData (Uri uri, String id, String name, String email, String mobNum, String address, String gov, String city)
     {
         mSQLiteHandler.editUserData(uri, id, name, email, mobNum, address, gov, city);
+    }
+
+    public boolean isItemExistInCart(Uri uri)
+    {
+        return mSQLiteHandler.isItemExistInCart(uri);
     }
 
     public boolean isFirstTimeLaunch()

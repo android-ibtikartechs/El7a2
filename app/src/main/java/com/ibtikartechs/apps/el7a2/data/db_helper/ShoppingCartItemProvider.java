@@ -43,6 +43,11 @@ public class ShoppingCartItemProvider extends ContentProvider {
             case ITEMS :
                 cursor = db.query(El7a2Contract.CartEntry.TABLE_CART_ITEMS,projection,selection,selectionArgs,null,null,null);
                 break;
+            case ITEM_ID :
+                selection = El7a2Contract.CartEntry.COLUMN_ITEM_ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                cursor = db.query(El7a2Contract.CartEntry.TABLE_CART_ITEMS,projection,selection,selectionArgs,null,null,null);
+                break;
             case USERS:
                 cursor = db.query(El7a2Contract.CartEntry.TABLE_USER,projection,selection,selectionArgs,null,null,null);
                 break;

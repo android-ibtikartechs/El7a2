@@ -7,12 +7,12 @@
     android:layout_width="match_parent"
     card_view:cardUseCompatPadding="true"
     android:id="@+id/btn_lout_container"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:layout_margin="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -68,11 +68,13 @@
         <TextView
             android:id="@+id/tv_footer_item_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
             android:layout_marginStart="8dp"
-            android:maxLines="3"
+            android:maxLines="2"
+            android:ellipsize = "end"
             android:text="على جعل تجربة التقاط الصور تجربة جميلة سواء كنت ستلتقط صور سيلفي او ستسجل مقاطع فيديو او حتى ان كنت تريد اجراء مكالمة ثنائي شريحة "
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/imageView11"
@@ -258,13 +260,24 @@
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             card_view:srcCompat="@drawable/ic_action_unliked" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+            app:layout_constraintEnd_toStartOf="@+id/imageView11"
+            app:layout_constraintTop_toTopOf="@+id/imageView11"
+            card_view:srcCompat="@drawable/ic_action_cart_plus" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

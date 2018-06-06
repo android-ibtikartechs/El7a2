@@ -2,6 +2,7 @@ package com.ibtikartechs.apps.el7a2.data.adapters;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -20,8 +21,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
+import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomRecyclerView;
 import com.ibtikartechs.apps.el7a2.utilities.PaginationAdapterCallback;
@@ -33,14 +37,18 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.BASE_CONTENT_URI;
+import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.PATH_CART_ITEMS;
+
 /**
  * Created by ahmedyehya on 5/9/18.
  */
 
-public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ProductListSubCatAdapter extends CustomBaseAdapter {
     private static final int ITEM = 0;
     private static final int LOADING = 1;
     private ArrayList<FooterListItemModel> arrayList;
+
 
     private Context context;
     private customButtonListener customListener;
@@ -50,7 +58,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
 
     Handler handler;
     Runnable runnable;
-
+    DataManager dataManager;
     private PaginationAdapterCallback mCallback;
     private String errorMsg;
 
@@ -127,6 +135,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(CustomRecyclerView.ViewHolder holder, final int position) {
         final FooterListItemModel model = arrayList.get(position);
+
         switch (getItemViewType(position)) {
             case ITEM:
                 final FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
@@ -150,6 +159,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
                 else
                     footerViewHolder.btnImLikeAction.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_unliked));
 
+
                 footerViewHolder.btnImLikeAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -160,6 +170,29 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
                         customListener.onLikeClickListener(position, model.isLiked());
                     }
                 });
+
+                if (dataManager.isItemExistInCart(buildContentUri(model.getId())))
+                    footerViewHolder.btnImAddToCart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_cart_added));
+
+                else
+                    footerViewHolder.btnImAddToCart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_cart_plus));
+
+                footerViewHolder.btnImAddToCart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        boolean isAdded;
+                        if (!dataManager.isItemExistInCart(buildContentUri(model.getId()))) {
+                            dataManager.addItemToCart(model.getId(), model.getDescription(), model.getPrice(), model.getImgUrl(), "1");
+                            isAdded = true;
+                        }
+                        else {
+                            dataManager.deleteItemFromDataBase(buildContentUri(dataManager.isItemExistinInCart(model.getId())));
+                            isAdded = false;
+                        }
+                        customListener.onCartClickListener(position, isAdded);
+                    }
+                });
+
                 footerViewHolder.tvPrice.setText(model.getPrice());
                 footerViewHolder.tvTitle.setText(model.getDescription());
                 if (model.isDisplayTimer()) {
@@ -201,11 +234,18 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
         }
     }
 
+    public Uri buildContentUri (String itemId){
+        Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_CART_ITEMS+"/"+itemId);
+        return CONTENT_URI;
+    }
+
+
+
     @Override
     public CustomRecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
-
+        dataManager = ((MvpApp) ((BaseActivity)context).getApplication()).getDataManager();
         switch (viewType) {
             case ITEM:
                 View viewItem = mInflater.inflate(
@@ -294,6 +334,9 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
         @BindView(R.id.imageView11)
         ImageView btnImLikeAction;
 
+        @BindView(R.id.imageView10)
+        ImageView btnImAddToCart;
+
 
         public FooterViewHolder(View itemView) {
             super(itemView);
@@ -350,6 +393,7 @@ public class ProductListSubCatAdapter extends CustomRecyclerView.Adapter<Recycle
     public interface customButtonListener {
         public void onItemClickListner(String id, String title);
         public void onLikeClickListener(int position, boolean isLiked);
+        public void onCartClickListener(int position, boolean isAdded);
     }
     public void setCustomButtonListner(customButtonListener listener) {
         this.customListener = listener;
