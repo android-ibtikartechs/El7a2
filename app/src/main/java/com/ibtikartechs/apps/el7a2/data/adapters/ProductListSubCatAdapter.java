@@ -36,6 +36,8 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.BASE_CONTENT_URI;
 import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.PATH_CART_ITEMS;
@@ -170,6 +172,18 @@ public class ProductListSubCatAdapter extends CustomBaseAdapter {
                         customListener.onLikeClickListener(position, model.isLiked());
                     }
                 });
+
+                dataManager.isItemExistInCartObserv(buildContentUri(model.getId())).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Boolean>() {
+                            @Override
+                            public void accept(Boolean aBoolean) throws Exception {
+                                if (aBoolean)
+                                    footerViewHolder.btnImAddToCart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_cart_added));
+
+                                else
+                                    footerViewHolder.btnImAddToCart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_cart_plus));
+                            }
+                        });
 
                 if (dataManager.isItemExistInCart(buildContentUri(model.getId())))
                     footerViewHolder.btnImAddToCart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_cart_added));

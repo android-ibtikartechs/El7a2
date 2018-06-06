@@ -302,7 +302,9 @@ public class AddAddressFragment extends BaseFragment implements AddAddressMvpVie
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: location found");
                             Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude()), DEFAULT_ZOOM, "My Location");
+
+                            if (currentLocation!=null )
+                                moveCamera(new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude()), DEFAULT_ZOOM, "My Location");
                         }
                         else {
                             Log.d(TAG, "onComplete: current location is null");

@@ -46,8 +46,12 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
-public class MainActivity extends BaseActivity implements MainMvpView, NavItemsAdapter.NavItemClickListener {
+public class MainActivity extends BaseActivity implements MainMvpView, NavItemsAdapter.NavItemClickListener, CategoryFragment.customButtonListener {
     @BindView(R.id.main_toolbar) Toolbar toolbar;
     @BindView(R.id.lv_nav_bar) ListView nvListView;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
@@ -73,6 +77,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     private Handler mHandler;
     Menu menu;
     TextView textCartItemCount;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,8 +164,19 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
     private void setupBadge() {
 
-        if (textCartItemCount != null) {
+       /* if (textCartItemCount != null) {
             textCartItemCount.setText(String.valueOf(Math.min(presenter.getNumberOfItemsInCart(), 99)));
+        } */
+
+        if (textCartItemCount != null) {
+       Disposable disposable = presenter.getDataManager().getCartItemsNumber().observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Integer>() {
+                        @Override
+                        public void accept(Integer integer) throws Exception {
+                            textCartItemCount.setText(String.valueOf(Math.min(integer, 99)));
+                        }
+                    });
+       compositeDisposable.add(disposable);
         }
     }
 
@@ -168,6 +184,12 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     protected void onResume() {
         super.onResume();
         setupBadge();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
     }
 
     public void setupActionBar() {
@@ -244,7 +266,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                adapter.addFragment(CategoryFragment.newInstance(id,"any"), "category");
+                adapter.addFragment(CategoryFragment.newInstance(id,"any", MainActivity.this), "category");
             }
         });
 
@@ -335,5 +357,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
+    }
+
+    @Override
+    public void onItemCartChange() {
+        setupBadge();
     }
 }

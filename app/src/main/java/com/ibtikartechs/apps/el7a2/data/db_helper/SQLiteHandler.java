@@ -12,6 +12,7 @@ import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.data.models.UserModel;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 /**
  * Created by ahmedyehya on 4/30/18.
@@ -138,6 +139,26 @@ public class SQLiteHandler extends SQLiteOpenHelper {
        return new UserModel(dbId, userId, userName, userEmail, userMobileNum, userAddress, userGov, userCity);
     }
 
+    public Callable<Integer> getCartItemsNumber ()
+    {
+        return new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                Cursor cursor = null;
+               try {
+                   String[] projection = {
+                           El7a2Contract.CartEntry._ID,};
+                    cursor = context.getContentResolver().query(El7a2Contract.CartEntry.CONTENT_URI, projection,null,null,null);
+                   return cursor.getCount();
+               }
+               finally {
+                   if (cursor != null)
+                       cursor.close();
+               }
+                
+            }
+        };
+    }
 
     public ArrayList<CartListModel> getCartList () {
         ArrayList<CartListModel> cartList = new ArrayList<>();
@@ -184,6 +205,27 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
     }
 
+    public Callable<Boolean> isItemExistInCartObserv(final Uri uri) {
+        return new Callable<Boolean>() {
+            @Override
+            public Boolean call() {
+                // select * from users where _id is userId
+                String[] projection = {
+                        El7a2Contract.CartEntry._ID,
+                };
+                Cursor cursor = context.getContentResolver().query(uri, projection,null,null,null);
+                if (cursor.getCount()<=0){
+                    cursor.close();
+                    return false;
+                }
+                else {
+                    cursor.close();
+                    return true;
+                }
+            }
+        };
+    }
+
     public void deleteFromDataBase(Uri uri)
     {
         int checkEffect = context.getContentResolver().delete(uri,null,null);
@@ -197,6 +239,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
          /*   Toast.makeText(context,"delete is failed",
                     Toast.LENGTH_SHORT).show(); */
         }
+    }
+
+    public Callable<Boolean> deleteFromDataBaseObserved(final Uri uri)
+    {
+        return new Callable<Boolean>(){
+            @Override
+            public Boolean call() {
+                int checkEffect = context.getContentResolver().delete(uri,null,null);
+                if (checkEffect>0)
+                    return true;
+                else
+                    return false;
+            }
+        };
     }
 
     public void editAmountofItem(Uri uri , String value)

@@ -68,6 +68,7 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
     LinearLayout loutError;
     @BindView(R.id.error_layout)
     CardView loutMainError;
+    customButtonListener customListener;
 
 
     ProductListSubCatAdapter adapter;
@@ -83,6 +84,8 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
     private Integer currentPage = PAGE_START;
 
     private ArrayList<FooterListItemModel> arrayList;
+
+
 
     Handler handler;
     SubCategoryPresenter presenter;
@@ -103,12 +106,13 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
      * @return A new instance of fragment SubCategoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SubCategoryFragment newInstance(String param1, String param2) {
+    public static SubCategoryFragment newInstance(String param1, String param2, customButtonListener customListener) {
         SubCategoryFragment fragment = new SubCategoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        fragment.setCustomButtonListner(customListener);
         return fragment;
     }
 
@@ -297,6 +301,8 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
 
         else
             ((ImageView)((View)((ProductListSubCatAdapter.FooterViewHolder) rvListProducts.findViewHolderForAdapterPosition(position)).itemView).findViewById(R.id.imageView10)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_cart_plus));
+
+        customListener.onItemCartChange();
     }
 
     private void implementScrolListener()
@@ -331,5 +337,18 @@ public class SubCategoryFragment extends BaseFragment implements SubCategoryMvpV
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        adapter.notifyDataSetChanged();
+        super.onResume();
+    }
+
+    public interface customButtonListener {
+        public void onItemCartChange();
+    }
+    public void setCustomButtonListner(customButtonListener listener) {
+        this.customListener = listener;
     }
 }

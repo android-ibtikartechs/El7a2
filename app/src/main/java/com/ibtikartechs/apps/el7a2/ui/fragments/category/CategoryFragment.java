@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ import butterknife.ButterKnife;
  * Use the {@link CategoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategoryFragment extends BaseFragment implements CategoryMvpView {
+public class CategoryFragment extends BaseFragment implements CategoryMvpView, SubCategoryFragment.customButtonListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +59,7 @@ public class CategoryFragment extends BaseFragment implements CategoryMvpView {
     LinearLayout loutError;
     @BindView(R.id.error_layout)
     CardView loutMainError;
+    customButtonListener customListener;
 
     // TODO: Rename and change types of parameters
     private String categoryId;
@@ -81,12 +83,13 @@ public class CategoryFragment extends BaseFragment implements CategoryMvpView {
      * @return A new instance of fragment CategoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CategoryFragment newInstance(String param1, String param2) {
+    public static CategoryFragment newInstance(String param1, String param2, customButtonListener customListener) {
         CategoryFragment fragment = new CategoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        fragment.customListener = customListener;
         return fragment;
     }
 
@@ -205,7 +208,7 @@ public class CategoryFragment extends BaseFragment implements CategoryMvpView {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                adapter.addFragment(SubCategoryFragment.newInstance(id,"any"), "category");
+                adapter.addFragment(SubCategoryFragment.newInstance(id,"any",CategoryFragment.this), "category");
             }
         });
     }
@@ -220,6 +223,7 @@ public class CategoryFragment extends BaseFragment implements CategoryMvpView {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
                         ((CustomFontTextView) tab.getCustomView()).setTextColor(getResources().getColor(R.color.white));
+
                     }
 
                     @Override
@@ -235,5 +239,34 @@ public class CategoryFragment extends BaseFragment implements CategoryMvpView {
 
             }
         });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                ((SubCategoryFragment) adapter.getItem(position)).onResume();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onItemCartChange() {
+        customListener.onItemCartChange();
+    }
+
+    public interface customButtonListener {
+        public void onItemCartChange();
+    }
+    public void setCustomButtonListner(customButtonListener listener) {
+        this.customListener = listener;
     }
 }

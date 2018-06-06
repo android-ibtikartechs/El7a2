@@ -1,13 +1,22 @@
 package com.ibtikartechs.apps.el7a2.data;
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract;
 import com.ibtikartechs.apps.el7a2.data.db_helper.SQLiteHandler;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.data.models.UserModel;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ahmedyehya on 4/30/18.
@@ -90,6 +99,40 @@ public class DataManager {
     {
         return sharedPrefsHelper.isFirstTimeLaunch();
     }
+
+    public Observable<Boolean> isItemExistInCartObserv(Uri uri) {
+        return makeObservable(mSQLiteHandler.isItemExistInCartObserv(uri))
+                .subscribeOn(Schedulers.computation()); // note: do not use Schedulers.io()
+    }
+
+    public Observable<Boolean> deleteFromDataBaseObserved(Uri uri)
+    {
+        return makeObservable(mSQLiteHandler.deleteFromDataBaseObserved(uri))
+                .observeOn(Schedulers.computation());
+    }
+
+    public Observable<Integer> getCartItemsNumber()
+    {
+        return makeObservable(mSQLiteHandler.getCartItemsNumber())
+                .observeOn(Schedulers.computation());
+    }
+
+
+    private static <T> Observable<T> makeObservable(final Callable<T> func) {
+        return Observable.create(
+                new ObservableOnSubscribe<T>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<T> emitter) throws Exception {
+                        try {
+                            emitter.onNext(func.call());
+                        } catch (Exception ex){
+                            Log.e("db", "Error reading from the database", ex);
+                        }
+                    }
+                });
+    }
+
+
 
     public void setFirstTimeLaunch(boolean isFirstTime)
     {

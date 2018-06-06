@@ -14,6 +14,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -114,6 +117,19 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
             return userModel.getEmail();
         else
             return null;
+    }
+
+    @Override
+    public Integer getCartItemsNumObserv() {
+        final Integer num[] = {0};
+        getDataManager().getCartItemsNumber().observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        num[0] = integer;
+                    }
+                });
+        return num[0];
     }
 
 
