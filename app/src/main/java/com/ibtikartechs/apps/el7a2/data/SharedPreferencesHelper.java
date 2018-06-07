@@ -30,7 +30,7 @@ public class SharedPreferencesHelper {
     }
 
     public boolean isFirstTimeLaunch (){
-        return mSharedPreferences.getBoolean(IS_FIRST_TIME_LAUNCH, false);
+        return mSharedPreferences.getBoolean(IS_FIRST_TIME_LAUNCH,true);
     }
 
 }

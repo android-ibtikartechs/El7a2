@@ -69,6 +69,10 @@ public class DataManager {
         return dbId;
     }
 
+    public CartListModel getItemById(Uri uri) {
+        return mSQLiteHandler.getItemById(uri);
+    }
+
     public Integer getNumberOfItemList ()
     {
         return mSQLiteHandler.getCartList().size();

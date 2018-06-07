@@ -53,7 +53,7 @@ public class IntroActivity extends BaseActivity implements IntroMvpView {
         presenter = new IntroPresenter(dataManager);
         presenter.onAttach(this);
 
-        if (presenter.isFirstTimeLaunch())
+        if (!presenter.isFirstTimeLaunch())
         {
             launchHomeScreen();
             finish();
@@ -162,6 +162,7 @@ public class IntroActivity extends BaseActivity implements IntroMvpView {
 
     private void launchHomeScreen() {
         // TODO set isFirstTimeLaunch = false here
+        presenter.setFirstTimeLaunch(false);
         startActivity(MainActivity.getStartIntent(this));
         finish();
     }

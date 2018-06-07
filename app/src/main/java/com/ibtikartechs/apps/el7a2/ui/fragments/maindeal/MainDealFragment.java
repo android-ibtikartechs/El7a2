@@ -35,6 +35,7 @@ import com.ibtikartechs.apps.el7a2.data.adapters.FooterListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
 import com.ibtikartechs.apps.el7a2.ui.activities.main_deal_deatails.MainDealDetailsActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.more_products.MoreProductsActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 
 import java.text.SimpleDateFormat;
@@ -142,6 +143,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     @BindView(R.id.rv_main_deal_suggested_category_3) RecyclerView rvFooter3;
     @BindView(R.id.rv_main_deal_suggested_category_2) RecyclerView rvFooter2;
     String idFooter1,idFooter2,idFooter3;
+    String footer1Name, footer2Name, footer3Name;
     ArrayList<Integer> footerIdsList;
     String dealId;
     String firstBannerId, secondBannerId;
@@ -282,6 +284,26 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
             }
         });
         //countDownStart("2018-05-10");
+        btnMoreFooterCat1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(MoreProductsActivity.getStartIntent(getActivity(),idFooter1, footer1Name));
+            }
+        });
+
+        btnMoreFooterCat2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(MoreProductsActivity.getStartIntent(getActivity(),idFooter2, footer2Name));
+            }
+        });
+
+        btnMoreFooterCat3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(MoreProductsActivity.getStartIntent(getActivity(),idFooter3, footer3Name));
+            }
+        });
     }
 
     private void populatRecyclerView() {
@@ -530,6 +552,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
                 }
             });
+            footer1Name = catName;
         }
         else if (footerIdsList.size()<numOfFooters)
             presenter.getFooter(numOfFooters,footerIdsList);
@@ -546,7 +569,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                     tvNameFooterCat2.setText(catName);
                     idFooter2 = catId;
                     footerIdsList.add(Integer.valueOf(catId));
-
+                    footer2Name = catName;
                     if (numOfFooters == 3)
                         presenter.getFooter(numOfFooters, footerIdsList);
                 }
@@ -567,7 +590,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                     tvNameFooterCat3.setText(catName);
                     idFooter3 = catId;
                     footerIdsList.add(Integer.valueOf(catId));
-
+                    footer3Name = catName;
                 }
             });
         }

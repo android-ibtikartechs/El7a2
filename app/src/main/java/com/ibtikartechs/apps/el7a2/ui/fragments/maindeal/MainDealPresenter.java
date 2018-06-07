@@ -218,7 +218,7 @@ public class MainDealPresenter <V extends MainDealMvpView> extends BasePresenter
                                 boolean isDisplayTimer = jsnItemObject.getBoolean("display_timer");
                                 firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("price"), jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),  jsnItemObject.getString("id"),isDisplayTimer, jsnItemObject.getString("oprice"), jsnItemObject.getString("discount_percentage")));
                             }
-                            if (numOfFooter == 3) {
+                            if (numOfFooter >= 3) {
                                 if (currentFootersId.size() == 0) {
                                     getMvpView().showFooter1(catName, firstFooterList, catId);
                                 }

@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -171,6 +172,8 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     String imgUrlOfProduct;
     private String footerCatId;
     TextView textCartItemCount;
+    @BindView(R.id.lout_buy_footer)
+    CardView loutBuyFooter;
 
 
     @Override
@@ -185,8 +188,10 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         dealOrProduct = intent.getIntExtra(StaticValues.KEY_FLAG_PRODUCT_OR_DEAL, 101);
         if(dealOrProduct == StaticValues.DEAL_FLAG)
             setupActionBar("الصفقة الرئيسية");
-        else
+        else {
+            titleOfProduct = intent.getStringExtra(StaticValues.KEY_PRODUCT_NAME);
             setupActionBar(titleOfProduct);
+        }
 
         Log.d("intent", "onCreate: " + "deal or product id = " + dealOrProductId);
         if (mainProgressBar != null) {
@@ -201,13 +206,38 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         presenter = new MainDealDetailsPresenter(dataManager);
         presenter.onAttach(this);
 
-        btnBuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.addItemToCart(dealOrProductId, titleOfProduct,priceOfProduct,imgUrlOfProduct,selectedQuantity);
-            setupBadge();
-            }
-        });
+       /* if (presenter.checkIfExistInShoppingCart(dealOrProductId)!=null) {
+            btnBuy.setText("تعديل الكمية");
+            loutBuyFooter.setCardBackgroundColor(ContextCompat.getColor(this,R.color.red));
+            spinQuantity.setSelection(Integer.valueOf(presenter.checkIfExistInShoppingCart(dealOrProductId).getAmount())-1);
+            selectedQuantity = (String) spinQuantity.getSelectedItem();
+            btnBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.updateAmountOfItem(presenter.checkIfExistInShoppingCart(dealOrProductId).getDpId(), (String) spinQuantity.getSelectedItem());
+                }
+            });
+        }
+
+        else {
+            btnBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.addItemToCart(dealOrProductId, titleOfProduct, priceOfProduct, imgUrlOfProduct, selectedQuantity);
+                    setupBadge();
+                    btnBuy.setText("تعديل الكمية");
+                    loutBuyFooter.setCardBackgroundColor(ContextCompat.getColor(MainDealDetailsActivity.this,R.color.red));
+                    spinQuantity.setSelection(Integer.valueOf(presenter.checkIfExistInShoppingCart(dealOrProductId).getAmount())-1);
+                    selectedQuantity = (String) spinQuantity.getSelectedItem();
+                    btnBuy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            presenter.updateAmountOfItem(presenter.checkIfExistInShoppingCart(dealOrProductId).getDpId(), (String) spinQuantity.getSelectedItem());
+                        }
+                    });
+                }
+            });
+        }*/
 
         ArrayAdapter<String> amountSpinnerAdapter;
         String[] amountsArray = {"1","2","3","4","5","6","7","8","9","10"};
@@ -290,6 +320,47 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         });
     }
 
+    @Override
+    protected void onResume() {
+        setupBadge();
+        if (presenter.checkIfExistInShoppingCart(dealOrProductId)!=null) {
+            btnBuy.setText("تعديل الكمية");
+            loutBuyFooter.setCardBackgroundColor(ContextCompat.getColor(this,R.color.red));
+            spinQuantity.setSelection(Integer.valueOf(presenter.checkIfExistInShoppingCart(dealOrProductId).getAmount())-1);
+            selectedQuantity = (String) spinQuantity.getSelectedItem();
+            btnBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.updateAmountOfItem(presenter.checkIfExistInShoppingCart(dealOrProductId).getDpId(), (String) spinQuantity.getSelectedItem());
+                }
+            });
+        }
+
+        else {
+            btnBuy.setText("أضف لمشترياتي");
+            loutBuyFooter.setCardBackgroundColor(ContextCompat.getColor(this,R.color.white_blue));
+            spinQuantity.setSelection(0);
+            btnBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.addItemToCart(dealOrProductId, titleOfProduct, priceOfProduct, imgUrlOfProduct, selectedQuantity);
+                    setupBadge();
+                    btnBuy.setText("تعديل الكمية");
+                    loutBuyFooter.setCardBackgroundColor(ContextCompat.getColor(MainDealDetailsActivity.this,R.color.red));
+                    spinQuantity.setSelection(Integer.valueOf(presenter.checkIfExistInShoppingCart(dealOrProductId).getAmount())-1);
+                    selectedQuantity = (String) spinQuantity.getSelectedItem();
+                    btnBuy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            presenter.updateAmountOfItem(presenter.checkIfExistInShoppingCart(dealOrProductId).getDpId(), (String) spinQuantity.getSelectedItem());
+                        }
+                    });
+                }
+            });
+        }
+        super.onResume();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

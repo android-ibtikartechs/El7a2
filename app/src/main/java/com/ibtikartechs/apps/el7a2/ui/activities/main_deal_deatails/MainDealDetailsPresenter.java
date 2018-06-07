@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.data.models.FooterListItemModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BasePresenter;
 
@@ -19,6 +20,9 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+
+import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.BASE_CONTENT_URI;
+import static com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract.PATH_CART_ITEMS;
 
 /**
  * Created by ahmedyehya on 5/16/18.
@@ -233,6 +237,16 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
         return getDataManager().getNumberOfItemList();
     }
 
+    @Override
+    public CartListModel checkIfExistInShoppingCart(String itemID) {
+        return getDataManager().getItemById(buildContentUri(itemID));
+    }
+
+    @Override
+    public void updateAmountOfItem(String dbId, String amount) {
+        getDataManager().updateAmountOfItem(buildContentUri(dbId),amount);
+    }
+
     private String buildUrl(String id, String path) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
@@ -244,5 +258,8 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
         return url;
     }
 
-
+    public Uri buildContentUri (String itemId){
+        Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_CART_ITEMS+"/"+itemId);
+        return CONTENT_URI;
+    }
 }

@@ -205,6 +205,32 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
     }
 
+    public CartListModel getItemById (Uri uri)
+    {
+        CartListModel cartListModel = null;
+        String[] projection = {
+                El7a2Contract.CartEntry._ID,
+                El7a2Contract.CartEntry.COLUMN_ITEM_TITLE,
+                El7a2Contract.CartEntry.COLUMN_ITEM_ID,
+                El7a2Contract.CartEntry.COLUMN_ITEM_AMOUNT,
+                El7a2Contract.CartEntry.COLUMN_ITEM_IMG_URL,
+                El7a2Contract.CartEntry.COLUMN_ITEM_PRICE,
+        };
+
+        Cursor cursor = context.getContentResolver().query(uri, projection,null,null,null);
+
+        if (cursor.moveToFirst()){
+            String dbId = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry._ID));
+            String itemId = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_ITEM_ID));
+            String title = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_ITEM_TITLE));
+            String price = cursor .getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_ITEM_PRICE));
+            String amount = cursor .getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_ITEM_AMOUNT));
+            String imgUrl = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_ITEM_IMG_URL));
+            cartListModel = new CartListModel(dbId, itemId, title, price, imgUrl, amount);
+        }
+   return cartListModel;
+    }
+
     public Callable<Boolean> isItemExistInCartObserv(final Uri uri) {
         return new Callable<Boolean>() {
             @Override
