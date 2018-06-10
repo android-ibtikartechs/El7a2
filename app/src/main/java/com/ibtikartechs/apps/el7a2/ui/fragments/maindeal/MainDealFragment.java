@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -109,7 +110,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     @BindView(R.id.main_progress)
     ProgressBar mainProgressBar;
     @BindView(R.id.webView)
-    RichContentView mWebView;
+    WebView mWebView;
     @BindView(R.id.tv_main_deal_error_txt_cause)
     CustomFontTextView teexErrorCause;
     @BindView(R.id.error_btn_retry)
@@ -450,8 +451,21 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                     }
                 });
 
-                RichTextDocumentElement contents = RichTextV2.textFromHtml(getActivity(), details);
-                mWebView.setText(contents);
+                mWebView.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        // TODO Auto-generated method stub
+                        view.loadUrl(url);
+                        return true;
+                    }
+                });
+
+
+                mWebView.loadDataWithBaseURL("", buildHtml(details), "text/html", "utf-8", "");
+
+          /*      RichTextDocumentElement contents = RichTextV2.textFromHtml(getActivity(), details);
+                mWebView.setText(contents); */
 
                 tvDiscountPercent.setText(discountPercent);
                 tvOldPrice.setText(oldPrice);
@@ -607,4 +621,25 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     public void onItemClickListener(String id, String title) {
         startActivity(MainDealDetailsActivity.getStartIntent(getActivity(),id,StaticValues.PROD_FLAG, title));
     }
+
+    private String buildHtml (String text)
+    {
+        String resultHtml = "<html dir=\"rtl\" lang=\"ar\">\n" +
+                "  <head>\n" +
+                "    <link rel=\"stylesheet\"\n" +
+                "          href=\"https://fonts.googleapis.com/css?family=Cairo\">\n" +
+                "    <style>\n" +
+                "      body {\n" +
+                "        font-family: 'Cairo', sans-serif;\n" +
+
+                "      }\n" +
+                "    </style>\n" +
+                "  </head>\n" +
+                "  <body bgcolor=\"#ffffff\">\n" +
+                "    <div>" + text + "</div>\n" +
+                "  </body>\n" +
+                "</html>";
+        return resultHtml;
+    }
+
 }

@@ -24,6 +24,8 @@
         <item name="android:background">@drawable/facebook_bg_right</item>
     </style>
 
-
+<style name="prog_bar">
+    <item name="colorAccent">@color/white</item>
+</style>
 
 </resources>

@@ -18,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
@@ -26,6 +27,7 @@ import com.ibtikartechs.apps.el7a2.data.adapters.CartListAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.completeorder.CompleteOrderActivity;
+import com.ibtikartechs.apps.el7a2.ui.activities.registeration.RegisterationActivity;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.CustomeListView;
 import com.ibtikartechs.apps.el7a2.ui_utilities.OnDetectScrollListenerListView;
@@ -76,7 +78,13 @@ public class ShoppingCartActivity extends BaseActivity implements ShoppingCartMv
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(CompleteOrderActivity.getStartIntent(ShoppingCartActivity.this));
+                if (presenter.isUserLogedIn())
+                    startActivity(CompleteOrderActivity.getStartIntent(ShoppingCartActivity.this));
+
+                else {
+                    Toast.makeText(ShoppingCartActivity.this, "قم بالتسجيل للتمكن من الطلب", Toast.LENGTH_SHORT).show();
+                    startActivity(RegisterationActivity.getStartIntent(ShoppingCartActivity.this));
+                }
             }
         });
 

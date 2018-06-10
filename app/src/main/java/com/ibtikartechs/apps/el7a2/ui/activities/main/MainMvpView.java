@@ -17,4 +17,5 @@ public interface MainMvpView extends MvpView {
     void showErrorView();
     String fetchErrorMessage();
     void showProgressBar();
+    void closeDrawer();
 }

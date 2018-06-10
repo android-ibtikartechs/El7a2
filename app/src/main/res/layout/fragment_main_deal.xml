@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/im_main_deal_main_sale"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
                     android:id="@+id/imageView4"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    android:visibility="gone"
                     android:scaleType="fitXY"
                     android:src="@drawable/supplements_footer"
                     app:layout_constraintBottom_toBottomOf="parent" />
@@ -255,18 +256,112 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:text="( -50% )"
-                    android:textColor="@color/black"
+                    android:textColor="@color/ColorRedHint"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/lout_supplements_container"
+
+                <WebView
+                    android:id="@+id/webView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/webView">
+                    app:layout_constraintTop_toBottomOf="@+id/customFontTextView2" />
+
+                <Button
+                    android:id="@+id/btn_main_deal_buy_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/ColorBackGray"
+                    android:text="اشتر الآن"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/webView" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/off_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lout_some_header"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="اشترك في نشرتنا البريدية الآن ليصلك كل جديد"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_main_deal_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/shape_edit_text"
+                        android:gravity="center"
+                        android:hint="أدخل البريد الإلكتروني هنا"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/boarder"
+                        android:textCursorDrawable="@null" />
+
+                    <Button
+                        android:id="@+id/btn_main_deal_subscribe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/shape_button"
+                        android:text="اشترك"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView102"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="2dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/lout_supplements_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/lout_main_deal_container_first_sale"
@@ -275,10 +370,11 @@
                         android:layout_margin="4dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
                         app:cardBackgroundColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/customFontTextView19"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardUseCompatPadding="true">
 
@@ -341,90 +437,23 @@
                             android:layout_gravity="start|bottom"
                             android:src="@drawable/ribbon_h" />
                     </android.support.v7.widget.CardView>
+
+                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                        android:id="@+id/customFontTextView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="ملحق العرض"
+                        android:textSize="16sp"
+                        app:custom_font="@string/font_name_helvatican"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
-                <io.square1.richtextlib.ui.RichContentView
-                    android:id="@+id/webView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/customFontTextView2" />
-
-                <Button
-                    android:id="@+id/btn_main_deal_buy_now"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_button"
-                    android:text="اشتر الآن"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lout_supplements_container" />
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="@color/off_gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lout_some_header"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="اشترك في نشرتنا البريدية الآن ليصلك كل جديد"
-                        android:textColor="@color/white" />
-
-                    <EditText
-                        android:id="@+id/et_main_deal_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/shape_edit_text"
-                        android:gravity="center"
-                        android:hint="أدخل البريد الإلكتروني هنا"
-                        android:inputType="textEmailAddress"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/boarder"
-                        android:textCursorDrawable="@null" />
-
-                    <Button
-                        android:id="@+id/btn_main_deal_subscribe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/shape_button"
-                        android:text="اشترك"
-                        android:textColor="@color/black" />
-                </LinearLayout>
             </android.support.v7.widget.CardView>
+
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView4"
@@ -436,7 +465,7 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3">
+                app:layout_constraintTop_toBottomOf="@+id/cardView102">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -489,6 +518,7 @@
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="2dp"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
@@ -569,6 +599,7 @@
                 android:id="@+id/lout_main_deal_banner_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="2dp"
                 app:cardUseCompatPadding="true"
@@ -655,10 +686,10 @@
 
         </android.support.constraint.ConstraintLayout>
 
+<include
+    layout="@layout/view_error"
+    />
 
-        <include
-             layout="@layout/view_error"
-             />
 
   </android.support.constraint.ConstraintLayout>
 

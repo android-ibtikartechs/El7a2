@@ -136,6 +136,11 @@ public class DataManager {
                 });
     }
 
+    public boolean isUserLogedIn()
+    {
+        return mSQLiteHandler.isUserLogedIn();
+    }
+
 
 
     public void setFirstTimeLaunch(boolean isFirstTime)

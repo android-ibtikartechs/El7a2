@@ -71,6 +71,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     LinearLayout loutLogin;
     @BindView(R.id.tv_user_name)
     CustomFontTextView tvEmailDisplay;
+    @BindView(R.id.tv_btn_logout)
+    CustomFontTextView btnLogout;
     MainPresenter presenter;
     private ViewPagerAdapter adapter;
     private ActionBarDrawerToggle drawerToggle;
@@ -101,10 +103,16 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         presenter.onAttach(this);
 
 
-        if (presenter.getUserEmail() != null)
-            tvEmailDisplay.setText(presenter.getUserEmail());
+        checkLoginStatus();
 
         // addMainDealFragment();
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.logout();
+
+            }
+        });
         btnRetry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +131,19 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         });
 
         // Log.e("Token is ", FirebaseInstanceId.getInstance().getToken());
+    }
+
+    private void checkLoginStatus() {
+        if (presenter.getUserEmail() != null) {
+            tvEmailDisplay.setText(presenter.getUserEmail());
+            btnLogout.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tvEmailDisplay.setText("تسجيل / تسجيل الدخول");
+            btnLogout.setVisibility(View.GONE);
+        }
+
     }
 
     private void setupViewPager() {
@@ -210,6 +231,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
                 public void onDrawerOpened(View drawerView) {
 
+                    checkLoginStatus();
                 }
 
                 public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -352,6 +374,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     public void showProgressBar() {
         loutError.setVisibility(View.GONE);
         mainProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void closeDrawer() {
+        drawerLayout.closeDrawers();
     }
 
     public static Intent getStartIntent(Context context) {

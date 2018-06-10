@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="70dp"
                 >
 
                 <android.support.v7.widget.CardView
@@ -97,7 +98,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:text=""
-                            android:textColor="@color/black"
+                            android:textColor="@color/ColorRedHint"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
                             app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
                             app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price"
@@ -141,7 +142,6 @@
                             android:layout_marginTop="16dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_main_price"
-                            app:layout_constraintBottom_toTopOf="@id/lout_supplements_container"
                             android:layout_marginBottom="8dp"
                             app:srcCompat="@drawable/ic_action_share" />
 
@@ -326,120 +326,27 @@
                             app:layout_constraintTop_toTopOf="@+id/imageView"
                             app:srcCompat="@drawable/ic_action_unliked" />
 
-                        <android.support.constraint.ConstraintLayout
-                            android:id="@+id/lout_supplements_container"
-                            android:layout_width="0dp"
-                            android:layout_height="200dp"
-                            android:paddingBottom="20dp"
-                            android:visibility="gone"
 
-                            android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_disc_like_button">
-
-                            <android.support.v7.widget.CardView
-                                android:id="@+id/lout_main_deal_container_first_sale"
-                                android:layout_width="0dp"
-                                android:layout_height="200dp"
-                                android:layout_margin="4dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginStart="8dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                card_view:cardCornerRadius="4dp"
-                                card_view:cardUseCompatPadding="true">
-
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:id="@+id/im_main_deal_first_sale"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="10dp"
-                                        app:srcCompat = "@drawable/img_test_main_deal"
-                                        android:scaleType="fitXY" />
-
-
-                                </RelativeLayout>
-
-                                <ImageView
-                                    android:id="@+id/imageView3"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_gravity="start|bottom"
-                                    android:src="@drawable/ribbon_h" />
-
-                            </android.support.v7.widget.CardView>
-
-                            <android.support.v7.widget.CardView
-                                android:id="@+id/lout_main_deal_container_second_sale"
-                                android:layout_width="0dp"
-                                android:layout_height="200dp"
-                                android:layout_margin="4dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginStart="8dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:layout_constraintBottom_toBottomOf="@+id/lout_main_deal_container_first_sale"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/lout_main_deal_container_first_sale"
-                                app:layout_constraintTop_toTopOf="@+id/lout_main_deal_container_first_sale"
-                                card_view:cardCornerRadius="4dp"
-                                card_view:cardUseCompatPadding="true">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:id="@+id/im_main_deal_second_sale"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        app:srcCompat = "@drawable/im_testt"
-                                        android:layout_margin="10dp"
-                                        android:scaleType="fitXY" />
-
-
-                                </RelativeLayout>
-
-                                <ImageView
-                                    android:id="@+id/ribon"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_gravity="start|bottom"
-                                    android:src="@drawable/ribbon_h" />
-
-                            </android.support.v7.widget.CardView>
-                        </android.support.constraint.ConstraintLayout>
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardUseCompatPadding="true">
 
-                    <io.square1.richtextlib.ui.RichContentView
+                    <WebView
                         android:id="@+id/customFontTextView12"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
                         android:textColor="@color/black"
                         />
                 </android.support.v7.widget.CardView>
-
-
-
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/lout_features_content"
@@ -453,129 +360,246 @@
 
 
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingBottom="25dp"
-                    >
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="25dp"
+                        >
 
-                    <ImageView
-                        android:id="@+id/im_btn_main_deal_desc_features_drop_down"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        card_view:srcCompat="@drawable/ic_action_drop_down" />
+                        <ImageView
+                            android:id="@+id/im_btn_main_deal_desc_features_drop_down"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            card_view:srcCompat="@drawable/ic_action_drop_down" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/customFontTextView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="المميزات"
-                        android:textColor="@color/off_gray"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintBottom_toBottomOf="@+id/im_btn_main_deal_desc_features_drop_down"
-                        app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
-                        app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_features_drop_down" />
+                        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                            android:id="@+id/customFontTextView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="المميزات"
+                            android:textColor="@color/off_gray"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintBottom_toBottomOf="@+id/im_btn_main_deal_desc_features_drop_down"
+                            app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
+                            app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_features_drop_down" />
 
-                    <io.square1.richtextlib.ui.RichContentView
-                        android:id="@+id/tv_main_deal_desc_features"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:visibility="gone"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
-                        android:textColor="@color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
-                        app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_features_drop_down" />
+                        <WebView
+                            android:id="@+id/tv_main_deal_desc_features"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:visibility="gone"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_features_drop_down"
+                            app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_features_drop_down" />
 
-                    <LinearLayout
-                        android:id="@+id/line"
-                        android:layout_width="0dp"
-                        android:layout_height="1.20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginStart="39dp"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="39dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/line_black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_desc_features" />
+                        <LinearLayout
+                            android:id="@+id/line"
+                            android:layout_width="0dp"
+                            android:layout_height="1.20dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="39dp"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="39dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/line_black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_desc_features" />
 
-                    <ImageView
-                        android:id="@+id/im_btn_main_deal_desc_content_drop_down"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/line"
-                        card_view:srcCompat="@drawable/ic_action_drop_down" />
+                        <ImageView
+                            android:id="@+id/im_btn_main_deal_desc_content_drop_down"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/line"
+                            card_view:srcCompat="@drawable/ic_action_drop_down" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/customFontTextView100"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="محتوى العرض"
-                        android:textColor="@color/off_gray"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintBottom_toBottomOf="@+id/im_btn_main_deal_desc_content_drop_down"
-                        app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
-                        app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_content_drop_down" />
+                        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                            android:id="@+id/customFontTextView100"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="محتوى العرض"
+                            android:textColor="@color/off_gray"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintBottom_toBottomOf="@+id/im_btn_main_deal_desc_content_drop_down"
+                            app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
+                            app:layout_constraintTop_toTopOf="@+id/im_btn_main_deal_desc_content_drop_down" />
 
-                    <io.square1.richtextlib.ui.RichContentView
-                        android:id="@+id/tv_main_deal_desc_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:visibility="gone"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
-                        app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_content_drop_down" />
+                        <WebView
+                            android:id="@+id/tv_main_deal_desc_content"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:visibility="gone"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضها في هذا المكان و حجم و لون الخط"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/im_btn_main_deal_desc_content_drop_down"
+                            app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_desc_content_drop_down" />
 
-                    <LinearLayout
-                        android:id="@+id/line2"
-                        android:layout_width="0dp"
-                        android:orientation="horizontal"
-                        android:layout_height="1.20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginStart="39dp"
-                        android:layout_marginLeft="39dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/line_black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_desc_content" />
+                        <LinearLayout
+                            android:id="@+id/line2"
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_height="1.20dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="39dp"
+                            android:layout_marginLeft="39dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/line_black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_desc_content" />
 
 
-                </android.support.constraint.ConstraintLayout>
+                    </android.support.constraint.ConstraintLayout>
 
                 </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/lout_supplements_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    android:visibility="gone"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/any"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/im_btn_main_deal_disc_like_button">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/lout_main_deal_container_first_sale"
+                            android:layout_width="0dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/customFontTextView19"
+                            card_view:cardCornerRadius="4dp"
+                            card_view:cardUseCompatPadding="true">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/im_main_deal_first_sale"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/img_test_main_deal" />
+
+
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="start|bottom"
+                                android:src="@drawable/ribbon_h" />
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/lout_main_deal_container_second_sale"
+                            android:layout_width="0dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/lout_main_deal_container_first_sale"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/lout_main_deal_container_first_sale"
+                            app:layout_constraintTop_toTopOf="@+id/lout_main_deal_container_first_sale"
+                            card_view:cardCornerRadius="4dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/im_main_deal_second_sale"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat = "@drawable/im_testt"
+                                    android:layout_margin="10dp"
+                                    android:scaleType="fitXY" />
+
+
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/ribon"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="start|bottom"
+                                android:src="@drawable/ribbon_h" />
+
+                        </android.support.v7.widget.CardView>
+                        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                            android:id="@+id/customFontTextView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="ملحق العرض"
+                            android:textSize="16sp"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="70dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardUseCompatPadding="true"
 
@@ -610,7 +634,6 @@
                     android:layout_marginTop="-50dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardUseCompatPadding="true"
-                    android:layout_marginBottom="70dp"
                     >
 
                     <android.support.constraint.ConstraintLayout
@@ -673,8 +696,8 @@
         layout="@layout/view_error_activity"
         />
 
-<include
-    layout="@layout/view_footer_buy_product"
-    />
+    <include
+        layout="@layout/view_footer_buy_product"
+        />
 
 </RelativeLayout>

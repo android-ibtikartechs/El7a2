@@ -20,6 +20,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
 
+
+
         >
 
         <android.support.constraint.ConstraintLayout
@@ -65,8 +67,19 @@
                         android:singleLine="true"
                         android:text="تسجيل / تسجيل الدخول"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         app:custom_font="@string/font_name_helvatican" />
+
+                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                        android:id="@+id/tv_btn_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="تسجيل الخروج"
+                        android:visibility="gone"
+                        android:textColor="@color/gray_tab"
+                        app:custom_font="@string/font_name_helvatican"
+                        android:layout_gravity="center_horizontal"
+                        />
                 </LinearLayout>
 
 

@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/ColorRedHint"
             app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
             app:layout_constraintStart_toEndOf="@+id/tv_main_deal_old_price"
             app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price"

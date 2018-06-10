@@ -210,20 +210,21 @@ public class MainDealDetailsPresenter <V extends MainDealDetailsMvpView> extends
                     JSONObject jsnMainObject = new JSONObject(response.body().string());
                     if (jsnMainObject.getString("status").equals("OK")) {
                         JSONArray dummiesArray = jsnMainObject.getJSONArray("Details");
-                        JSONObject jsnDetailsObject = dummiesArray.getJSONObject(0);
-                        String catName = jsnDetailsObject.getString("name");
-                        String catId = jsnDetailsObject.getString("id");
-                        JSONArray jsnProductList = jsnDetailsObject.getJSONArray("Products");
-                        ArrayList<FooterListItemModel> firstFooterList = new ArrayList<>();
-                        for (int o = 0; o<jsnProductList.length(); o++)
-                        {
-                            JSONObject jsnItemObject = jsnProductList.getJSONObject(o);
-                            boolean isDisplayTimer = jsnItemObject.getBoolean("display_timer");
-                            firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("price"), jsnItemObject.getString("image"),jsnItemObject.getString("name"),jsnItemObject.getString("offer_end_date")+" "+ jsnItemObject.getString("offer_end_time"),  jsnItemObject.getString("id"),isDisplayTimer, jsnItemObject.getString("oprice"), jsnItemObject.getString("discount_percentage")));
+                        if (dummiesArray != null && dummiesArray.length()>0) {
+                            JSONObject jsnDetailsObject = dummiesArray.getJSONObject(0);
+                            String catName = jsnDetailsObject.getString("name");
+                            String catId = jsnDetailsObject.getString("id");
+                            JSONArray jsnProductList = jsnDetailsObject.getJSONArray("Products");
+                            ArrayList<FooterListItemModel> firstFooterList = new ArrayList<>();
+                            for (int o = 0; o < jsnProductList.length(); o++) {
+                                JSONObject jsnItemObject = jsnProductList.getJSONObject(o);
+                                boolean isDisplayTimer = jsnItemObject.getBoolean("display_timer");
+                                firstFooterList.add(new FooterListItemModel(jsnItemObject.getString("price"), jsnItemObject.getString("image"), jsnItemObject.getString("name"), jsnItemObject.getString("offer_end_date") + " " + jsnItemObject.getString("offer_end_time"), jsnItemObject.getString("id"), isDisplayTimer, jsnItemObject.getString("oprice"), jsnItemObject.getString("discount_percentage")));
+                            }
+                            getMvpView().setFooterId(catId, catName);
+                            getMvpView().addMoreToAdapter(firstFooterList);
+                            getMvpView().showFooter();
                         }
-                        getMvpView().setFooterId(catId, catName);
-                        getMvpView().addMoreToAdapter(firstFooterList);
-                        getMvpView().showFooter();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

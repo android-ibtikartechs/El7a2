@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.ibtikartechs.apps.el7a2.StaticValues;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
+import com.ibtikartechs.apps.el7a2.data.db_helper.El7a2Contract;
 import com.ibtikartechs.apps.el7a2.data.models.UserModel;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BasePresenter;
 
@@ -57,15 +58,17 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
                 String stringResponse = response.body().string();
                 if (stringResponse.charAt(0) == '{') {
                     Log.d(TAG, "onResponse: " + stringResponse);
-
+                    getMvpView().addMainDealFragment();
                     try {
                         JSONObject jsnmainObject = new JSONObject(stringResponse);
+                        boolean isThereCategories = jsnmainObject.getBoolean("display_menu");
                         JSONArray jsnCategoryListArray = jsnmainObject.getJSONArray("List");
-                        getMvpView().addMainDealFragment();
-                        for (int i = 0 ; i < jsnCategoryListArray.length(); i++)
-                        {
-                            JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);
-                            getMvpView().addCategoryFragment(jsnItemObject.getString("id"));
+
+                        if (isThereCategories) {
+                            for (int i = 0; i < jsnCategoryListArray.length(); i++) {
+                                JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);
+                                getMvpView().addCategoryFragment(jsnItemObject.getString("id"));
+                            }
                         }
 
                         /*for (int i = 0 ; i < jsnCategoryListArray.length(); i++)
@@ -76,10 +79,12 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
                         } */
 
                         getMvpView().addCategoryTab("الصفقة الرئيسية",0);
-                        int i = 0;
-                        while (i < jsnCategoryListArray.length()){
-                            JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);
-                            getMvpView().addCategoryTab(jsnItemObject.getString("name"),++i);
+                        if (isThereCategories) {
+                            int i = 0;
+                            while (i < jsnCategoryListArray.length()) {
+                                JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);
+                                getMvpView().addCategoryTab(jsnItemObject.getString("name"), ++i);
+                            }
                         }
 
 
@@ -132,12 +137,18 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
         return num[0];
     }
 
+    @Override
+    public void logout() {
+        getDataManager().deleteItemFromDataBase(El7a2Contract.CartEntry.CONTENT_URI_USER_PATH);
+        getMvpView().closeDrawer();
+    }
+
 
     private String buildUrl() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
                 .authority(StaticValues.URL_AUOTHORITY)
-                .appendPath("mobile")
+                .appendPath("mob")
                 .appendPath("categories");
         String url = builder.build().toString();
         return url;

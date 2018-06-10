@@ -16,6 +16,7 @@ public interface ShoppingCartMvpPresenter <V extends ShoppingCartMvpView> extend
     int deleteItemFromCartList(Uri uri);
     int getNumberOfItemsCartList();
     void updateAmountOfItem(Uri uri, String amount);
+    boolean isUserLogedIn();
 
 
 }

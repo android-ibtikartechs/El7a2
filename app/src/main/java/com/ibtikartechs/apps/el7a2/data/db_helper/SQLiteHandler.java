@@ -109,6 +109,24 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return newUri;
     }
 
+    public boolean isUserLogedIn ()
+    {
+
+
+            String[] projection = {El7a2Contract.CartEntry._ID,};
+            Cursor cursor = context.getContentResolver().query(El7a2Contract.CartEntry.CONTENT_URI_USER_PATH, projection,null,null,null);
+
+        if (cursor.getCount()<=0){
+            cursor.close();
+            return false;
+        }
+        else {
+            cursor.close();
+            return true;
+        }
+
+    }
+
     public UserModel gryUser()
     {
         String dbId = null, userId = null, userName = null, userEmail = null, userMobileNum = null, userAddress = null, userGov =null, userCity =null;
@@ -133,7 +151,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             userAddress = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_USER_ADDRESS));
             userGov = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_USER_GOV));
             userCity = cursor.getString(cursor.getColumnIndex(El7a2Contract.CartEntry.COLUMN_USER_CITY));
-
         }
         cursor.close();
        return new UserModel(dbId, userId, userName, userEmail, userMobileNum, userAddress, userGov, userCity);

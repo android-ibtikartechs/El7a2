@@ -39,6 +39,10 @@ public class ShoppingCartPresenter <V extends ShoppingCartMvpView> extends BaseP
         getDataManager().updateAmountOfItem(uri,amount);
     }
 
+    @Override
+    public boolean isUserLogedIn() {
+        return getDataManager().isUserLogedIn();
+    }
 
 
 }

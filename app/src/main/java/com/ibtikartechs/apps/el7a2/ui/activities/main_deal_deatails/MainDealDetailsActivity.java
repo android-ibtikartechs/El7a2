@@ -26,6 +26,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -87,13 +90,13 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.im_btn_main_deal_disc_like_button)
     ImageView btnLike;
     @BindView(R.id.lout_supplements_container)
-    ConstraintLayout loutSupplements;
+    CardView loutSupplements;
     @BindView(R.id.im_main_deal_first_sale)
     ImageView imFirstSupplement;
     @BindView(R.id.im_main_deal_second_sale)
     ImageView imSecondSupplement;
     @BindView(R.id.customFontTextView12)
-    RichContentView tvMainDescription;
+    WebView tvMainDescription;
     @BindView(R.id.lout_main_deal_desc_timer)
     ConstraintLayout loutTimer;
     @BindView(R.id.card_footer)
@@ -122,12 +125,12 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.im_btn_main_deal_desc_features_drop_down)
     ImageView btnFeaturesDropDown;
     @BindView(R.id.tv_main_deal_desc_features)
-    RichContentView tvFeatures;
+    WebView tvFeatures;
     @BindView(R.id.im_btn_main_deal_desc_content_drop_down)
     ImageView btnContentDropDown;
 
     @BindView(R.id.tv_main_deal_desc_content)
-    RichContentView tvContent;
+    WebView tvContent;
 
     @BindView(R.id.tv_main_deal_days)
     CustomFontTextView tvDays;
@@ -515,8 +518,24 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                 tvOldPrice.setText(oldPrice);
                 tvDiscountPercent.setText(discountPercent);
 
-                RichTextDocumentElement description = RichTextV2.textFromHtml(MainDealDetailsActivity.this, mainDescription);
-                tvMainDescription.setText(description);
+                tvMainDescription.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        // TODO Auto-generated method stub
+
+                        return false;
+                    }
+                });
+                WebSettings webSettings2 = tvMainDescription.getSettings();
+                webSettings2.setJavaScriptEnabled(true);
+                tvMainDescription.loadDataWithBaseURL("", buildHtml(mainDescription), "text/html", "utf-8", "");
+
+
+
+
+              /*  RichTextDocumentElement description = RichTextV2.textFromHtml(MainDealDetailsActivity.this, mainDescription);
+                tvMainDescription.setText(description); */
 
             }
         });
@@ -569,7 +588,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                imSomeFooter.setVisibility(View.VISIBLE);
+
                 loutSupplements.setVisibility(View.VISIBLE);
 
                 if (imgUrl1.equals("")|| imgUrl1 == null)
@@ -598,9 +617,29 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
     @Override
     public void setFeaturesContent(final String Features, final String content) {
+
+
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                String frameVideo = "<html><body>Video From YouTube<br><iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/XUTXU6fy94E\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+                WebSettings webSettings = tvFeatures.getSettings();
+                webSettings.setJavaScriptEnabled(true);
+
+                tvFeatures.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        // TODO Auto-generated method stub
+                        view.loadUrl(url);
+                        return true;
+                    }
+                });
+
+
+                tvFeatures.loadDataWithBaseURL("", Features, "text/html", "utf-8", "");
+
+/*
                 tvFeatures.setUrlBitmapDownloader(new UrlBitmapDownloader() {
 
                     @Override
@@ -612,13 +651,28 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                                 .into(new GlideTarget(MainDealDetailsActivity.this,urlBitmapSpan));
                     }
 
-                });
+                }); */
                 loutFeaturesContent.setVisibility(View.VISIBLE);
-                RichTextDocumentElement features = RichTextV2.textFromHtml(MainDealDetailsActivity.this, Features);
-                tvFeatures.setText(features);
+            /*    RichTextDocumentElement features = RichTextV2.textFromHtml(MainDealDetailsActivity.this, Features);
+                tvFeatures.setText(features); */
 
-                RichTextDocumentElement contents = RichTextV2.textFromHtml(MainDealDetailsActivity.this, content);
-                tvContent.setText(contents);
+              /*  RichTextDocumentElement contents = RichTextV2.textFromHtml(MainDealDetailsActivity.this, content);
+                tvContent.setText(contents); */
+
+                tvContent.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        // TODO Auto-generated method stub
+                        view.loadUrl(url);
+                        return true;
+                    }
+                });
+                WebSettings webSettings2 = tvContent.getSettings();
+                webSettings2.setJavaScriptEnabled(true);
+                tvContent.loadDataWithBaseURL("", buildHtml(content), "text/html", "utf-8", "");
+
+
             }
         });
 
@@ -707,4 +761,25 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         intent.putExtra(StaticValues.KEY_PRODUCT_NAME, productName);
         return intent;
     }
+
+    private String buildHtml (String text)
+    {
+        String resultHtml = "<html dir=\"rtl\" lang=\"ar\">\n" +
+                "  <head>\n" +
+                "    <link rel=\"stylesheet\"\n" +
+                "          href=\"https://fonts.googleapis.com/css?family=Cairo\">\n" +
+                "    <style>\n" +
+                "      body {\n" +
+                "        font-family: 'Cairo', sans-serif;\n" +
+
+                "      }\n" +
+                "    </style>\n" +
+                "  </head>\n" +
+                "  <body bgcolor=\"#ffffff\">\n" +
+                "    <div>" + text + "</div>\n" +
+                "  </body>\n" +
+                "</html>";
+        return resultHtml;
+    }
+
 }
