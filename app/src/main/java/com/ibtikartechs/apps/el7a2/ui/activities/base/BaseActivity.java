@@ -75,7 +75,7 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
         }
         if (!lang_code.equals("") && !sysLocale.getLanguage().equals(lang_code)) {
             String country = "ARE";
-            Locale locale = new Locale(lang_code,country);
+            Locale locale = new Locale(lang_code);
             Locale.setDefault(locale);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 config.setLocale(locale);

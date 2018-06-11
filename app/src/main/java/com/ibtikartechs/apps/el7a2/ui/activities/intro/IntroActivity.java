@@ -21,8 +21,7 @@ import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
-import com.ibtikartechs.apps.el7a2.ui.activities.main.MainActivity;
-
+import com.ibtikartechs.apps.el7a2.ui.activities.intro_ad.IntroAdActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -163,7 +162,7 @@ public class IntroActivity extends BaseActivity implements IntroMvpView {
     private void launchHomeScreen() {
         // TODO set isFirstTimeLaunch = false here
         presenter.setFirstTimeLaunch(false);
-        startActivity(MainActivity.getStartIntent(this));
+        startActivity(IntroAdActivity.getStartIntent(this));
         finish();
     }
 

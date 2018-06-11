@@ -15,4 +15,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">131002647770788</string>
     <string name="fb_login_protocol_scheme">fb131002647770788</string>
+    <string name="skip_ad">تخطي الإعلان</string>
+    <string name="day_sample">D</string>
+    <string name="hours_sample">H</string>
+    <string name="monutes_sample">M</string>
+    <string name="seconds_sample">S</string>
+    <string name="sublement">ملحق العرض</string>
 </resources>

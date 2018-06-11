@@ -97,12 +97,16 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     ImageView imSecondSupplement;
     @BindView(R.id.customFontTextView12)
     WebView tvMainDescription;
-    @BindView(R.id.lout_main_deal_desc_timer)
-    ConstraintLayout loutTimer;
+
+    @BindView(R.id.tv_count_down)
+    CustomFontTextView tvCountDown;
     @BindView(R.id.card_footer)
     CardView footerCard;
     @BindView(R.id.imageView6)
     ImageView imBanner;
+
+    @BindView(R.id.lout_feature)
+    ConstraintLayout loutFeature;
 
 
 
@@ -132,14 +136,6 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     @BindView(R.id.tv_main_deal_desc_content)
     WebView tvContent;
 
-    @BindView(R.id.tv_main_deal_days)
-    CustomFontTextView tvDays;
-    @BindView(R.id.tv_main_deal_hours)
-    CustomFontTextView tvHours;
-    @BindView(R.id.tv_main_deal_minutes)
-    CustomFontTextView tvMinutes;
-    @BindView(R.id.tv_main_deal_seconds)
-    CustomFontTextView tvSeconds;
 
     @BindView(R.id.lout_main_deal_error_layout)
     LinearLayout loutError;
@@ -177,6 +173,9 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     TextView textCartItemCount;
     @BindView(R.id.lout_buy_footer)
     CardView loutBuyFooter;
+
+    @BindView(R.id.lout_content)
+    ConstraintLayout loutContent;
 
 
     @Override
@@ -283,7 +282,17 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
 
         populatRecyclerView();
 
-        btnFeaturesDropDown.setOnClickListener(new View.OnClickListener() {
+     /*   btnFeaturesDropDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tvFeatures.getVisibility() == View.GONE)
+                    tvFeatures.setVisibility(View.VISIBLE);
+                else
+                    tvFeatures.setVisibility(View.GONE);
+            }
+        });*/
+
+        loutFeature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(tvFeatures.getVisibility() == View.GONE)
@@ -293,7 +302,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
             }
         });
 
-        btnContentDropDown.setOnClickListener(new View.OnClickListener() {
+        loutContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(tvContent.getVisibility() == View.GONE)
@@ -302,6 +311,17 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                     tvContent.setVisibility(View.GONE);
             }
         });
+
+      /*  btnContentDropDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tvContent.getVisibility() == View.GONE)
+                    tvContent.setVisibility(View.VISIBLE);
+                else
+                    tvContent.setVisibility(View.GONE);
+            }
+        });
+        */
 
         if (dealOrProduct == StaticValues.DEAL_FLAG)
         {
@@ -418,6 +438,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     }
 
     public void setupActionBar(String title) {
+        changeLang(MainDealDetailsActivity.this,"ar");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -514,8 +535,12 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                             .placeholder(R.drawable.placeholder)
                             .into(imBanner);
 
-                tvMainPrice.setText(price);
-                tvOldPrice.setText(oldPrice);
+
+                String texPrice = price + " EGP";
+                tvMainPrice.setText(texPrice);
+
+                String texOldPrice = oldPrice + " EGP";
+                tvOldPrice.setText(texOldPrice);
                 tvDiscountPercent.setText(discountPercent);
 
                 tvMainDescription.setWebViewClient(new WebViewClient() {
@@ -576,7 +601,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                loutTimer.setVisibility(View.VISIBLE);
+                tvCountDown.setVisibility(View.VISIBLE);
                 countDownStart(time);
             }
         });
@@ -736,12 +761,17 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                         diff -= minutes * (60 * 1000);
                         long seconds = diff / 1000;
 
-                        tvDays.setText("" + String.format("%02d", days));
+                        tvCountDown.setText(String.format("%02d", days)+" " + getString(R.string.day_sample) + " : "
+                                +String.format("%02d", hours)+" " + getString(R.string.hours_sample)  + " : "
+                                +String.format("%02d", minutes)+" " + getString(R.string.monutes_sample) + " : "
+                                +String.format("%02d", seconds)+" " + getString(R.string.seconds_sample));
+
+                    /*    tvDays.setText("" + String.format("%02d", days));
                         tvHours.setText("" + String.format("%02d", hours));
                         tvMinutes.setText(""
                                 + String.format("%02d", minutes));
                         tvSeconds.setText(""
-                                + String.format("%02d", seconds));
+                                + String.format("%02d", seconds)); */
 
                     }
 

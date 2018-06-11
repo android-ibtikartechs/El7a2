@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,20 +76,14 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
     private ArrayList<FooterListItemModel> thirdArrayList;
     private Runnable runnable;
 
+    @BindView(R.id.tvTime)
+    CustomFontTextView tvCountDown;
 
 
-    @BindView(R.id.tv_main_deal_days)
-    CustomFontTextView tvSeconds;
     @BindView(R.id.lout_supplements_container)
     ConstraintLayout loutSupplementsContainer;
     @BindView(R.id.rv_main_deal_suggested_category)
     RecyclerView rvFirstSuggCategory;
-    @BindView(R.id.tv_main_deal_hours)
-    CustomFontTextView tvMinutes;
-    @BindView(R.id.tv_main_deal_minutes)
-    CustomFontTextView tvHours;
-    @BindView(R.id.tv_main_deal_seconds)
-    CustomFontTextView tvDays;
     @BindView(R.id.tv_main_deal_old_price)
     TextView tvOldPrice;
     @BindView(R.id.lout_main_deal_error_layout)
@@ -351,12 +346,21 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                         diff -= minutes * (60 * 1000);
                         long seconds = diff / 1000;
 
+
+                        String d = getActivity().getResources().getString(R.string.day_sample);
+                        Log.d("day", "run: " + d);
+                        tvCountDown.setText(String.format("%02d", days)+" " + getString(R.string.day_sample) + " : "
+                                +String.format("%02d", hours)+" " + getString(R.string.hours_sample)  + " : "
+                                +String.format("%02d", minutes)+" " + getString(R.string.monutes_sample) + " : "
+                                +String.format("%02d", seconds)+" " + getString(R.string.seconds_sample));
+
+                      /*
                         tvDays.setText("" + String.format("%02d", days));
                         tvHours.setText("" + String.format("%02d", hours));
                         tvMinutes.setText(""
                                 + String.format("%02d", minutes));
                         tvSeconds.setText(""
-                                + String.format("%02d", seconds));
+                                + String.format("%02d", seconds)); */
 
                     }
 
@@ -404,6 +408,7 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         handler.post(new Runnable() {
             @Override
             public void run() {
+
                 Glide.with(getActivity())
                         .load(productImgUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.placeholder)
@@ -411,7 +416,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
 
                 tvMainSaleName.setText(productName);
 
-                tvMainSalePrice.setText(productPrice);
+                String txPrice = productPrice + " EGP";
+                tvMainSalePrice.setText(txPrice);
 
                 countDownStart(endDate);
 
@@ -468,7 +474,8 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                 mWebView.setText(contents); */
 
                 tvDiscountPercent.setText(discountPercent);
-                tvOldPrice.setText(oldPrice);
+                String txOldPrice = oldPrice+" EGP";
+                tvOldPrice.setText(txOldPrice);
 
 
 

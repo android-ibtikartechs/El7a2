@@ -85,6 +85,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mHandler = new Handler(Looper.getMainLooper());
         ButterKnife.bind(this);
 
@@ -214,6 +215,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     }
 
     public void setupActionBar() {
+        changeLang(MainActivity.this,"ar");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
