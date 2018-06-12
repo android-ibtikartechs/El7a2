@@ -172,6 +172,9 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         switch (item.getItemId()) {
             case R.id.action_cart :
                 startActivity(ShoppingCartActivity.getStartIntent(this));

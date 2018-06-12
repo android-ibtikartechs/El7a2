@@ -347,8 +347,9 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
                         long seconds = diff / 1000;
 
 
-                        String d = getActivity().getResources().getString(R.string.day_sample);
-                        Log.d("day", "run: " + d);
+
+
+
                         tvCountDown.setText(String.format("%02d", days)+" " + getString(R.string.day_sample) + " : "
                                 +String.format("%02d", hours)+" " + getString(R.string.hours_sample)  + " : "
                                 +String.format("%02d", minutes)+" " + getString(R.string.monutes_sample) + " : "
@@ -649,4 +650,12 @@ public class MainDealFragment extends BaseFragment implements MainDealMvpView, F
         return resultHtml;
     }
 
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
 }

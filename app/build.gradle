@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'io.square1:richtext:6.0.25'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

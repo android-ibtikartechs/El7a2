@@ -30,19 +30,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_blue"
-            android:alpha="0.8"
+            android:background="@color/gray"
+            android:alpha="0.6"
             />
 
 
 
             <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_btn_skip_ad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:text="@string/skip_ad"
                 app:custom_font="@string/font_name_helvatican"
+                android:gravity="center"
                 android:textColor="@color/white" />
 
 

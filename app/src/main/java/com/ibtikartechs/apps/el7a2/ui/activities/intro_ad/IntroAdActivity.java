@@ -45,7 +45,9 @@ public class IntroAdActivity extends BaseActivity implements IntroAdMvpView {
     Handler handler;
     float density;
 
+
     IntroAdPresenter presenter;
+    private boolean skipped;
 
 
     @Override
@@ -69,9 +71,11 @@ public class IntroAdActivity extends BaseActivity implements IntroAdMvpView {
         btnSkipAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cdt.cancel();
-               startActivity(MainActivity.getStartIntent(IntroAdActivity.this));
-               finish();
+                if (cdt !=null)
+                    cdt.cancel();
+                skipped = true;
+                startActivity(MainActivity.getStartIntent(IntroAdActivity.this));
+                finish();
             }
         });
 
@@ -155,8 +159,10 @@ public class IntroAdActivity extends BaseActivity implements IntroAdMvpView {
                         countDownProgBar.setProgress(100);
                         // }
                         // });
-                        startActivity(MainActivity.getStartIntent(IntroAdActivity.this));
-                        finish();
+                        if (!skipped) {
+                            startActivity(MainActivity.getStartIntent(IntroAdActivity.this));
+                            finish();
+                        }
                     }
                 }.start();
 
@@ -206,4 +212,7 @@ public class IntroAdActivity extends BaseActivity implements IntroAdMvpView {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
+
+
 }

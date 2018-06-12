@@ -662,7 +662,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
                 });
 
 
-                tvFeatures.loadDataWithBaseURL("", Features, "text/html", "utf-8", "");
+                tvFeatures.loadDataWithBaseURL("", buildHtml(Features), "text/html", "utf-8", "");
 
 /*
                 tvFeatures.setUrlBitmapDownloader(new UrlBitmapDownloader() {
