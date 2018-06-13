@@ -1,6 +1,7 @@
 package com.ibtikartechs.apps.el7a2.ui.activities.base;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
@@ -30,7 +31,9 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
     @Override
     protected void attachBaseContext(Context newBase) {
         String lang_code = "ar"; //load it from SharedPref
-        Context context = changeLang(newBase, lang_code);
+        Locale locale = new Locale(lang_code);
+        MyContextWrapper myContextWrapper = new MyContextWrapper(newBase);
+        Context context = myContextWrapper.wrap(newBase,lang_code);
         super.attachBaseContext(context);
     }
 
@@ -93,5 +96,76 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
 
         return new ContextWrapper(context);
     }
+
+    private static Context setLocale(Context context, Locale locale) {
+        Configuration configuration = context.getResources().getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale);
+            context.createConfigurationContext(configuration);
+
+        } else {
+            configuration.locale = locale;
+            context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
+        }
+        return context;
+    }
+
+
+
+    public class MyContextWrapper extends ContextWrapper {
+
+        public MyContextWrapper(Context base) {
+            super(base);
+        }
+
+        @SuppressWarnings("deprecation")
+        public  ContextWrapper wrap(Context context, String language) {
+            Configuration config = context.getResources().getConfiguration();
+            Locale sysLocale = null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                sysLocale = getSystemLocale(config);
+            } else {
+                sysLocale = getSystemLocaleLegacy(config);
+            }
+            if (!language.equals("") && !sysLocale.getLanguage().equals(language)) {
+                Locale locale = new Locale(language);
+                Locale.setDefault(locale);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    setSystemLocale(config, locale);
+                } else {
+                    setSystemLocaleLegacy(config, locale);
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    context = context.createConfigurationContext(config);
+                } else {
+                    context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+                }
+            }
+            return new MyContextWrapper(context);
+        }
+
+        @SuppressWarnings("deprecation")
+        public  Locale getSystemLocaleLegacy(Configuration config){
+            return config.locale;
+        }
+
+        @TargetApi(Build.VERSION_CODES.N)
+        public  Locale getSystemLocale(Configuration config){
+            return config.getLocales().get(0);
+        }
+
+        @SuppressWarnings("deprecation")
+        public  void setSystemLocaleLegacy(Configuration config, Locale locale){
+            config.locale = locale;
+        }
+
+        @TargetApi(Build.VERSION_CODES.N)
+        public  void setSystemLocale(Configuration config, Locale locale){
+            config.setLocale(locale);
+        }
+    }
+
+
+
 
 }

@@ -218,7 +218,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
     }
 
     public void setupActionBar() {
-        changeLang(MainActivity.this,"ar");
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -226,6 +226,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        changeLang(MainActivity.this,"ar");
     }
 
     public void setupNavDrawer() {
