@@ -85,13 +85,11 @@
         </service>
 
         <activity android:name=".ui.activities.wishes.WishesActivity" />
-        <activity android:name=".ui.activities.intro.IntroActivity">
-            
-        </activity>
+        <activity android:name=".ui.activities.intro.IntroActivity"></activity>
         <activity android:name=".ui.activities.more_products.MoreProductsActivity" />
         <activity
             android:name=".ui.activities.intro_ad.IntroAdActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".ui.activities.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -99,6 +97,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.editprofile.EditProfileActivity"
+            android:exported="true"
+            ></activity>
     </application>
 
 </manifest>
