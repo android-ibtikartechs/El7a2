@@ -21,4 +21,9 @@
     <string name="monutes_sample">M</string>
     <string name="seconds_sample">S</string>
     <string name="sublement">ملحق العرض</string>
+    <string name="hint_full_name">الإسم بالكامل</string>
+    <string name="hint_mob_num">رقم الهاتف</string>
+    <string name="hint_email">البريد الألكترونى</string>
+    <string name="btn_update_profile">تحديث الملف الشخصي</string>
+    <string name="btn_reset_password">إعادة ضبط كلمة المرور</string>
 </resources>

@@ -27,5 +27,8 @@
 <style name="prog_bar">
     <item name="colorAccent">@color/white</item>
 </style>
+    <style name="grey_color_accent">
+        <item name="colorAccent">@color/gray</item>
+    </style>
 
 </resources>
