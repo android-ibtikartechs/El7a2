@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ibtikartechs.apps.el7a2.ui_utilities.LoadingDialogFragment;
+import com.ibtikartechs.apps.el7a2.utilities.LanguageHelper;
 
 import java.util.Locale;
 
@@ -30,10 +31,12 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        String lang_code = "ar"; //load it from SharedPref
+       /* String lang_code = "ar"; //load it from SharedPref
         Locale locale = new Locale(lang_code);
         MyContextWrapper myContextWrapper = new MyContextWrapper(newBase);
         Context context = myContextWrapper.wrap(newBase,lang_code);
+        super.attachBaseContext(context); */
+        Context context = LanguageHelper.updateLanguage(newBase, "ar_SA");
         super.attachBaseContext(context);
     }
 

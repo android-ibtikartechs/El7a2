@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">El7a2</string>
-    <string name="day_sample">ي</string>
-    <string name="hours_sample">س</string>
-    <string name="monutes_sample">د</string>
-    <string name="seconds_sample">ث</string>
-    <string name="sublement">ملحق العرض</string>
-</resources>

@@ -268,6 +268,17 @@ public class AddAddressFragment extends BaseFragment implements AddAddressMvpVie
 
                                 etMapAddress.setText(address);
                                 Double latt = addresses.get(0).getLatitude();
+                                Log.d("TAG", "SubAdminArea: " + addresses.get(0).getAdminArea());
+                                Log.d("TAG", "SubAdminArea: " + addresses.get(0).getSubAdminArea());
+                                Log.d("TAG", "CountryName: " + addresses.get(0).getCountryName());
+                                Log.d("TAG", "FeatureName: " + addresses.get(0).getFeatureName());
+                                Log.d("TAG", "Locality: " + addresses.get(0).getLocality());
+                                Log.d("TAG", "SubLocality: " + addresses.get(0).getSubLocality());
+                                Log.d("TAG", "PostalCode: " + addresses.get(0).getPostalCode());
+                                Log.d("TAG", "Premises: " + addresses.get(0).getPremises());
+                                Log.d("TAG", "Thoroughfare: " + addresses.get(0).getThoroughfare());
+                                Log.d("TAG", "SubThoroughfare: " + addresses.get(0).getSubThoroughfare());
+                                Log.d("TAG", "Url: " + addresses.get(0).getUrl());
                                 lastLatitude = latt.toString();
                                 Log.d(TAG, "run: "+"latt = "+ lastLatitude);
                                 Double longitude = addresses.get(0).getLongitude();
