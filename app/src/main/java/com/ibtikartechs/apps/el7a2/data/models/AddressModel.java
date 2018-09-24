@@ -39,6 +39,8 @@ public class AddressModel {
         this.delivaryAvailability = delivaryAvailability;
     }
 
+
+
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
@@ -81,6 +83,17 @@ public class AddressModel {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getStringAddress() {
+        String deliveryAvailability;
+        if (isDelivaryAvailabl())
+            deliveryAvailability = "الشحن متاح";
+        else
+            deliveryAvailability = "الشحن غير متاح";
+        String content = getName() + "\n"
+                + getGovernmentName() + " - " + getCityName();
+        return content;
     }
 
     public boolean isDelivaryAvailabl() {

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#117ECB</color>
     <color name="background">#e6e9ec</color>
     <color name="black">#212121</color>
     <color name="white">#ffffff</color>
@@ -12,6 +12,7 @@
     <color name="white_blue">#117ecb</color>
     <color name="off_gray">#707070</color>
     <color name="gray_blue">#607D8B</color>
+    <color name="graylite">#f1f1f1</color>
     <color name="colorSubCatTabLayout">#c2c2c4</color>
     <color name="colorUnSelectedTabSubCat">#eeecec</color>
     <color name="placeholder_grey">#AAADC4</color>
@@ -28,6 +29,8 @@
     <color name="edxt_bg">#8b4bcbee</color>
     <color name="whiteLite">#85ffffff</color>
     <color name="green">#43A047</color>
+    <color name="graydark">#717171</color>
+    <color name="grayblack">#333333</color>
 
     <color name="dot_light_screen3">#93c6fd</color>
     <color name="dot_dark_screen3">#2278d4</color>

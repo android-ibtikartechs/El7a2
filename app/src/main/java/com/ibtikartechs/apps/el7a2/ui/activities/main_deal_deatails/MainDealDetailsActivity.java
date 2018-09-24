@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -45,6 +46,17 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.internal.ShareFeedContent;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareMediaContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.ibtikartechs.apps.el7a2.MvpApp;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.StaticValues;
@@ -97,6 +109,7 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     ImageView imSecondSupplement;
     @BindView(R.id.customFontTextView12)
     WebView tvMainDescription;
+
 
     @BindView(R.id.tv_count_down)
     CustomFontTextView tvCountDown;
@@ -170,6 +183,10 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
     String priceOfProduct;
     String imgUrlOfProduct;
     private String footerCatId;
+
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
     TextView textCartItemCount;
     @BindView(R.id.lout_buy_footer)
     CardView loutBuyFooter;
@@ -207,6 +224,64 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         DataManager dataManager = ((MvpApp) getApplication()).getDataManager();
         presenter = new MainDealDetailsPresenter(dataManager);
         presenter.onAttach(this);
+
+
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
+                        .setContentUrl(Uri.parse("https://github.com/sromku/android-simple-facebook"))
+                        .setImageUrl(Uri.parse("https://images.unsplash.com/photo-1533529318682-0c3e2fc1e225?ixlib=rb-0.3.5&s=742603e5ed0b4c3b10b4d6177d31c1a2&auto=format&fit=crop&w=750&q=80"))
+                        .build();
+
+
+                ShareContent shareContent = new ShareFeedContent.Builder()
+                        .setPicture("https://images.unsplash.com/photo-1533529318682-0c3e2fc1e225?ixlib=rb-0.3.5&s=742603e5ed0b4c3b10b4d6177d31c1a2&auto=format&fit=crop&w=750&q=80")
+                        .build();
+
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeResource(getResources(), R.drawable.banner1, options);
+                int imageHeight = options.outHeight;
+                int imageWidth = options.outWidth;
+                String imageType = options.outMimeType;
+
+                SharePhoto sharePhoto1 = new SharePhoto.Builder()
+                        .setBitmap(decodeSampledBitmapFromResource(getResources(),
+                                R.drawable.banner1, 150, 150))
+                        .setImageUrl(Uri.parse("https://github.com/sromku/android-simple-facebook"))
+                        .setCaption("ايوا بقى")
+                        .build();
+
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto1)
+                        .build();
+
+                ShareDialog.show(MainDealDetailsActivity.this,content);
+            }
+        });
+
 
        /* if (presenter.checkIfExistInShoppingCart(dealOrProductId)!=null) {
             btnBuy.setText("تعديل الكمية");
@@ -812,4 +887,40 @@ public class MainDealDetailsActivity extends BaseActivity implements MainDealDet
         return resultHtml;
     }
 
+
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth,
+                                                  int reqHeight) {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    static int calculateInSampleSize( BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        int inSampleSize = 1;   //Default subsampling size
+        // See if image raw height and width is bigger than that of required view
+        if (options.outHeight > reqHeight || options.outWidth > reqWidth) {
+            //bigger
+            final int halfHeight = options.outHeight / 2;
+            final int halfWidth = options.outWidth / 2;
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
+    }
 }

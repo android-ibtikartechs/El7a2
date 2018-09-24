@@ -71,7 +71,7 @@ public class MainPresenter <V extends MainMvpView> extends BasePresenter<V> impl
                             }
                         }
 
-                        /*for (int i = 0 ; i < jsnCategoryListArray.length(); i++)
+                       /* for (int i = 0 ; i < jsnCategoryListArray.length(); i++)
                         {
 
                             JSONObject jsnItemObject = jsnCategoryListArray.getJSONObject(i);

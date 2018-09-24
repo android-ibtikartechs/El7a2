@@ -218,7 +218,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteLite"
                 android:textCursorDrawable="@null"
-                app:custom_font_edi_text="@string/font_name_helvatican" />
+                app:custom_font_edi_text="@string/font_name_helvatican"/>
 
 
             <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
