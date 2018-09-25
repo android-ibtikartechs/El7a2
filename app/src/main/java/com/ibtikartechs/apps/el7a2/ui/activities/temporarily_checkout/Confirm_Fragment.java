@@ -59,8 +59,8 @@ public class Confirm_Fragment extends Fragment  {
 
     public void initView(View view) {
         address_info_txt = view.findViewById(R.id.address_info_txt);
-        card_edit = view.findViewById(R.id.cart_edit_txt);
-        address_edit = view.findViewById(R.id.address_edit_txt);
+        //card_edit = view.findViewById(R.id.cart_edit_txt);
+        //address_edit = view.findViewById(R.id.address_edit_txt);
         contiune = view.findViewById(R.id.continue_btn);
         total_txt = view.findViewById(R.id.total_txt);
         subtotal_txt = view.findViewById(R.id.subtotal_txt);
@@ -83,20 +83,20 @@ public class Confirm_Fragment extends Fragment  {
             }
         });
 
-        card_edit.setOnClickListener(new View.OnClickListener() {
+        /*card_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
-        });
+        });*/
 
-        address_edit.setOnClickListener(new View.OnClickListener() {
+       /* address_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
                 getFragmentManager().popBackStack();
             }
-        });
+        });*/
     }
 
 
@@ -104,13 +104,14 @@ public class Confirm_Fragment extends Fragment  {
         this.address = address;
         this.deliver_option = option;
         this.note = note;
-        address_info_txt.setText(address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option) + note);
+        address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option) + "\n" +"ملاحظات : " +note);
     }
 
     public void initTotal() {
         subtotal_txt.setText(updateTotalPrice() + " EGP");
         charge_txt.setText(getOptionDouble(deliver_option) == 0 ? "مجانى" : getOptionDouble(deliver_option) + " EGP");
-        total_txt.setText((updateTotalPrice() + getOptionDouble(deliver_option)) + " EGP");
+        double totPrice = updateTotalPrice() + getOptionDouble(deliver_option);
+        total_txt.setText(totPrice + " EGP");
     }
 
     public String getOptionString(int option) {
@@ -162,7 +163,7 @@ public class Confirm_Fragment extends Fragment  {
         }, progressDialog);
     }
 
-    public String updateTotalPrice()
+    public Integer updateTotalPrice()
     {
         ArrayList<CartListModel> cartItemsArrayList = dataManager.getCartItemsList();
         Integer totalPrice = 0;
@@ -174,8 +175,8 @@ public class Confirm_Fragment extends Fragment  {
 
         }
         String totPrice = String.valueOf(totalPrice);
-        String resultPrice = totalPrice.toString()+"$";
-        return resultPrice;
+        //String resultPrice = totalPrice.toString()+"$";
+        return totalPrice;
     }
 
 

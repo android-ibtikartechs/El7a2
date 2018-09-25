@@ -113,11 +113,14 @@ public class GetAddressFragment extends BaseFragment implements GetAddressMvpVie
 
     @Override
     public void onSelectedItem(AddressModel addressModel, int position) {
-        Toast.makeText(getActivity(), addressModel.getAddress(), Toast.LENGTH_SHORT).show();
-        ((ImageView)getViewByPosition(oldPosition, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_unselected));
-        ((ImageView)getViewByPosition(position, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_selected));
-        selectedAddress = addressModel;
-        oldPosition = position;
+        if (addressModel.isDelivaryAvailabl()) {
+            ((ImageView) getViewByPosition(oldPosition, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_unselected));
+            ((ImageView) getViewByPosition(position, lvAddresses).findViewById(R.id.ic_check_indicator)).setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_tick_selected));
+            selectedAddress = addressModel;
+            oldPosition = position;
+        }
+        else
+            Toast.makeText(getActivity(), "عفوا عنوان الشحن هذا غير متاح برجاء اختيار عنوان آخر", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.AddressModel;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.temporarily_checkout.Confirm_Fragment;
 import com.ibtikartechs.apps.el7a2.ui.activities.temporarily_checkout.Payment_Fragment;
 import com.ibtikartechs.apps.el7a2.ui.fragments.confirmorder.ConfirmOrderFragment;
@@ -31,7 +32,7 @@ import com.ibtikartechs.apps.el7a2.ui_utilities.NonSwipeableViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CompleteOrderActivity extends AppCompatActivity implements ShippingInformationFragment.OnNextStepListener, Payment_Fragment.OnNextStepAfterPaymentListener {
+public class CompleteOrderActivity extends BaseActivity implements ShippingInformationFragment.OnNextStepListener, Payment_Fragment.OnNextStepAfterPaymentListener {
     @BindView(R.id.main_toolbar)
     Toolbar toolbar;
     @BindView(R.id.main_view_pager)
@@ -160,7 +161,7 @@ public class CompleteOrderActivity extends AppCompatActivity implements Shipping
         if (confirm_fragment != null) {
             confirm_fragment.setdata(addressModel, option, note, isCash);
             viewPager.setCurrentItem(2);
-            View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);
+            View view =  ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(1);
             ((CustomFontTextView) view.findViewById(R.id.tab)).setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.ic_action_check,0,0);
         }
     }

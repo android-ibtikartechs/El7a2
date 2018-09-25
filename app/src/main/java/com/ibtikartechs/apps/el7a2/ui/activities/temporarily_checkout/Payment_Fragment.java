@@ -18,6 +18,7 @@ import com.ibtikartechs.apps.el7a2.R;
 import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.models.AddressModel;
 import com.ibtikartechs.apps.el7a2.data.models.CartListModel;
+import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class Payment_Fragment extends Fragment {
+public class Payment_Fragment extends BaseFragment {
     TextView contiune, address_info_txt, total;
     LinearLayout one_btn, two_btn;
     int deliver_option = -1;
@@ -109,7 +110,7 @@ public class Payment_Fragment extends Fragment {
                 two_cost.setTextColor(Color.parseColor("#000000"));
                 one_cost.setTextColor(Color.parseColor("#000000"));
                 deliver_option = 1;
-                address_info_txt.setText(address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
+                address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
                 initTotal(0);
             }
         });
@@ -123,7 +124,7 @@ public class Payment_Fragment extends Fragment {
                 two_cost.setTextColor(Color.parseColor("#000000"));
                 free_btn.setTextColor(Color.parseColor("#717171"));
                 deliver_option = 2;
-                address_info_txt.setText(address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
+                address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
                 initTotal(49);
             }
         });
@@ -137,7 +138,7 @@ public class Payment_Fragment extends Fragment {
                 one_cost.setTextColor(Color.parseColor("#000000"));
                 free_btn.setTextColor(Color.parseColor("#717171"));
                 deliver_option = 3;
-                address_info_txt.setText(address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
+                address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
                 initTotal(149);
             }
         });
@@ -152,11 +153,12 @@ public class Payment_Fragment extends Fragment {
     }
 
     public void initTotal(double fees) {
-        String totalPrice = String.valueOf(updateTotalPrice() + fees);
+        double totPrice = updateTotalPrice() + fees;
+        String totalPrice = String.valueOf(totPrice);
         total.setText(totalPrice + " EGP");
     }
 
-    public String updateTotalPrice()
+    public Integer updateTotalPrice()
     {
         DataManager dataManager = ((MvpApp) getActivity().getApplication()).getDataManager();
         ArrayList<CartListModel> cartItemsArrayList = dataManager.getCartItemsList();
@@ -169,14 +171,14 @@ public class Payment_Fragment extends Fragment {
 
         }
         String totPrice = String.valueOf(totalPrice);
-        String resultPrice = totalPrice.toString()+"$";
-        return resultPrice;
+        //String resultPrice = totalPrice.toString();
+        return totalPrice;
     }
 
 
     public void setAddress(AddressModel address) {
         this.address = address;
-        address_info_txt.setText(address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option));
+        address_info_txt.setText(address.getName()+ "\n"+address.getAddress() );
     }
 
     public interface OnNextStepAfterPaymentListener {

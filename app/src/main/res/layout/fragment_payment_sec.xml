@@ -30,7 +30,6 @@
                     android:paddingStart="10dp"
                     android:paddingTop="10dp"
                     android:text="معلومات الشحن"
-                    android:textAlignment="viewEnd"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -43,7 +42,6 @@
                     android:paddingBottom="15dp"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:textAlignment="viewEnd"
                     android:textColor="@color/graydark"
                     android:textSize="16sp"
                     android:textStyle="normal" />
@@ -109,7 +107,6 @@
                     android:hint="ملاحظات"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textAlignment="viewEnd"
                     android:textColor="@color/graydark"
                     android:textSize="18sp" />
 
@@ -127,7 +124,6 @@
                     android:background="@color/graylite"
                     android:padding="10dp"
                     android:text="أختر نوع التوصيل"
-                    android:textAlignment="viewEnd"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -236,12 +232,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
+
                         android:layout_centerVertical="true"
                         android:paddingEnd="10dp"
                         android:paddingStart="10dp"
                         android:text="المستحق"
-                        android:textAlignment="viewEnd"
                         android:textColor="@color/colorAccent"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -251,10 +246,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
                         android:paddingEnd="10dp"
                         android:paddingStart="10dp"
-                        android:text="2,456 EGP"
-                        android:textAlignment="viewEnd"
                         android:textColor="@color/colorAccent"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -266,8 +260,7 @@
                     android:layout_marginBottom="10dp"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="إذا لم تستلم السلعة التى اشتريتها,أو كانت الساعة غير مطابقة للمواصفات التى قدمها البائع،قدم شكوى لمحاولة حل هذة المشكلة قبل ان تقوم بوضع تقييمك."
-                    android:textAlignment="viewEnd"
+                    android:text="إذا لم تستلم السلعة التى اشتريتها,أو كانت السلعة غير مطابقة للمواصفات التى قدمها البائع،قدم شكوى لمحاولة حل هذة المشكلة قبل ان تقوم بوضع تقييمك."
                     android:textColor="@color/grayblack"
                     android:textSize="16sp"
                     android:textStyle="normal" />
@@ -275,16 +268,16 @@
                 <TextView
                     android:id="@+id/continue_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/gradient_bg"
+                    android:background="@drawable/shape_rounded_blue_button"
                     android:gravity="center"
                     android:text="تاكيد عملية الشراء"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
