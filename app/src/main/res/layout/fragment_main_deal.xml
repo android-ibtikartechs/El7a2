@@ -282,26 +282,25 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/lout_im_sec"
                                 android:orientation="horizontal"
-                                >
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:custom_font="@string/font_name_helvatican"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="Mol7a2"
-                                    />
+                                android:visibility="gone">
 
                                 <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    app:custom_font="@string/font_name_helvatican"
-                                    android:text="200"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginStart="10dp"
+                                    android:text="Mol7a2"
+                                    app:custom_font="@string/font_name_helvatican" />
+
+                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_alignParentRight="true"
-                                    android:layout_marginRight="10dp"
                                     android:layout_marginEnd="10dp"
-                                    />
+                                    android:layout_marginRight="10dp"
+                                    android:text="200"
+                                    app:custom_font="@string/font_name_helvatican" />
                             </RelativeLayout>
 
                         </RelativeLayout>
@@ -351,31 +350,31 @@
                                     android:layout_alignParentLeft="true"
                                     android:src="@drawable/ribbon_h" />
                             </RelativeLayout>
+
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/lout_im"
                                 android:orientation="horizontal"
-                                >
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:custom_font="@string/font_name_helvatican"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="Mol7a2"
-                                    />
+                                android:visibility="gone">
 
                                 <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    app:custom_font="@string/font_name_helvatican"
-                                    android:text="200"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginStart="10dp"
+                                    android:text="Mol7a2"
+                                    app:custom_font="@string/font_name_helvatican" />
+
+                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_alignParentRight="true"
-                                    android:layout_marginRight="10dp"
                                     android:layout_marginEnd="10dp"
-                                    />
+                                    android:layout_marginRight="10dp"
+                                    android:text="200"
+                                    app:custom_font="@string/font_name_helvatican" />
                             </RelativeLayout>
 
                         </RelativeLayout>

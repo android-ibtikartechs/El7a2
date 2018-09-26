@@ -32,6 +32,7 @@ import com.ibtikartechs.apps.el7a2.data.DataManager;
 import com.ibtikartechs.apps.el7a2.data.adapters.NavItemsAdapter;
 import com.ibtikartechs.apps.el7a2.data.adapters.ViewPagerAdapter;
 import com.ibtikartechs.apps.el7a2.data.models.NavItemModel;
+import com.ibtikartechs.apps.el7a2.ui.activities.MyOrdersActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.base.BaseActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.registeration.RegisterationActivity;
 import com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity;
@@ -127,6 +128,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
         loutLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drawerLayout.closeDrawers();
                 startActivity(RegisterationActivity.getStartIntent(MainActivity.this));
             }
         });
@@ -255,10 +257,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
         ArrayList<NavItemModel> arrayList = new ArrayList<>();
         arrayList.add(new NavItemModel("طلباتي",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("الإشعارات",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("الإعدادات",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("المساعدة",R.mipmap.ic_launcher));
-        arrayList.add(new NavItemModel("خدمة العملاء",R.mipmap.ic_launcher));
+        //arrayList.add(new NavItemModel("الإشعارات",R.mipmap.ic_launcher));
+        //arrayList.add(new NavItemModel("الإعدادات",R.mipmap.ic_launcher));
+        //arrayList.add(new NavItemModel("المساعدة",R.mipmap.ic_launcher));
+        //arrayList.add(new NavItemModel("خدمة العملاء",R.mipmap.ic_launcher));
 
         NavItemsAdapter itemsAdapter = new NavItemsAdapter(this,arrayList);
         itemsAdapter.setCustomButtonListner(this);
@@ -267,7 +269,13 @@ public class MainActivity extends BaseActivity implements MainMvpView, NavItemsA
 
     @Override
     public void onItemClickListner(View buttonView, int position) {
-
+        switch (position)
+        {
+            case 0 :
+                drawerLayout.closeDrawers();
+                startActivity(new Intent(this, MyOrdersActivity.class));
+                break;
+        }
     }
 
 

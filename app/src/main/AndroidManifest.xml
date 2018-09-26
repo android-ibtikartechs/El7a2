@@ -108,7 +108,8 @@
             android:authorities="com.facebook.app.FacebookContentProvider131002647770788"
             android:exported="true" />
 
-        <activity android:name=".ui.activities.temporarily_checkout.CheckOut_Activity"></activity>
+        <activity android:name=".ui.activities.temporarily_checkout.CheckOut_Activity" />
+        <activity android:name=".ui.activities.MyOrdersActivity"></activity>
     </application>
 
 </manifest>

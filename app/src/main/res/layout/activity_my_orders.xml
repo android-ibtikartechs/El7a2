@@ -4,33 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.wishes.WishesActivity">
+    tools:context=".ui.activities.MyOrdersActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:minHeight="?android:attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    </android.support.design.widget.AppBarLayout>
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomeListView
-        android:id="@+id/wishes_listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/order_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:orientation="horizontal"
-        android:background="@drawable/shadow"
-        app:layout_constraintTop_toTopOf="@+id/cart_listView"/>
 
 </android.support.constraint.ConstraintLayout>
