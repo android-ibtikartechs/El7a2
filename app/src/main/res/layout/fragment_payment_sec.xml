@@ -126,12 +126,14 @@
                     android:text="أختر نوع التوصيل"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:background="@color/graylite"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:paddingBottom="10dp">
 

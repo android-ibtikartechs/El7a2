@@ -84,7 +84,7 @@ public class Payment_Fragment extends BaseFragment {
         contiune.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (deliver_option != -1) {
+                //if (deliver_option != -1) {
                  /*   Confirm_Fragment confirm_fragment = new Confirm_Fragment();
                     confirm_fragment.setdata(address, deliver_option, note_edtx.getText().toString(), IsCash);
                     getFragmentManager()
@@ -94,9 +94,9 @@ public class Payment_Fragment extends BaseFragment {
                             .commit();*/
                  onNextStepAfterPaymentListener.onNextStepAfterPaymentclicked(address,deliver_option,note_edtx.getText().toString(), IsCash);
 
-                } else {
-                    Toast.makeText(getContext(), "اختر نوع التوصيل", Toast.LENGTH_SHORT).show();
-                }
+               // } else {
+                    //Toast.makeText(getContext(), "اختر نوع التوصيل", Toast.LENGTH_SHORT).show();
+                //}
 
             }
         });

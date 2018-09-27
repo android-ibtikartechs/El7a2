@@ -104,14 +104,24 @@ public class Confirm_Fragment extends Fragment  {
         this.address = address;
         this.deliver_option = option;
         this.note = note;
-        address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" + "الشحن : " + getOptionString(deliver_option) + "\n" +"ملاحظات : " +note);
+        address_info_txt.setText(address.getName()+ "\n"+address.getAddress() + "\n" +"ملاحظات : " +note);
+        if (address.getFees() == null || address.getFees().isEmpty())
+            charge_txt.setText("10");
+        else
+            charge_txt.setText(address.getFees());
+        double totPrice;
+        if (address.getFees() == null || address.getFees().isEmpty())
+            totPrice = updateTotalPrice() + Integer.valueOf("10");
+        else
+            totPrice = updateTotalPrice() + Integer.valueOf(address.getFees());
+        total_txt.setText(totPrice + " EGP");
     }
 
     public void initTotal() {
         subtotal_txt.setText(updateTotalPrice() + " EGP");
-        charge_txt.setText(getOptionDouble(deliver_option) == 0 ? "مجانى" : getOptionDouble(deliver_option) + " EGP");
-        double totPrice = updateTotalPrice() + getOptionDouble(deliver_option);
-        total_txt.setText(totPrice + " EGP");
+        //charge_txt.setText(getOptionDouble(deliver_option) == 0 ? "مجانى" : getOptionDouble(deliver_option) + " EGP");
+        //charge_txt.setText(address.getFees());
+
     }
 
     public String getOptionString(int option) {
