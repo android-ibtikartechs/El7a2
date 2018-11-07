@@ -4,7 +4,7 @@
     android:id="@+id/sv_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.add_address.AddAddressFragment">
+    tools:context="com.ibtikartechs.apps.am.ui.fragments.add_address.AddAddressFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             >
         </RelativeLayout>
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         </RelativeLayout>
 
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 >
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomAutoCompleteTextView
                     android:id="@+id/governrote_auto_tex_view_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomAutoCompleteTextView
                     android:id="@+id/city_auto_tex_view_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
 
         </LinearLayout>
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
             android:id="@+id/etPostNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
             >
         </RelativeLayout>
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -226,7 +226,7 @@
             android:layout_height="350dp">
         <fragment
             android:id="@+id/map"
-            android:name="com.ibtikartechs.apps.el7a2.ui_utilities.WorkaroundMapFragment"
+            android:name="com.ibtikartechs.apps.am.ui_utilities.WorkaroundMapFragment"
             android:layout_width="match_parent" android:layout_height="350dp" />
 
             <RelativeLayout
@@ -277,7 +277,7 @@
                 >
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:background="@null"
@@ -289,7 +289,7 @@
                 android:hint="العنوان"
                 />
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:custom_font="@string/font_name_helvatican"

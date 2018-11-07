@@ -67,7 +67,7 @@
                     android:layout_weight="1"
                     android:theme="@style/grey_color_accent">
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                         android:id="@+id/et_name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                     android:layout_weight="1"
                     android:theme="@style/grey_color_accent">
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                         android:id="@+id/et_mob_num"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                     android:id="@+id/et_email"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 >
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -153,7 +153,7 @@
 
 
             </LinearLayout>
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

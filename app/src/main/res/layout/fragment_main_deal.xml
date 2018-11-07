@@ -1,639 +1,631 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+
+<!-- TODO: Update blank fragment layout -->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.maindeal.MainDealFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.ibtikartechs.apps.am.ui.fragments.maindeal.MainDealFragment"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/lout_main_deal_data_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible">
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp"
+            >
 
-            <LinearLayout
-                android:id="@+id/linearLayout7"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/lout_main_deal_data_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/placeholder_grey_20"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/im_main_deal_main_sale">
-
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                    android:id="@+id/tvTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="00 : 00 : 00 : 00"
-                    android:textSize="18sp"
-                    app:custom_font="@string/font_name_helvatican"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_main_price" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/im_main_deal_main_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
+                android:paddingBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
 
-                />
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/lout_some_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
                 <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/supplements_footer"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                    android:id="@+id/tv_main_deal_name_sale"
+                    android:id="@+id/im_main_deal_main_sale"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-
-                    android:layout_marginTop="8dp"
-                    android:text="لاب توب Hp + شنطة هدية + ماوس هدية"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    app:custom_font="@string/font_name_helvatican"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_main_deal_main_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="1250$"
-                    android:textColor="@color/white_blue"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_name_sale" />
-
-
-                <TextView
-                    android:id="@+id/tv_main_deal_old_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="1400$"
-                    android:textColor="@color/gray"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_main_price"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_discount_parcent" />
-
-                <TextView
-                    android:id="@+id/tv_main_deal_discount_parcent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="( -50% )"
-                    android:textColor="@color/ColorRedHint"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/lout_some_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/im_main_deal_main_sale">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/supplements_footer"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                        android:id="@+id/tv_main_deal_name_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+
+                        android:layout_marginTop="8dp"
+                        android:text="لاب توب Hp + شنطة هدية + ماوس هدية"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:custom_font="@string/font_name_helvatican"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_main_deal_main_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="1250$"
+                        android:textColor="@color/white_blue"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_old_price"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_name_sale" />
 
 
-                <WebView
-                    android:id="@+id/webView"
+                    <TextView
+                        android:id="@+id/tv_main_deal_old_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="1400$"
+                        android:textColor="@color/gray"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_main_price"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_main_deal_discount_parcent" />
+
+                    <TextView
+                        android:id="@+id/tv_main_deal_discount_parcent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="( -50% )"
+                        android:textColor="@color/ColorRedHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_old_price"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_main_deal_old_price" />
+
+
+                    <WebView
+                        android:id="@+id/webView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_main_price" />
+
+                    <Button
+                        android:id="@+id/btn_main_deal_buy_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/ColorBackGray"
+                        android:text="اشتر الآن"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/webView" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/off_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_deal_main_price" />
+                    app:layout_constraintTop_toBottomOf="@+id/cardView102"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true">
 
-                <Button
-                    android:id="@+id/btn_main_deal_buy_now"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="اشترك في نشرتنا البريدية الآن ليصلك كل جديد"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            android:id="@+id/et_main_deal_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/shape_edit_text"
+                            android:gravity="center"
+                            android:hint="أدخل البريد الإلكتروني هنا"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/boarder"
+                            android:textCursorDrawable="@null" />
+
+                        <Button
+                            android:id="@+id/btn_main_deal_subscribe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/shape_button"
+                            android:text="اشترك"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView102"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@color/ColorBackGray"
-                    android:text="اشتر الآن"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/webView" />
+                    app:layout_constraintTop_toBottomOf="@+id/lout_some_header">
+
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/lout_supplements_container"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="270dp">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/lout_main_deal_container_first_sale"
+                            android:layout_width="0dp"
+                            android:layout_height="210dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/customFontTextView19"
+                            app:cardCornerRadius="4dp"
+                            app:cardUseCompatPadding="true">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="150dp"
+                                    android:layout_margin="10dp"
+                                    android:id="@+id/lout_im_sec"
+                                    >
+
+                                    <ImageView
+                                        android:id="@+id/im_main_deal_first_sale"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop" />
+
+
+                                    <ImageView
+                                        android:id="@+id/imageView3"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:src="@drawable/ribbon_h" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/lout_im_sec"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginStart="10dp"
+                                        android:text="Mol7a2"
+                                        app:custom_font="@string/font_name_helvatican" />
+
+                                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="200"
+                                        app:custom_font="@string/font_name_helvatican" />
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/lout_main_deal_container_second_sale"
+                            android:layout_width="0dp"
+                            android:layout_height="210dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/lout_main_deal_container_first_sale"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/lout_main_deal_container_first_sale"
+                            app:layout_constraintTop_toTopOf="@+id/lout_main_deal_container_first_sale"
+                            app:cardCornerRadius="4dp"
+                            app:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="150dp"
+                                    android:layout_margin="10dp"
+                                    android:id="@+id/lout_im"
+                                    >
+
+                                    <ImageView
+                                        android:id="@+id/im_main_deal_second_sale"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="150dp"
+                                        android:scaleType="centerCrop"
+                                        />
+
+                                    <ImageView
+                                        android:id="@+id/imageView100"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_alignParentLeft="true"
+                                        android:src="@drawable/ribbon_h" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/lout_im"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginStart="10dp"
+                                        android:text="Mol7a2"
+                                        app:custom_font="@string/font_name_helvatican" />
+
+                                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="200"
+                                        app:custom_font="@string/font_name_helvatican" />
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+
+                        </android.support.v7.widget.CardView>
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/customFontTextView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/sublement"
+                            android:textSize="16sp"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView102">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_main_deal_suggested_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:text="أجازات"
+                            android:textColor="@color/black"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_btn_main_deal_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+
+                            android:text="شاهد المزيد"
+                            android:textColor="@color/white_blue"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_main_deal_suggested_category"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:scrollbars="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more" />
+
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/lout_main_deal_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/im_main_deal_banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_test_main_deal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_main_deal_suggested_category_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:text="أجازات"
+                            android:textColor="@color/black"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_btn_main_deal_more_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="شاهد المزيد"
+                            android:textColor="@color/white_blue"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category_2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category_2" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_main_deal_suggested_category_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:scrollbars="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_2" />
+
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/lout_main_deal_banner_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView20">
+
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/im_main_deal_banner_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_test_main_deal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView30"
+                    android:layout_width="0dp"
+                    android:layout_height="320dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner_2">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_main_deal_suggested_category_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:text="أجازات"
+                            android:textColor="@color/black"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+                            android:id="@+id/tv_btn_main_deal_more_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="شاهد المزيد"
+                            android:textColor="@color/white_blue"
+                            app:custom_font="@string/font_name_helvatican"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category_3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category_3" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_main_deal_suggested_category_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:scrollbars="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_3" />
+
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="@color/off_gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView102"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardUseCompatPadding="true">
+            <include
+                layout="@layout/view_error"
+                />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="اشترك في نشرتنا البريدية الآن ليصلك كل جديد"
-                        android:textColor="@color/white" />
-
-                    <EditText
-                        android:id="@+id/et_main_deal_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/shape_edit_text"
-                        android:gravity="center"
-                        android:hint="أدخل البريد الإلكتروني هنا"
-                        android:inputType="textEmailAddress"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/boarder"
-                        android:textCursorDrawable="@null" />
-
-                    <Button
-                        android:id="@+id/btn_main_deal_subscribe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/shape_button"
-                        android:text="اشترك"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView102"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lout_some_header">
-
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/lout_supplements_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="270dp">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/lout_main_deal_container_first_sale"
-                        android:layout_width="0dp"
-                        android:layout_height="210dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/lout_main_deal_container_second_sale"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/customFontTextView19"
-                        card_view:cardCornerRadius="4dp"
-                        card_view:cardUseCompatPadding="true">
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:layout_margin="10dp"
-                            android:id="@+id/lout_im_sec"
-                            >
-
-                            <ImageView
-                                android:id="@+id/im_main_deal_first_sale"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop" />
-
-
-                            <ImageView
-                                android:id="@+id/imageView3"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:src="@drawable/ribbon_h" />
-
-                        </RelativeLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/lout_im_sec"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginStart="10dp"
-                                    android:text="Mol7a2"
-                                    app:custom_font="@string/font_name_helvatican" />
-
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="200"
-                                    app:custom_font="@string/font_name_helvatican" />
-                            </RelativeLayout>
-
-                        </RelativeLayout>
-
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/lout_main_deal_container_second_sale"
-                        android:layout_width="0dp"
-                        android:layout_height="210dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="@+id/lout_main_deal_container_first_sale"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/lout_main_deal_container_first_sale"
-                        app:layout_constraintTop_toTopOf="@+id/lout_main_deal_container_first_sale"
-                        card_view:cardCornerRadius="4dp"
-                        card_view:cardUseCompatPadding="true">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:layout_margin="10dp"
-                                android:id="@+id/lout_im"
-                                >
-
-                            <ImageView
-                                android:id="@+id/im_main_deal_second_sale"
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:scaleType="centerCrop"
-                                />
-
-                                <ImageView
-                                    android:id="@+id/imageView100"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentLeft="true"
-                                    android:src="@drawable/ribbon_h" />
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/lout_im"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginStart="10dp"
-                                    android:text="Mol7a2"
-                                    app:custom_font="@string/font_name_helvatican" />
-
-                                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="200"
-                                    app:custom_font="@string/font_name_helvatican" />
-                            </RelativeLayout>
-
-                        </RelativeLayout>
-
-
-                    </android.support.v7.widget.CardView>
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/customFontTextView19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/sublement"
-                        android:textSize="16sp"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView4"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView102">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_main_deal_suggested_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginStart="16dp"
-                        android:text="أجازات"
-                        android:textColor="@color/black"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_btn_main_deal_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-
-                        android:text="شاهد المزيد"
-                        android:textColor="@color/white_blue"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_main_deal_suggested_category"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:scrollbars="none"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more" />
-
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/lout_main_deal_banner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintTop_toBottomOf="@+id/cardView4">
-
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/im_main_deal_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_test_main_deal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView20"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_main_deal_suggested_category_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginStart="16dp"
-                        android:text="أجازات"
-                        android:textColor="@color/black"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_btn_main_deal_more_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:text="شاهد المزيد"
-                        android:textColor="@color/white_blue"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category_2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category_2" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_main_deal_suggested_category_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:scrollbars="none"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_2" />
-
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/lout_main_deal_banner_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintTop_toBottomOf="@+id/cardView20">
-
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    >
-
-                    <ImageView
-                        android:id="@+id/im_main_deal_banner_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_test_main_deal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView30"
-                android:layout_width="0dp"
-                android:layout_height="320dp"
-                android:layout_marginTop="8dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lout_main_deal_banner_2">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_main_deal_suggested_category_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginStart="16dp"
-                        android:text="أجازات"
-                        android:textColor="@color/black"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
-                        android:id="@+id/tv_btn_main_deal_more_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:text="شاهد المزيد"
-                        android:textColor="@color/white_blue"
-                        app:custom_font="@string/font_name_helvatican"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_main_deal_suggested_category_3"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_main_deal_suggested_category_3" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_main_deal_suggested_category_3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:scrollbars="none"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_btn_main_deal_more_3" />
-
-
-                </android.support.constraint.ConstraintLayout>
-
-            </android.support.v7.widget.CardView>
 
         </android.support.constraint.ConstraintLayout>
 
-<include
-    layout="@layout/view_error"
-    />
 
-
-  </android.support.constraint.ConstraintLayout>
-
-
-</ScrollView>
+    </android.support.v4.widget.NestedScrollView>
+    <include
+        layout="@layout/view_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        />
+</android.support.design.widget.CoordinatorLayout>

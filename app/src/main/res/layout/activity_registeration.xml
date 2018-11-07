@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7">
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/login_txt"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
@@ -64,7 +64,7 @@
                 android:textStyle="bold"
                 app:custom_font="@string/font_name_helvatican" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/register_txt"
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
@@ -92,7 +92,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/email_edtx"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -110,7 +110,7 @@
                 android:textCursorDrawable="@null"
                 app:custom_font_edi_text="@string/font_name_helvatican" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -137,7 +137,7 @@
                 android:gravity="end"
                 android:orientation="horizontal">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_btn_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_btn_forget_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/facebook_bg_right"
                 android:gravity="end|center_vertical"
-
+                android:visibility="gone"
                 >
 
                 <com.facebook.login.widget.LoginButton
@@ -201,7 +201,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/name_edtx_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -220,7 +220,7 @@
                 app:custom_font_edi_text="@string/font_name_helvatican"/>
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/email_edtx_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -238,7 +238,7 @@
                 android:textCursorDrawable="@null"
                 app:custom_font_edi_text="@string/font_name_helvatican" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/phone_edtx_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -257,7 +257,7 @@
                 app:custom_font_edi_text="@string/font_name_helvatican" />
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomAutoCompleteTextView
                 android:id="@+id/governrote_auto_tex_view_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -277,7 +277,7 @@
                 app:custom_font_auto_compl_tex_view="@string/font_name_helvatican" />
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomAutoCompleteTextView
                 android:id="@+id/city_auto_tex_view_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -298,7 +298,7 @@
 
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/address_edtx_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -314,9 +314,9 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteLite"
                 android:textCursorDrawable="@null"
-                app:custom_font_edi_text="@string/font_name_helvatican" />
+                app:custom_font_edi_text="@string/font_name_helvatican"/>
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/et_password_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -336,7 +336,7 @@
                 app:custom_font_edi_text="@string/font_name_helvatican" />
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontEditText
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontEditText
                 android:id="@+id/et_password_sign_up_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -363,7 +363,7 @@
                 android:gravity="end"
                 android:orientation="horizontal">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_btn_sign_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -383,9 +383,8 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/facebook_bg_right"
-
+                android:visibility="gone"
                 android:gravity="end|center_vertical"
-
                 >
 
                 <com.facebook.login.widget.LoginButton

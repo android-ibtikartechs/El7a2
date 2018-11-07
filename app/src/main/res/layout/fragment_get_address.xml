@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.getAddress.GetAddressFragment">
+    tools:context="com.ibtikartechs.apps.am.ui.fragments.getAddress.GetAddressFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-4dp"
@@ -46,7 +46,7 @@
 
     </LinearLayout>
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView16"
         android:layout_width="0dp"
         android:layout_height="32dp"

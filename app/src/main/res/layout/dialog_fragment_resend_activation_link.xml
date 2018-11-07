@@ -30,7 +30,7 @@
             app:srcCompat="@drawable/ic_emailalerts" />
     </LinearLayout>
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
             android:id="@+id/customFontTextView15"
             android:layout_width="233dp"
             android:layout_height="wrap_content"

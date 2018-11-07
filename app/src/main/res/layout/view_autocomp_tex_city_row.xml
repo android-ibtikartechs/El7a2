@@ -8,7 +8,7 @@
     android:id="@+id/lout_container"
     >
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

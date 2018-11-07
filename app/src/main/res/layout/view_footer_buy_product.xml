@@ -36,7 +36,7 @@
                 android:orientation="horizontal"
                 android:layout_weight="2"
                 >
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_btn_add_to_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:gravity="end"
                 android:orientation="horizontal"
                 >
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"

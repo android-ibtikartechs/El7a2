@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.activities.main.MainActivity">
+    tools:context="com.ibtikartechs.apps.am.ui.activities.main.MainActivity">
 
 
     <include
@@ -55,7 +55,7 @@
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/profile" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                         android:id="@+id/tv_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                         android:textSize="12sp"
                         app:custom_font="@string/font_name_helvatican" />
 
-                    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                         android:id="@+id/tv_btn_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

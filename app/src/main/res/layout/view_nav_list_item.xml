@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@mipmap/ic_launcher" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_nav_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

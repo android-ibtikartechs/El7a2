@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#263238"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:text="00 : 00 : 00 : 00"
+            android:textSize="20sp"
+            android:layout_marginTop="-5dp"
+            app:custom_font="@string/font_name_helvatican"
+            />
+    </LinearLayout>
+</RelativeLayout>

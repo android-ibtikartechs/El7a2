@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/intro_two" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView17"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -42,7 +42,7 @@
         >
     </android.support.design.widget.TabLayout>
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomeViewPager
+    <com.ibtikartechs.apps.am.ui_utilities.CustomeViewPager
         android:id="@+id/main_view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"

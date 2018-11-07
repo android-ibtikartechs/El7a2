@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.subcategory.SubCategoryFragment">
+    tools:context="com.ibtikartechs.apps.am.ui.fragments.subcategory.SubCategoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
@@ -15,7 +15,7 @@
         >
 
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomRecyclerView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomRecyclerView
             android:id="@+id/rv_sub_category_list_products"
             android:layout_width="0dp"
             android:layout_height="0dp"

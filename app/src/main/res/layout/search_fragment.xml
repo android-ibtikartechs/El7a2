@@ -37,7 +37,7 @@
                 android:layout_marginRight="5dp"
                 />
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomAutoCompleteTextView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomAutoCompleteTextView
             android:id="@+id/customAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

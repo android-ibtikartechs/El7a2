@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.activities.completeorder.CompleteOrderActivity">
+    tools:context="com.ibtikartechs.apps.am.ui.activities.completeorder.CompleteOrderActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -33,7 +33,7 @@
         >
     </android.support.design.widget.TabLayout>
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.NonSwipeableViewPager
+    <com.ibtikartechs.apps.am.ui_utilities.NonSwipeableViewPager
         android:id="@+id/main_view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"

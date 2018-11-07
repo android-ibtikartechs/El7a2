@@ -26,7 +26,7 @@
             android:background="@drawable/line_white_grey"
             />
 
-        <com.ibtikartechs.apps.el7a2.ui_utilities.CustomRecyclerView
+        <com.ibtikartechs.apps.am.ui_utilities.CustomRecyclerView
             android:id="@+id/rv_more_list_products"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

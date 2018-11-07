@@ -35,7 +35,7 @@
                 app:srcCompat="@drawable/ic_tick_unselected"
                 />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -45,7 +45,7 @@
                 android:textSize="16sp"
                 app:custom_font="@string/font_name_helvatican" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 app:custom_font="@string/font_name_helvatican"
                 tools:text="أحمد يحيى عامر" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 app:custom_font="@string/font_name_helvatican"
                 tools:text="15 عبدالرازق السنهوري متفرع من عباس العقاد" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_govern_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 android:layout_marginStart="16dp"
                 android:orientation="horizontal">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-8dp"
@@ -93,7 +93,7 @@
                     android:textColor="@color/black"
                     app:custom_font="@string/font_name_helvatican" />
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_availability"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

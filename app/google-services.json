@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:400886712042:android:4f3807883f113c80",
         "android_client_info": {
-          "package_name": "com.ibtikartechs.apps.el7a2"
+          "package_name": "com.ibtikartechs.apps.am"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "400886712042-p4tku08rmd68l61rm3ogl8bfi71mtlg6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ibtikartechs.apps.el7a2",
+            "package_name": "com.ibtikartechs.apps.am",
             "certificate_hash": "29be163f38fb6382730b2151fc1c47fefe3ed838"
           }
         },

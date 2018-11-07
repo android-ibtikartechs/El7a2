@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.fragments.payment.PaymentFragment">
+    tools:context="com.ibtikartechs.apps.am.ui.fragments.payment.PaymentFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:paddingBottom="10dp"
             >
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:custom_font="@string/font_name_helvatican"
@@ -30,7 +30,7 @@
                 android:textColor="@color/white_blue"
                 android:textSize="16sp"
                 />
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="-8dp"
                 />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_marginTop="-8dp"
                 />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_govern_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:custom_font="@string/font_name_helvatican"
@@ -81,7 +81,7 @@
                     android:layout_marginTop="-8dp"
                     />
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_availability"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -16,10 +16,10 @@
     <string name="facebook_app_id">131002647770788</string>
     <string name="fb_login_protocol_scheme">fb131002647770788</string>
     <string name="skip_ad">تخطي الإعلان</string>
-    <string name="day_sample">D</string>
-    <string name="hours_sample">H</string>
-    <string name="monutes_sample">M</string>
-    <string name="seconds_sample">S</string>
+    <string name="day_sample">ي</string>
+    <string name="hours_sample">س</string>
+    <string name="monutes_sample">د</string>
+    <string name="seconds_sample">ث</string>
     <string name="sublement">ملحق العرض</string>
     <string name="hint_full_name">الإسم بالكامل</string>
     <string name="hint_mob_num">رقم الهاتف</string>

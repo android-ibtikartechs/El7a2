@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_footer_item_title">
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_main_deal_days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
          />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_main_deal_days"
         app:layout_constraintTop_toTopOf="@+id/tv_main_deal_days" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView4"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView4" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_main_deal_hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView5"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView5" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_main_deal_hours"
         app:layout_constraintTop_toTopOf="@+id/tv_main_deal_hours" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView7"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView7" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_main_deal_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView8"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView8" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_main_deal_minutes"
         app:layout_constraintTop_toTopOf="@+id/tv_main_deal_minutes" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView10"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView10" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/tv_main_deal_seconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         app:layout_constraintStart_toEndOf="@+id/customFontTextView11"
         app:layout_constraintTop_toTopOf="@+id/customFontTextView11" />
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
         android:id="@+id/customFontTextView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

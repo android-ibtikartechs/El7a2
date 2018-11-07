@@ -39,7 +39,7 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_sad_cloud" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:textColor="@color/gray_blue"
                 app:custom_font="@string/font_name_helvatican" />
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_main_deal_error_txt_cause"
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="wrap_content"

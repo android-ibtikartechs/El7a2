@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibtikartechs.apps.el7a2.ui.activities.shopping_cart.ShoppingCartActivity">
+    tools:context="com.ibtikartechs.apps.am.ui.activities.shopping_cart.ShoppingCartActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -20,7 +20,7 @@
 
 
 
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomeListView
+    <com.ibtikartechs.apps.am.ui_utilities.CustomeListView
         android:id="@+id/cart_listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,7 +66,7 @@
 
                 >
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -75,7 +75,7 @@
                     android:textSize="10sp"
                     app:custom_font="@string/font_name_helvatican" />
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:id="@+id/tv_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 android:background="@drawable/shape_rounded_blue_button"
                 android:gravity="center">
 
-                <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+                <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-5dp"

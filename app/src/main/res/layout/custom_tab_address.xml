@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
 
     android:layout_height="match_parent">
-    <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,5 +13,5 @@
         android:layout_gravity="center"
         app:custom_font="@string/font_name_helvatican"
         android:gravity="center">
-    </com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView>
+    </com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView>
 </LinearLayout>

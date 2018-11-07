@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ibtikartechs.apps.el7a2">
+    package="com.ibtikartechs.apps.am">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCVxwa45erG8HFf-sl5vQ1HCM0U7YzAUss" />
+            android:value="AIzaSyCElRPUfE_WNOEJJeCdFS3f3Nf2q447FgE" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

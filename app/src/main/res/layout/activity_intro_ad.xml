@@ -36,7 +36,7 @@
 
 
 
-            <com.ibtikartechs.apps.el7a2.ui_utilities.CustomFontTextView
+            <com.ibtikartechs.apps.am.ui_utilities.CustomFontTextView
                 android:id="@+id/tv_btn_skip_ad"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

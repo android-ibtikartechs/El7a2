@@ -9,7 +9,7 @@ android {
         abortOnError false
     }
     defaultConfig {
-        applicationId "com.ibtikartechs.apps.el7a2"
+        applicationId "com.ibtikartechs.apps.am"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
