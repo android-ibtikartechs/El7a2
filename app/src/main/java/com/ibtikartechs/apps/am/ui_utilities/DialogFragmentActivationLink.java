@@ -3,6 +3,8 @@ package com.ibtikartechs.apps.am.ui_utilities;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -41,9 +43,11 @@ public class DialogFragmentActivationLink extends DialogFragment {
     private static final String ARG_MSG = "param1";
     private static final String ARG_BUTTON_TITLE = "param2";
     private static final String ARG_BUTTON_ACTION_FLAG = "param3";
-    private static final String ARG_Email = "param3";
+    private static final String ARG_Email = "param4";
+    Handler handler;
 
-    String message, buttonTitle;
+
+    String message, buttonTitle, email;
     int buttonActionFlag;
 
     public static DialogFragmentActivationLink newInstance(String msg, String buttonTitle, String email, int buttonActionFlag) {
@@ -64,7 +68,11 @@ public class DialogFragmentActivationLink extends DialogFragment {
         if (getArguments() != null) {
             message = getArguments().getString(ARG_MSG);
             buttonTitle = getArguments().getString(ARG_BUTTON_TITLE);
+            //Toast.makeText(getActivity(), "title" + buttonTitle, Toast.LENGTH_SHORT).show();
             buttonActionFlag = getArguments().getInt(ARG_BUTTON_ACTION_FLAG);
+            //Toast.makeText(getActivity(), "click" + buttonActionFlag, Toast.LENGTH_SHORT).show();
+            email = getArguments().getString(ARG_Email);
+            //Toast.makeText(getActivity(), "email" + email, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -82,6 +90,7 @@ public class DialogFragmentActivationLink extends DialogFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        handler = new Handler(Looper.getMainLooper());
         super.onViewCreated(view, savedInstanceState);
         tvTitle.setText(message);
         btnAction.setText(buttonTitle);
@@ -90,12 +99,15 @@ public class DialogFragmentActivationLink extends DialogFragment {
             @Override
             public void onClick(View view) {
                 dismiss();
+                //Toast.makeText(getActivity(), "click" + buttonActionFlag, Toast.LENGTH_SHORT).show();
                 switch (buttonActionFlag) {
                     case 0:
                         resendActivation();
                         break;
                     case 1:
                         sendPassword();
+                        Toast.makeText(getActivity(), "sendPassword", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
@@ -106,7 +118,7 @@ public class DialogFragmentActivationLink extends DialogFragment {
         RequestBody body;
         body = new MultipartBody.Builder()
                 .setType(FORM)
-                .addFormDataPart("email","ahmedyehya1992@gmail.com").build();
+                .addFormDataPart("email",email).build();
 
 
         okhttp3.Request request = new okhttp3.Request.Builder()
@@ -117,17 +129,23 @@ public class DialogFragmentActivationLink extends DialogFragment {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                //Toast.makeText(getActivity(), "failer", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                Toast.makeText(getActivity(), "تم إرسال كلمة المرور إلى بريدك الإلكتروني", Toast.LENGTH_SHORT).show();
                 JSONObject jsnMainObject = null;
                 try {
                     jsnMainObject = new JSONObject(response.body().string());
                     if (jsnMainObject.getString("status").equals("OK"))
                     {
-                        Toast.makeText(getActivity(), "done", Toast.LENGTH_SHORT).show();
+                        /*handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "تم إرسال كلمة المرور إلى بريدك الإلكتروني", Toast.LENGTH_SHORT).show();
+                            }
+                        });*/
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

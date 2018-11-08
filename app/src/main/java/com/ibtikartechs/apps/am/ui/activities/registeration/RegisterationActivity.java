@@ -233,8 +233,15 @@ String cityId = "";
 
 
     @Override
-    public void showActivationLinkDialog(String msg, String buttonTitle, String email, int buttonActionFlag) {
+    public void showActivationLinkDialog(String msg, String buttonTitle, final String email, final int buttonActionFlag) {
         FragmentManager fm = getSupportFragmentManager();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(RegisterationActivity.this, "email" + email, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         DialogFragmentActivationLink dialogFragmentActivationLink = DialogFragmentActivationLink.newInstance(msg, buttonTitle,email,buttonActionFlag);
         dialogFragmentActivationLink.setButtonListener(this);
         dialogFragmentActivationLink.show(fm, "alert");

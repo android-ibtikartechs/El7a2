@@ -101,7 +101,7 @@ public class RegisterationPresenter <V extends RegisterationMvpView> extends Bas
     }
 
     @Override
-    public void loginRequest(String email, String password) {
+    public void loginRequest(final String email, String password) {
         if (checkValuesForLogin(email, password))
         {
             getMvpView().showProgressDialog("جاري تسجيل الدخول");
@@ -129,18 +129,18 @@ public class RegisterationPresenter <V extends RegisterationMvpView> extends Bas
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
                         JSONObject jsnMainObject = new JSONObject(response.body().string());
-                        String email= null;
+
                         if (jsnMainObject.getBoolean("status"))
                         {
                             JSONObject jsnUserObject = jsnMainObject.getJSONObject("user");
                             String userId = jsnUserObject.getString("id");
                             String userName = jsnUserObject.getString("name");
-                            email = jsnUserObject.getString("email");
+                            String recievedEmail = jsnUserObject.getString("email");
                             String phone = jsnUserObject.getString("phone");
                             String address = jsnUserObject.getString("address");
                             String gov = jsnUserObject.getJSONArray("Addressbook").getJSONObject(0).getString("cityname");
                             String city = jsnUserObject.getJSONArray("Addressbook").getJSONObject(0).getString("districtname");
-                            getDataManager().addUser(userId, userName, email, phone, address,gov, city);
+                            getDataManager().addUser(userId, userName, recievedEmail, phone, address,gov, city);
 
                             getMvpView().hideProgressDialog();
 
